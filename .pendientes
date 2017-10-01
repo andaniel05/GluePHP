@@ -1,0 +1,44 @@
+
+- Hay muchas entidades que tienen id. Tal vez no todas necesiten un id. Revisar al respecto.
+- Tratamiento de los estados
+- Documentar todo el proyecto
+- Crear PolyGlue u otro.
+- Versionar entidades.
+- Tratamiento de los uploads.
+- Assets que tengan versiones ejemplo una dependencia a jquery1.8 y otra dependencia a jquery1.9. Decidir que hacer en ese caso.
+- La carpeta /demo se va a eliminar del proyecto.
+- Analizar la serialización de clases anónimas.
+- Identar solo con espacios en todos los archivos.
+
+ComposedViews:
+- Que los contenedores html de los componentes se puedan personalizar.
+- Añadir paqute html-elements.
+
+Backend:
+- Analizar si se debe eliminar el token de la respuesta.
+- Crear acciones mas comunes.
+- Cuando se añade un componente al árbol se debe verificar si la clase del componente ya está registrada en el frontend.
+- Personalizar los contenedores html de los componentes.
+- En las anotaciones no se puedan especificar los getters ni los setters.
+- Pensar en alternativas de un script asset para extender el glueapps (para la v2).
+- Analizar si se debe modificar el constructor Event(AbstractApp $app, string $name, array $data) a Event(AbstractComponnet $component, string $name, array $data)
+- Analizar si se pueden fucionar los métodos AbstractComponent::jsClass y AbstractCOmponent::glueCode
+- Analizar si AbstractCOmponent::glueCode puede ser no estático
+- Corregir hack de AbstractApp::__wakeup
+- Si se elimina el proceso de comparar instantáneas antes y después de despachar el evento se ganará rendimiento.
+- Considerar crear un serializador más eficiente.
+- Añadir datos a la futura respuesta.
+- Poder regular que los scripts estén o no en modo depuración.
+- Considerar marcar como obsoleto la funcionalidad de actualizar haciendo una instantánea antes y después del evento. Si se decide eliminar tener en cuenta que en el frontend también hay que quitar el respectivo código.
+- Renombrar UpdateAttributeAction a UpdateAction
+
+Frontend:
+- Programar que pasa cuando se reciben errores en la actualización remota de componentes
+- Procesar las acciones que llegan en la respuesta y que no se han ejecutado antes.
+- Programar eventos en los componentes del tipo start_remote_update_name y end_remote_update_name.
+- Analizar si se puede mantener el estilo _id para los atributos de las clases.
+- Tratar los elementos especiales como radiobuttons y checkboxs en el binding.
+
+Tests:
+- Escribir tests para los wrappers
+- Si se rescriben los tests pensar en crear funciones javascript que generen datos aleatorios y eliminar el exceso de proveedores en los tests javascript.

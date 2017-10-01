@@ -1,0 +1,18 @@
+<phpunit bootstrap="bootstrap.php">
+    <testsuites>
+        <testsuite name="Unit">
+            <directory>tests/Unit</directory>
+        </testsuite>
+        <testsuite name="Functional">
+            <directory>tests/Functional</directory>
+        </testsuite>
+        <testsuite name="Integration">
+            <directory>tests/Integration</directory>
+        </testsuite>
+    </testsuites>
+
+    <php>
+        <var name="selenium_server" value="http://localhost:4444/wd/hub" />
+        <var name="test_server" value="http://localhost:8085/" />
+    </php>
+</phpunit>

@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "chai": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-minify": "^1.0.0",
+    "mocha": "^3.4.2",
+    "sinon": "^2.3.2"
+  }
+}

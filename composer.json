@@ -1,0 +1,35 @@
+{
+    "name": "platform-php/hybrid-apps",
+    "authors": [
+        {
+            "name": "Andy D. Navarro Taño",
+            "email": "andaniel05@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "symfony/event-dispatcher": "^3.2",
+        "platform-php/composed-views": "^1.0.0-alpha1",
+        "opis/closure": "^3.0.0",
+        "jeremeamia/superclosure": "^2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.0",
+        "facebook/webdriver": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "PlatformPHP\\GlueApps\\": "src/",
+            "PlatformPHP\\GlueApps\\Tests\\": "tests/"
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://localhost/satis/platform-php/"
+        }
+    ],
+    "config": {
+        "secure-http": false
+    }
+}
