@@ -11,16 +11,16 @@ return new class('') extends AbstractApp
         );
         $it = new RecursiveIteratorIterator($di);
 
-        $glueAppsTests = '';
+        $gluePhpTests = '';
         foreach ($it as $file) {
             if (substr(basename($file), -8) == '.test.js') {
-                $glueAppsTests .= file_get_contents($file);
+                $gluePhpTests .= file_get_contents($file);
             }
         }
 
-        $glueApps = $this->getAsset('glueapps');
-        $glueAppsSource = (isset($_GET['compress']) && $_GET['compress'] == true) ?
-            $glueApps->getContent() : $glueApps->getMinimizedContent();
+        $gluePhp = $this->getAsset('gluephp');
+        $gluePhpSource = (isset($_GET['compress']) && $_GET['compress'] == true) ?
+            $gluePhp->getContent() : $gluePhp->getMinimizedContent();
 
         return <<<HTML
 <!DOCTYPE html>
@@ -37,14 +37,14 @@ return new class('') extends AbstractApp
     <script src="/node_modules/sinon-chai/lib/sinon-chai.js"></script>
     <script src="/node_modules/sinon/pkg/sinon.js"></script>
 
-    <script>{$glueAppsSource}</script>
+    <script>{$gluePhpSource}</script>
 
     <script>
     mocha.setup('tdd');
     assert = chai.assert;
     </script>
 
-    <script>{$glueAppsTests}</script>
+    <script>{$gluePhpTests}</script>
     <script>runner = mocha.run();</script>
 </body>
 </html>

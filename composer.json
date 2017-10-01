@@ -8,7 +8,7 @@
     ],
     "require": {
         "php": ">=7.1.0",
-        "platform-php/composed-views": "^1.0.0-alpha1",
+        "andaniel05/composed-views": "^1.0.0-alpha1",
         "opis/closure": "^3.0.0"
     },
     "require-dev": {
@@ -24,7 +24,10 @@
     "repositories": [
         {
             "type": "composer",
-            "url": "http://localhost/satis/platform-php/"
+            "url": "http://localhost/satis/andaniel05/"
+        },
+        {
+            "packagist": false
         }
     ],
     "config": {

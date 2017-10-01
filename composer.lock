@@ -4,65 +4,42 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a520824ae522d5559267c85551185bbf",
+    "content-hash": "596711233801305b13daa967f96abe45",
     "packages": [
         {
-            "name": "jeremeamia/SuperClosure",
-            "version": "2.3.0",
+            "name": "andaniel05/composed-views",
+            "version": "v1.2.5-alpha1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jeremeamia/super_closure.git",
-                "reference": "443c3df3207f176a1b41576ee2a66968a507b3db"
+                "url": "D:\\Andy\\Repositorios\\Andaniel05\\ComposedViews",
+                "reference": "2067bef5c9bc56ad2380a3f0ee61034d02b88bbd"
             },
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jeremeamia/super_closure/zipball/443c3df3207f176a1b41576ee2a66968a507b3db",
-                "reference": "443c3df3207f176a1b41576ee2a66968a507b3db",
-                "shasum": ""
+                "type": "tar",
+                "url": "http://localhost/satis/andaniel05//dist/andaniel05-composed-views-v1.2.5-alpha1-5e9c0e.tar",
+                "reference": "2067bef5c9bc56ad2380a3f0ee61034d02b88bbd",
+                "shasum": "dadbe9e8fa17d884b06c6ff5b1c5d1f457251ef1"
             },
             "require": {
-                "nikic/php-parser": "^1.2|^2.0|^3.0",
-                "php": ">=5.4",
-                "symfony/polyfill-php56": "^1.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.0|^5.0"
+                "matthiasmullie/minify": "^1.3",
+                "myclabs/deep-copy": "^1.5",
+                "php": ">=7.1.0",
+                "symfony/event-dispatcher": "^3.2"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.3-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
-                    "SuperClosure\\": "src/"
+                    "Andaniel05\\ComposedViews\\": "src/",
+                    "Andaniel05\\ComposedViews\\Tests\\": "tests/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
             "authors": [
                 {
-                    "name": "Jeremy Lindblom",
-                    "email": "jeremeamia@gmail.com",
-                    "homepage": "https://github.com/jeremeamia",
-                    "role": "Developer"
+                    "name": "Andy D. Navarro Taño",
+                    "email": "andaniel05@gmail.com"
                 }
             ],
-            "description": "Serialize Closure objects, including their context and binding",
-            "homepage": "https://github.com/jeremeamia/super_closure",
-            "keywords": [
-                "closure",
-                "function",
-                "lambda",
-                "parser",
-                "serializable",
-                "serialize",
-                "tokenizer"
-            ],
-            "time": "2016-12-07T09:37:55+00:00"
+            "time": "2017-10-01T19:30:50+00:00"
         },
         {
             "name": "matthiasmullie/minify",
@@ -216,57 +193,6 @@
             "time": "2017-04-12T18:52:22+00:00"
         },
         {
-            "name": "nikic/php-parser",
-            "version": "v3.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "a1e8e1a30e1352f118feff1a8481066ddc2f234a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/a1e8e1a30e1352f118feff1a8481066ddc2f234a",
-                "reference": "a1e8e1a30e1352f118feff1a8481066ddc2f234a",
-                "shasum": ""
-            },
-            "require": {
-                "ext-tokenizer": "*",
-                "php": ">=5.5"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0|~5.0"
-            },
-            "bin": [
-                "bin/php-parse"
-            ],
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "PhpParser\\": "lib/PhpParser"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Nikita Popov"
-                }
-            ],
-            "description": "A PHP parser written in PHP",
-            "keywords": [
-                "parser",
-                "php"
-            ],
-            "time": "2017-09-02T17:10:46+00:00"
-        },
-        {
             "name": "opis/closure",
             "version": "3.0.4",
             "source": {
@@ -322,41 +248,6 @@
                 "serialize"
             ],
             "time": "2017-09-18T12:24:10+00:00"
-        },
-        {
-            "name": "platform-php/composed-views",
-            "version": "v1.2.4-alpha1",
-            "source": {
-                "type": "git",
-                "url": "D:\\Andy\\Repositorios\\PlatformPHP\\ComposedViews",
-                "reference": "39334ec114db4b4f4b55667ee5dbb75001302486"
-            },
-            "dist": {
-                "type": "tar",
-                "url": "http://localhost/satis/platform-php//dist/platform-php-composed-views-v1.2.4-alpha1-8dd81b.tar",
-                "reference": "39334ec114db4b4f4b55667ee5dbb75001302486",
-                "shasum": "06ff3a840de4f74e432a0ae380a0713fff370119"
-            },
-            "require": {
-                "matthiasmullie/minify": "^1.3",
-                "myclabs/deep-copy": "^1.5",
-                "php": ">=7.1.0",
-                "symfony/event-dispatcher": "^3.2"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "PlatformPHP\\ComposedViews\\": "src/",
-                    "PlatformPHP\\ComposedViews\\Tests\\": "tests/"
-                }
-            },
-            "authors": [
-                {
-                    "name": "Andy D. Navarro Taño",
-                    "email": "andaniel05@gmail.com"
-                }
-            ],
-            "time": "2017-09-01T17:00:29+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -420,114 +311,6 @@
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
             "time": "2017-07-29T21:54:42+00:00"
-        },
-        {
-            "name": "symfony/polyfill-php56",
-            "version": "v1.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/polyfill-php56.git",
-                "reference": "e85ebdef569b84e8709864e1a290c40f156b30ca"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php56/zipball/e85ebdef569b84e8709864e1a290c40f156b30ca",
-                "reference": "e85ebdef569b84e8709864e1a290c40f156b30ca",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3",
-                "symfony/polyfill-util": "~1.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.5-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Php56\\": ""
-                },
-                "files": [
-                    "bootstrap.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nicolas Grekas",
-                    "email": "p@tchwork.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony polyfill backporting some PHP 5.6+ features to lower PHP versions",
-            "homepage": "https://symfony.com",
-            "keywords": [
-                "compatibility",
-                "polyfill",
-                "portable",
-                "shim"
-            ],
-            "time": "2017-06-14T15:44:48+00:00"
-        },
-        {
-            "name": "symfony/polyfill-util",
-            "version": "v1.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/polyfill-util.git",
-                "reference": "67925d1cf0b84bd234a83bebf26d4eb281744c6d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-util/zipball/67925d1cf0b84bd234a83bebf26d4eb281744c6d",
-                "reference": "67925d1cf0b84bd234a83bebf26d4eb281744c6d",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.5-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Util\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nicolas Grekas",
-                    "email": "p@tchwork.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony utilities for portability of PHP codes",
-            "homepage": "https://symfony.com",
-            "keywords": [
-                "compat",
-                "compatibility",
-                "polyfill",
-                "shim"
-            ],
-            "time": "2017-07-05T15:09:33+00:00"
         }
     ],
     "packages-dev": [
@@ -1983,7 +1766,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "platform-php/composed-views": 15,
+        "andaniel05/composed-views": 15,
         "facebook/webdriver": 20
     },
     "prefer-stable": false,

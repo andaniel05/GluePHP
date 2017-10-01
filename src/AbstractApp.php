@@ -42,10 +42,10 @@ abstract class AbstractApp extends AbstractPage
             $dispatcher = new EventDispatcher();
         }
 
-        $glueAppsScript = new GluePHPScript('glueapps', $this);
-        $appScript = new AppScript('app', $this, ['glueapps']);
+        $gluePhpScript = new GluePHPScript('gluephp', $this);
+        $appScript = new AppScript('app', $this, ['gluephp']);
 
-        $this->addAsset($glueAppsScript);
+        $this->addAsset($gluePhpScript);
         $this->addAsset($appScript);
 
         parent::__construct($baseUrl, $dispatcher);
@@ -350,10 +350,10 @@ abstract class AbstractApp extends AbstractPage
         $this->debug = $value;
 
         if ($value) {
-            $this->getAsset('glueapps')->setMinimized(false);
+            $this->getAsset('gluephp')->setMinimized(false);
             $this->getAsset('app')->setMinimized(false);
         } else {
-            $this->getAsset('glueapps')->setMinimized(true);
+            $this->getAsset('gluephp')->setMinimized(true);
             $this->getAsset('app')->setMinimized(true);
         }
     }
