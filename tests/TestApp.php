@@ -1,8 +1,8 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Tests;
+namespace Andaniel05\GluePHP\Tests;
 
-use PlatformPHP\GlueApps\AbstractApp;
+use Andaniel05\GluePHP\AbstractApp;
 
 class TestApp extends AbstractApp
 {

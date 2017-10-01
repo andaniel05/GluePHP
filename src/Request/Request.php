@@ -1,8 +1,8 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Request;
+namespace Andaniel05\GluePHP\Request;
 
-use PlatformPHP\GlueApps\Update\{UpdateInterface, Update};
+use Andaniel05\GluePHP\Update\{UpdateInterface, Update};
 
 class Request implements RequestInterface
 {

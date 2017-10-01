@@ -1,9 +1,9 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Event;
+namespace Andaniel05\GluePHP\Event;
 
 use Symfony\Component\EventDispatcher\Event;
-use PlatformPHP\GlueApps\Response\ResponseInterface;
+use Andaniel05\GluePHP\Response\ResponseInterface;
 
 class ResponseEvent extends Event
 {

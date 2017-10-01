@@ -1,8 +1,8 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Component\Model;
+namespace Andaniel05\GluePHP\Component\Model;
 
-use PlatformPHP\GlueApps\AbstractApp;
+use Andaniel05\GluePHP\AbstractApp;
 
 interface ModelInterface
 {

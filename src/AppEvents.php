@@ -1,6 +1,6 @@
 <?php
 
-namespace PlatformPHP\GlueApps;
+namespace Andaniel05\GluePHP;
 
 final class AppEvents
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Processor;
+namespace Andaniel05\GluePHP\Processor;
 
 class BindDataProcessor extends AbstractProcessor
 {
@@ -12,7 +12,7 @@ class BindDataProcessor extends AbstractProcessor
         items.forEach(function(item) {
 
             var modelAttribute = item.getAttribute(attribute);
-            var setterName = GlueApps.Helpers.getSetter(modelAttribute);
+            var setterName = GluePHP.Helpers.getSetter(modelAttribute);
 
             component.model[modelAttribute] = item.value;
 

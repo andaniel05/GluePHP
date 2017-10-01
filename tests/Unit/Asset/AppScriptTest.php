@@ -1,10 +1,10 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Tests\Unit\Asset;
+namespace Andaniel05\GluePHP\Tests\Unit\Asset;
 
 use PHPUnit\Framework\TestCase;
-use PlatformPHP\GlueApps\AbstractApp;
-use PlatformPHP\GlueApps\Asset\AppScript;
+use Andaniel05\GluePHP\AbstractApp;
+use Andaniel05\GluePHP\Asset\AppScript;
 
 class AppScriptTest extends TestCase
 {

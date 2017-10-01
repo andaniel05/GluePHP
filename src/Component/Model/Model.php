@@ -1,9 +1,9 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Component\Model;
+namespace Andaniel05\GluePHP\Component\Model;
 
-use PlatformPHP\GlueApps\AbstractApp;
-use PlatformPHP\GlueApps\Component\AbstractComponent;
+use Andaniel05\GluePHP\AbstractApp;
+use Andaniel05\GluePHP\Component\AbstractComponent;
 
 class Model implements ModelInterface
 {
@@ -111,10 +111,10 @@ JAVASCRIPT;
 'use strict';
 
     var CClass = function(id, app, model, html) {
-        GlueApps.Component.call(this, id, app, model, html);
+        GluePHP.Component.call(this, id, app, model, html);
     };
 
-    CClass.prototype = Object.create(GlueApps.Component.prototype);
+    CClass.prototype = Object.create(GluePHP.Component.prototype);
     CClass.prototype.constructor = CClass;
 
 {$jsModelSetters}

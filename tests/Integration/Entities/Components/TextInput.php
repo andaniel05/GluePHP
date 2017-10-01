@@ -1,8 +1,8 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Tests\Integration\Entities\Components;
+namespace Andaniel05\GluePHP\Tests\Integration\Entities\Components;
 
-use PlatformPHP\GlueApps\Component\AbstractComponent;
+use Andaniel05\GluePHP\Component\AbstractComponent;
 
 class TextInput extends AbstractComponent
 {

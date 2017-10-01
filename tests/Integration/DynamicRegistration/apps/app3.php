@@ -2,7 +2,7 @@
 
 require_once 'base.php';
 
-use PlatformPHP\GlueApps\Tests\Integration\Entities\Actions\AlertAction;
+use Andaniel05\GluePHP\Tests\Integration\Entities\Actions\AlertAction;
 
 $button->on('click', function () use ($app) {
     $action = new AlertAction('secret');

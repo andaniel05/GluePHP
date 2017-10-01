@@ -1,11 +1,11 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Asset;
+namespace Andaniel05\GluePHP\Asset;
 
-use PlatformPHP\GlueApps\Component\Model\Model;
-use PlatformPHP\GlueApps\Component\Model\Exception\InvalidTypeException;
-use PlatformPHP\GlueApps\AbstractApp;
-use PlatformPHP\ComposedViews\Asset\TagScriptAsset;
+use Andaniel05\GluePHP\Component\Model\Model;
+use Andaniel05\GluePHP\Component\Model\Exception\InvalidTypeException;
+use Andaniel05\GluePHP\AbstractApp;
+use Andaniel05\ComposedViews\Asset\TagScriptAsset;
 
 class AppScript extends TagScriptAsset
 {
@@ -128,7 +128,7 @@ JAVASCRIPT;
         }
 
         return <<<JAVASCRIPT
-window.{$appId} = new GlueApps.App(
+window.{$appId} = new GluePHP.App(
     '{$this->app->getControllerPath()}',
     '{$this->app->getToken()}'
 );

@@ -1,6 +1,6 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Processor;
+namespace Andaniel05\GluePHP\Processor;
 
 class BindEventsProcessor extends AbstractProcessor
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Tests\Unit\Event;
+namespace Andaniel05\GluePHP\Tests\Unit\Event;
 
 use PHPUnit\Framework\TestCase;
-use PlatformPHP\GlueApps\AbstractApp;
-use PlatformPHP\GlueApps\Event\Event;
+use Andaniel05\GluePHP\AbstractApp;
+use Andaniel05\GluePHP\Event\Event;
 
 class EventTest extends TestCase
 {

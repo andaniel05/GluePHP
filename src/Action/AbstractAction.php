@@ -1,6 +1,6 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Action;
+namespace Andaniel05\GluePHP\Action;
 
 abstract class AbstractAction
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Tests\Unit\Update;
+namespace Andaniel05\GluePHP\Tests\Unit\Update;
 
 use PHPUnit\Framework\TestCase;
-use PlatformPHP\GlueApps\Update\Update;
+use Andaniel05\GluePHP\Update\Update;
 
 class UpdateTest extends TestCase
 {

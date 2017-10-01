@@ -2,7 +2,7 @@
 
 require_once 'base.php';
 
-use PlatformPHP\GlueApps\Tests\Integration\Entities\Components\TextInput;
+use Andaniel05\GluePHP\Tests\Integration\Entities\Components\TextInput;
 
 $button->on('click', function () use ($app) {
     $app->registerComponentClass(TextInput::class, 'input');

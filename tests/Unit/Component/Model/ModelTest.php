@@ -1,15 +1,15 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Tests\Unit\Component\Model;
+namespace Andaniel05\GluePHP\Tests\Unit\Component\Model;
 
 use PHPUnit\Framework\TestCase;
-use PlatformPHP\GlueApps\Component\Model\Model;
-use PlatformPHP\GlueApps\Tests\Unit\Component\DummyComponent1;
+use Andaniel05\GluePHP\Component\Model\Model;
+use Andaniel05\GluePHP\Tests\Unit\Component\DummyComponent1;
 
 class ModelTest extends TestCase
 {
     /**
-     * @expectedException PlatformPHP\GlueApps\Component\Model\Exception\ClassNotFoundException
+     * @expectedException Andaniel05\GluePHP\Component\Model\Exception\ClassNotFoundException
      */
     public function testConstructorThrowClassNotFoundExceptionWhenClassNotExists()
     {
@@ -17,7 +17,7 @@ class ModelTest extends TestCase
     }
 
     /**
-     * @expectedException PlatformPHP\GlueApps\Component\Model\Exception\InvalidComponentClassException
+     * @expectedException Andaniel05\GluePHP\Component\Model\Exception\InvalidComponentClassException
      */
     public function testConstructorThrowInvalidComponentClassExceptionWhenClassIsNotInstanceOfAbstractComponent()
     {

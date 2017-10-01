@@ -1,8 +1,8 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Asset;
+namespace Andaniel05\GluePHP\Asset;
 
-use PlatformPHP\GlueApps\AbstractApp;
+use Andaniel05\GluePHP\AbstractApp;
 
 trait AppAssetTrait
 {

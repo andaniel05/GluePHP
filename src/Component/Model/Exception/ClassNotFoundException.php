@@ -1,6 +1,6 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Component\Model\Exception;
+namespace Andaniel05\GluePHP\Component\Model\Exception;
 
 class ClassNotFoundException extends ModelException
 {

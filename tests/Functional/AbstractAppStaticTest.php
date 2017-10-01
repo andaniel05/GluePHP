@@ -1,12 +1,12 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Tests\Functional;
+namespace Andaniel05\GluePHP\Tests\Functional;
 
-use PlatformPHP\GlueApps\Tests\TestApp;
-use PlatformPHP\GlueApps\Tests\StaticTestCase;
-use PlatformPHP\GlueApps\Action\AbstractAction;
-use PlatformPHP\GlueApps\Component\AbstractComponent;
-use PlatformPHP\GlueApps\Processor\AbstractProcessor;
+use Andaniel05\GluePHP\Tests\TestApp;
+use Andaniel05\GluePHP\Tests\StaticTestCase;
+use Andaniel05\GluePHP\Action\AbstractAction;
+use Andaniel05\GluePHP\Component\AbstractComponent;
+use Andaniel05\GluePHP\Processor\AbstractProcessor;
 
 class AbstractAppStaticTest extends StaticTestCase
 {
@@ -21,7 +21,7 @@ class AbstractAppStaticTest extends StaticTestCase
 
         $this->writeDocument($app->html());
 
-        $this->assertTrue($this->driver->executeScript("return $appId instanceof GlueApps.App"));
+        $this->assertTrue($this->driver->executeScript("return $appId instanceof GluePHP.App"));
     }
 
     public function testTheFrontEndAppIsInDebugWhenBackEndAppIsInDebug()
@@ -98,7 +98,7 @@ class AbstractAppStaticTest extends StaticTestCase
         $this->writeDocument($this->app->html());
 
         $script = "var obj1 = new app.componentClasses['$frontClassId']();";
-        $script .= "return obj1 instanceof GlueApps.Component";
+        $script .= "return obj1 instanceof GluePHP.Component";
         $this->assertTrue($this->script($script));
     }
 

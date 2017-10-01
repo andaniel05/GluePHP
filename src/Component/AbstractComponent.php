@@ -1,11 +1,11 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Component;
+namespace Andaniel05\GluePHP\Component;
 
-use PlatformPHP\GlueApps\AbstractApp;
-use PlatformPHP\GlueApps\Action\{AbstractAction, UpdateAttributeAction};
-use PlatformPHP\GlueApps\Component\Model\{ModelInterface, Model};
-use PlatformPHP\ComposedViews\Component\AbstractComponent as AbstractViewComponent;
+use Andaniel05\GluePHP\AbstractApp;
+use Andaniel05\GluePHP\Action\{AbstractAction, UpdateAttributeAction};
+use Andaniel05\GluePHP\Component\Model\{ModelInterface, Model};
+use Andaniel05\ComposedViews\Component\AbstractComponent as AbstractViewComponent;
 
 abstract class AbstractComponent extends AbstractViewComponent
 {

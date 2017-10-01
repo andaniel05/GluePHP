@@ -1,10 +1,10 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Response;
+namespace Andaniel05\GluePHP\Response;
 
-use PlatformPHP\GlueApps\AbstractApp;
-use PlatformPHP\GlueApps\Action\{AbstractAction, CanSendActionsTrait, RegisterAction};
-use PlatformPHP\GlueApps\Update\{UpdateResultInterface, UpdateInterface};
+use Andaniel05\GluePHP\AbstractApp;
+use Andaniel05\GluePHP\Action\{AbstractAction, CanSendActionsTrait, RegisterAction};
+use Andaniel05\GluePHP\Update\{UpdateResultInterface, UpdateInterface};
 
 class Response implements ResponseInterface
 {

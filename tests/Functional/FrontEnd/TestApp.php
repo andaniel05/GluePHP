@@ -1,13 +1,13 @@
 <?php
 
-use PlatformPHP\GlueApps\AbstractApp;
+use Andaniel05\GluePHP\AbstractApp;
 
 return new class('') extends AbstractApp
 {
     public function html(): ?string
     {
         $di = new RecursiveDirectoryIterator(
-            ROOT_DIR . '/tests/Unit/FrontEnd/GlueApps/', RecursiveDirectoryIterator::SKIP_DOTS
+            ROOT_DIR . '/tests/Unit/FrontEnd/GluePHP/', RecursiveDirectoryIterator::SKIP_DOTS
         );
         $it = new RecursiveIteratorIterator($di);
 

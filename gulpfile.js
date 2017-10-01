@@ -4,21 +4,21 @@ var concat = require('gulp-concat');
 var minify = require('gulp-minify');
 
 var glueAppsSrc = [
-	'src/FrontEnd/GlueApps/GlueApps.js',
-	'src/FrontEnd/GlueApps/EventDispatcher.js',
-	'src/FrontEnd/GlueApps/ComponentContainer.js',
-	'src/FrontEnd/GlueApps/BaseEntity.js',
-	'src/FrontEnd/GlueApps/**/*.js',
+	'src/FrontEnd/GluePHP/GluePHP.js',
+	'src/FrontEnd/GluePHP/EventDispatcher.js',
+	'src/FrontEnd/GluePHP/ComponentContainer.js',
+	'src/FrontEnd/GluePHP/BaseEntity.js',
+	'src/FrontEnd/GluePHP/**/*.js',
 ];
 
-gulp.task('GlueApps', function () {
+gulp.task('GluePHP', function () {
 	return gulp.src(glueAppsSrc)
-		.pipe(concat('GlueApps.js'))
+		.pipe(concat('GluePHP.js'))
 		.pipe(gulp.dest('src/FrontEnd/Dist/'));
 });
 
-gulp.task('compress', ['GlueApps'], function() {
-	gulp.src('src/FrontEnd/Dist/GlueApps.js')
+gulp.task('compress', ['GluePHP'], function() {
+	gulp.src('src/FrontEnd/Dist/GluePHP.js')
 		.pipe(minify({
 			ext:{
 				// src:'-debug.js',
@@ -29,7 +29,7 @@ gulp.task('compress', ['GlueApps'], function() {
 });
 
 gulp.task('watch', function() {
-	gulp.watch(glueAppsSrc, ['GlueApps', 'compress']);
+	gulp.watch(glueAppsSrc, ['GluePHP', 'compress']);
 });
 
-gulp.task('default', ['GlueApps', 'compress', 'watch']);
+gulp.task('default', ['GluePHP', 'compress', 'watch']);

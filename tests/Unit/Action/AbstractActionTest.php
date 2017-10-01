@@ -1,9 +1,9 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Tests\Unit\Action;
+namespace Andaniel05\GluePHP\Tests\Unit\Action;
 
 use PHPUnit\Framework\TestCase;
-use PlatformPHP\GlueApps\Action\AbstractAction;
+use Andaniel05\GluePHP\Action\AbstractAction;
 
 class AbstractActionTest extends TestCase
 {

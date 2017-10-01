@@ -1,8 +1,8 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Event;
+namespace Andaniel05\GluePHP\Event;
 
-use PlatformPHP\GlueApps\AbstractApp;
+use Andaniel05\GluePHP\AbstractApp;
 use Symfony\Component\EventDispatcher\Event as SymfonyEvent;
 
 class Event extends SymfonyEvent

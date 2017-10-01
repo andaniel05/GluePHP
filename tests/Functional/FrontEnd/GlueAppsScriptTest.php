@@ -1,19 +1,19 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Tests\Functional\FrontEnd;
+namespace Andaniel05\GluePHP\Tests\Functional\FrontEnd;
 
 use PHPUnit\Framework\TestCase;
 
 /**
  * Con este test se comprueba desde phpunit que todos los test unitarios JavaScript
- * del módulo GlueApps se ejecuten sin errores. Tanto en el script original como en
+ * del módulo GluePHP se ejecuten sin errores. Tanto en el script original como en
  * el comprimido.
  *
  * Si el test pasa la ventana del navegador se cerrará automáticamente mientras que
  * en caso contrario se mantendrá abierta donde se podrá ver el informe sobre los
  * tests que han fallado.
  */
-class GlueAppsScriptTest extends TestCase
+class GluePHPScriptTest extends TestCase
 {
     public function setUp()
     {
@@ -30,7 +30,7 @@ class GlueAppsScriptTest extends TestCase
         }
     }
 
-    public function testAllGlueAppsScriptUnitTestsAreExecutedWithoutErrors()
+    public function testAllGluePHPScriptUnitTestsAreExecutedWithoutErrors()
     {
         $app = __DIR__ . '/TestApp.php';
         $this->driver->get(appUrl($app, [], false));
@@ -38,7 +38,7 @@ class GlueAppsScriptTest extends TestCase
         $this->verify();
     }
 
-    public function testAllGlueAppsScriptUnitTestsOfMinimizedVersionAreExecutedWithoutErrors()
+    public function testAllGluePHPScriptUnitTestsOfMinimizedVersionAreExecutedWithoutErrors()
     {
         $app = __DIR__ . '/TestApp.php';
         $this->driver->get(appUrl($app, ['compress' => true], false));

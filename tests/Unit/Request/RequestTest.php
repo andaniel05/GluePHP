@@ -1,10 +1,10 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Tests\Unit\Request;
+namespace Andaniel05\GluePHP\Tests\Unit\Request;
 
 use PHPUnit\Framework\TestCase;
-use PlatformPHP\GlueApps\Request\Request;
-use PlatformPHP\GlueApps\Update\UpdateInterface;
+use Andaniel05\GluePHP\Request\Request;
+use Andaniel05\GluePHP\Update\UpdateInterface;
 
 class RequestTest extends TestCase
 {

@@ -1,7 +1,7 @@
 <?php
 
-use PlatformPHP\GlueApps\Tests\TestApp;
-use PlatformPHP\GlueApps\Tests\Integration\Entities\Components\Button;
+use Andaniel05\GluePHP\Tests\TestApp;
+use Andaniel05\GluePHP\Tests\Integration\Entities\Components\Button;
 
 $button1 = new Button('button1');
 

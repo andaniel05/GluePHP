@@ -1,8 +1,8 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Action;
+namespace Andaniel05\GluePHP\Action;
 
-use PlatformPHP\GlueApps\Action\AbstractAction;
+use Andaniel05\GluePHP\Action\AbstractAction;
 
 class RegisterAction extends AbstractAction
 {

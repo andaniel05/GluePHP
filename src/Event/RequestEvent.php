@@ -1,9 +1,9 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Event;
+namespace Andaniel05\GluePHP\Event;
 
 use Symfony\Component\EventDispatcher\Event;
-use PlatformPHP\GlueApps\Request\RequestInterface;
+use Andaniel05\GluePHP\Request\RequestInterface;
 
 class RequestEvent extends Event
 {

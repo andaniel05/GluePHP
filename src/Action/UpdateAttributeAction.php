@@ -1,8 +1,8 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Action;
+namespace Andaniel05\GluePHP\Action;
 
-use PlatformPHP\GlueApps\Action\AbstractAction;
+use Andaniel05\GluePHP\Action\AbstractAction;
 
 class UpdateAttributeAction extends AbstractAction
 {
@@ -19,7 +19,7 @@ class UpdateAttributeAction extends AbstractAction
     {
         return <<<JAVASCRIPT
     var component = app.getComponent(data.componentId);
-    var setter = GlueApps.Helpers.getSetter(data.attribute);
+    var setter = GluePHP.Helpers.getSetter(data.attribute);
     if (component) {
         component[setter](data.value, false);
     }

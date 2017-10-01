@@ -1,8 +1,8 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Tests\Unit\Component;
+namespace Andaniel05\GluePHP\Tests\Unit\Component;
 
-use PlatformPHP\GlueApps\Component\AbstractComponent;
+use Andaniel05\GluePHP\Component\AbstractComponent;
 
 class DummyComponent1 extends AbstractComponent
 {

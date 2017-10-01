@@ -1,9 +1,9 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Tests\Functional;
+namespace Andaniel05\GluePHP\Tests\Functional;
 
-use PlatformPHP\GlueApps\Tests\StaticTestCase;
-use PlatformPHP\GlueApps\Action\AbstractAction;
+use Andaniel05\GluePHP\Tests\StaticTestCase;
+use Andaniel05\GluePHP\Action\AbstractAction;
 
 class AbstractActionStaticTest extends StaticTestCase
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Tests\Integration\Append;
+namespace Andaniel05\GluePHP\Tests\Integration\Append;
 
-use PlatformPHP\GlueApps\Tests\StaticTestCase;
+use Andaniel05\GluePHP\Tests\StaticTestCase;
 
 class AppendStaticTest extends StaticTestCase
 {

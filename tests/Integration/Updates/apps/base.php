@@ -1,7 +1,7 @@
 <?php
 
-use PlatformPHP\GlueApps\Tests\TestApp;
-use PlatformPHP\GlueApps\Tests\Integration\Entities\Components\{TextInput, Button};
+use Andaniel05\GluePHP\Tests\TestApp;
+use Andaniel05\GluePHP\Tests\Integration\Entities\Components\{TextInput, Button};
 
 $input1 = new TextInput('input1');
 $input2 = new TextInput('input2');

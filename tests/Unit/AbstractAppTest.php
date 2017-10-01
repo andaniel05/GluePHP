@@ -1,20 +1,20 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Tests\Unit;
+namespace Andaniel05\GluePHP\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use PlatformPHP\ComposedViews\Component\Sidebar;
-use PlatformPHP\GlueApps\{AbstractApp, AppEvents};
-use PlatformPHP\GlueApps\Asset\{GlueAppsScript, AppScript};
-use PlatformPHP\GlueApps\Action\{EvalAction, RegisterAction,
+use Andaniel05\ComposedViews\Component\Sidebar;
+use Andaniel05\GluePHP\{AbstractApp, AppEvents};
+use Andaniel05\GluePHP\Asset\{GluePHPScript, AppScript};
+use Andaniel05\GluePHP\Action\{EvalAction, RegisterAction,
     UpdateAttributeAction};
-use PlatformPHP\GlueApps\Request\{RequestInterface, Request};
-use PlatformPHP\GlueApps\Response\ResponseInterface;
-use PlatformPHP\GlueApps\Update\{Update, UpdateInterface, UpdateResultInterface};
-use PlatformPHP\GlueApps\Component\AbstractComponent;
-use PlatformPHP\GlueApps\Component\Model\{ModelInterface, Model};
-use PlatformPHP\GlueApps\Event\Event;
-use PlatformPHP\GlueApps\Tests\Unit\Component\{DummyComponent1, DummyComponent2};
+use Andaniel05\GluePHP\Request\{RequestInterface, Request};
+use Andaniel05\GluePHP\Response\ResponseInterface;
+use Andaniel05\GluePHP\Update\{Update, UpdateInterface, UpdateResultInterface};
+use Andaniel05\GluePHP\Component\AbstractComponent;
+use Andaniel05\GluePHP\Component\Model\{ModelInterface, Model};
+use Andaniel05\GluePHP\Event\Event;
+use Andaniel05\GluePHP\Tests\Unit\Component\{DummyComponent1, DummyComponent2};
 use Symfony\Component\EventDispatcher\{EventDispatcherInterface, EventDispatcher};
 use function Opis\Closure\{serialize as s, unserialize as u};
 
@@ -658,12 +658,12 @@ class AbstractAppTest extends TestCase
         $this->assertEquals('action2', $actionClasses['ActionClass2']);
     }
 
-    public function testContainsARegisteredGlueAppsScriptByDefault()
+    public function testContainsARegisteredGluePHPScriptByDefault()
     {
-        $this->assertInstanceOf(GlueAppsScript::class, $this->app->getAsset('glueapps'));
+        $this->assertInstanceOf(GluePHPScript::class, $this->app->getAsset('glueapps'));
     }
 
-    public function testGlueAppsScriptKnowTheApp()
+    public function testGluePHPScriptKnowTheApp()
     {
         $glueAppsScript = $this->app->getAsset('glueapps');
 
@@ -675,7 +675,7 @@ class AbstractAppTest extends TestCase
         $this->assertInstanceOf(AppScript::class, $this->app->getAsset('app'));
     }
 
-    public function testAppScriptDependOfGlueApps()
+    public function testAppScriptDependOfGluePHP()
     {
         $assets = array_values($this->app->getAssets());
 
@@ -1065,7 +1065,7 @@ class AbstractAppTest extends TestCase
         $this->assertTrue($this->app->isDebug());
     }
 
-    public function testSetDebug_MinimizeTheGlueAppsScript()
+    public function testSetDebug_MinimizeTheGluePHPScript()
     {
         $this->app->setDebug(true);
         $glueAppsScript = $this->app->getAsset('glueapps');

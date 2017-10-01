@@ -1,8 +1,8 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Tests\Integration\Entities\Actions;
+namespace Andaniel05\GluePHP\Tests\Integration\Entities\Actions;
 
-use PlatformPHP\GlueApps\Action\AbstractAction;
+use Andaniel05\GluePHP\Action\AbstractAction;
 
 class AlertAction extends AbstractAction
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Tests\Unit\Component\Model;
+namespace Andaniel05\GluePHP\Tests\Unit\Component\Model;
 
 use PHPUnit\Framework\TestCase;
-use PlatformPHP\GlueApps\Component\Model\Annotation;
+use Andaniel05\GluePHP\Component\Model\Annotation;
 
 class AnnotationTest extends TestCase
 {

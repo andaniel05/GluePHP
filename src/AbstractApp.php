@@ -1,21 +1,21 @@
 <?php
 
-namespace PlatformPHP\GlueApps;
+namespace Andaniel05\GluePHP;
 
-use PlatformPHP\GlueApps\Action\{AbstractAction, CanSendActionsTrait, EvalAction,
+use Andaniel05\GluePHP\Action\{AbstractAction, CanSendActionsTrait, EvalAction,
     RegisterAction, UpdateAttributeAction};
-use PlatformPHP\GlueApps\Asset\{GlueAppsScript, AppScript};
-use PlatformPHP\GlueApps\Processor\{BindEventsProcessor, BindDataProcessor};
-use PlatformPHP\GlueApps\Request\RequestInterface;
-use PlatformPHP\GlueApps\Response\{ResponseInterface, Response};
-use PlatformPHP\GlueApps\Event\{Event, RequestEvent, ResponseEvent};
-use PlatformPHP\GlueApps\Update\{UpdateInterface,
+use Andaniel05\GluePHP\Asset\{GluePHPScript, AppScript};
+use Andaniel05\GluePHP\Processor\{BindEventsProcessor, BindDataProcessor};
+use Andaniel05\GluePHP\Request\RequestInterface;
+use Andaniel05\GluePHP\Response\{ResponseInterface, Response};
+use Andaniel05\GluePHP\Event\{Event, RequestEvent, ResponseEvent};
+use Andaniel05\GluePHP\Update\{UpdateInterface,
     UpdateResultInterface, UpdateResult, Update};
-use PlatformPHP\GlueApps\Component\AbstractComponent;
-use PlatformPHP\GlueApps\Component\Model\{ModelInterface, Model};
-use PlatformPHP\ComposedViews\AbstractPage;
+use Andaniel05\GluePHP\Component\AbstractComponent;
+use Andaniel05\GluePHP\Component\Model\{ModelInterface, Model};
+use Andaniel05\ComposedViews\AbstractPage;
 use Symfony\Component\EventDispatcher\{EventDispatcherInterface, EventDispatcher};
-use PlatformPHP\ComposedViews\Component\AbstractComponent as AbstractPageComponent;
+use Andaniel05\ComposedViews\Component\AbstractComponent as AbstractPageComponent;
 
 abstract class AbstractApp extends AbstractPage
 {
@@ -42,7 +42,7 @@ abstract class AbstractApp extends AbstractPage
             $dispatcher = new EventDispatcher();
         }
 
-        $glueAppsScript = new GlueAppsScript('glueapps', $this);
+        $glueAppsScript = new GluePHPScript('glueapps', $this);
         $appScript = new AppScript('app', $this, ['glueapps']);
 
         $this->addAsset($glueAppsScript);

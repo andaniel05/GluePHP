@@ -1,6 +1,6 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Asset;
+namespace Andaniel05\GluePHP\Asset;
 
 trait SleepTrait
 {

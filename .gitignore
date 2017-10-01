@@ -3,5 +3,3 @@ node_modules/
 .*
 !.gitignore
 !.editorconfig
-!.pendientes
-debug.log

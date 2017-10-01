@@ -1,6 +1,6 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Component\Model;
+namespace Andaniel05\GluePHP\Component\Model;
 
 class Annotation implements AnnotationInterface
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Tests\Unit\Component;
+namespace Andaniel05\GluePHP\Tests\Unit\Component;
 
 use PHPUnit\Framework\TestCase;
-use PlatformPHP\GlueApps\AbstractApp;
-use PlatformPHP\GlueApps\Action\{AbstractAction, UpdateAttributeAction};
-use PlatformPHP\GlueApps\Component\AbstractComponent;
-use PlatformPHP\GlueApps\Component\Model\{Model, ModelInterface};
-use PlatformPHP\GlueApps\Response\Response;
+use Andaniel05\GluePHP\AbstractApp;
+use Andaniel05\GluePHP\Action\{AbstractAction, UpdateAttributeAction};
+use Andaniel05\GluePHP\Component\AbstractComponent;
+use Andaniel05\GluePHP\Component\Model\{Model, ModelInterface};
+use Andaniel05\GluePHP\Response\Response;
 
 class AbstractComponentTest extends TestCase
 {
@@ -101,7 +101,7 @@ class AbstractComponentTest extends TestCase
     }
 
     /**
-     * @expectedException PlatformPHP\GlueApps\Component\Exception\InvalidCallException
+     * @expectedException Andaniel05\GluePHP\Component\Exception\InvalidCallException
      */
     public function testThrowAnInvalidCallException_WhenMethodNameIsNotRecognizable()
     {

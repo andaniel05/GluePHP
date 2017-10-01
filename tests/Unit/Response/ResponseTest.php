@@ -1,13 +1,13 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Tests\Unit\Response;
+namespace Andaniel05\GluePHP\Tests\Unit\Response;
 
 use PHPUnit\Framework\TestCase;
-use PlatformPHP\GlueApps\AbstractApp;
-use PlatformPHP\GlueApps\Action\AbstractAction;
-use PlatformPHP\GlueApps\Action\{EvalAction, RegisterAction};
-use PlatformPHP\GlueApps\Response\Response;
-use PlatformPHP\GlueApps\Update\{UpdateResultInterface, UpdateInterface};
+use Andaniel05\GluePHP\AbstractApp;
+use Andaniel05\GluePHP\Action\AbstractAction;
+use Andaniel05\GluePHP\Action\{EvalAction, RegisterAction};
+use Andaniel05\GluePHP\Response\Response;
+use Andaniel05\GluePHP\Update\{UpdateResultInterface, UpdateInterface};
 
 class ResponseTest extends TestCase
 {

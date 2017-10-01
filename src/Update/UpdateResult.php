@@ -1,6 +1,6 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Update;
+namespace Andaniel05\GluePHP\Update;
 
 class UpdateResult implements UpdateResultInterface
 {

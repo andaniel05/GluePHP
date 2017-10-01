@@ -1,8 +1,8 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Tests\Integration\Updates;
+namespace Andaniel05\GluePHP\Tests\Integration\Updates;
 
-use PlatformPHP\GlueApps\Tests\StaticTestCase;
+use Andaniel05\GluePHP\Tests\StaticTestCase;
 
 class UpdatesStaticTest extends StaticTestCase
 {

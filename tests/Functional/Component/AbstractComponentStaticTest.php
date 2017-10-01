@@ -1,10 +1,10 @@
 <?php
 
-namespace PlatformPHP\GlueApps\Tests\Functional\Component;
+namespace Andaniel05\GluePHP\Tests\Functional\Component;
 
-use PlatformPHP\GlueApps\Component\AbstractComponent;
-use PlatformPHP\GlueApps\Component\Model\{ModelInterface, Model};
-use PlatformPHP\GlueApps\Tests\StaticTestCase;
+use Andaniel05\GluePHP\Component\AbstractComponent;
+use Andaniel05\GluePHP\Component\Model\{ModelInterface, Model};
+use Andaniel05\GluePHP\Tests\StaticTestCase;
 
 class AbstractComponentStaticTest extends StaticTestCase
 {
@@ -81,7 +81,7 @@ class AbstractComponentStaticTest extends StaticTestCase
     }
 
     /**
-     * @expectedException PlatformPHP\GlueApps\Component\Model\Exception\InvalidTypeException
+     * @expectedException Andaniel05\GluePHP\Component\Model\Exception\InvalidTypeException
      * @dataProvider providerThrowInvalidTypeExceptionWhenAttributeTypeIsNotAllowed
      */
     public function testThrowInvalidTypeExceptionWhenAttributeTypeIsNotAllowed($value)
