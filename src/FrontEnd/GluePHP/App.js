@@ -60,7 +60,9 @@ App.prototype.dispatchInRemote = function(name, event) {
             xhr.lastResponseLen = responseBuffer.length;
         }
 
-        processMessage(currentResponse);
+        if ('string' === typeof(currentResponse)) {
+            processMessage(currentResponse);
+        }
     };
 
     xhr.onreadystatechange = function() {
@@ -110,6 +112,11 @@ App.prototype.dispatchInRemote = function(name, event) {
         for (var id in lines) {
             var line = lines[id];
             try {
+
+                if ( ! line.length) {
+                    continue;
+                }
+
                 var message = JSON.parse(line);
                 if (message.hasOwnProperty('code')) {
 
