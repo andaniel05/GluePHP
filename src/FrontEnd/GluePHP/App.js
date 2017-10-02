@@ -86,6 +86,10 @@ App.prototype.dispatchInRemote = function(name, event) {
     xhr.send(this.requestKey + '=' + JSON.stringify(requestEvent.request));
     app.httpRequests.push(xhr);
 
+    if (true === app.debug) {
+        console.log('Remote event: ' + name, event);
+    }
+
     this.buffer = {};
 
     for (var update of request.serverUpdates) {
@@ -103,7 +107,8 @@ App.prototype.dispatchInRemote = function(name, event) {
         }
 
         var lines = text.split('%GLUE_MESSAGE%');
-        for (var line of lines) {
+        for (var id in lines) {
+            var line = lines[id];
             try {
                 var message = JSON.parse(line);
                 if (message.hasOwnProperty('code')) {
