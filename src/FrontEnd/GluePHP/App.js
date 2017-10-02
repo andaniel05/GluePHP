@@ -60,23 +60,31 @@ App.prototype.dispatchInRemote = function(name, event) {
             xhr.lastResponseLen = responseBuffer.length;
         }
 
-        try {
-            var message = JSON.parse(currentResponse);
-        } catch (e) {
-            console.log(e, currentResponse);
+        if ('string' === typeof(currentResponse)) {
+            var lines = currentResponse.split('%GLUE_MESSAGE%');
+            for (var line of lines) {
+                processMessage(line);
+            }
         }
 
-        if ('code' in message) {
+        function processMessage(text) {
+            try {
+                var message = JSON.parse(text);
+                if (message.hasOwnProperty('code')) {
 
-            var responseEvent = GluePHP.Factory.App.createResponseEvent(message);
-            app.dispatchInLocal('app.response', responseEvent);
+                    var responseEvent = GluePHP.Factory.App.createResponseEvent(message);
+                    app.dispatchInLocal('app.response', responseEvent);
 
-            var response = responseEvent.response;
-            response.request = this.request;
-            app.processResponse(response);
+                    var response = responseEvent.response;
+                    response.request = xhr.request;
+                    app.processResponse(response);
 
-        } else {
-            app.runAction(message);
+                } else {
+                    app.runAction(message);
+                }
+            } catch (e) {
+                console.log('Invalid message: ', text, 'Exception: ', e);
+            }
         }
     };
 

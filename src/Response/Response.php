@@ -83,7 +83,8 @@ class Response implements ResponseInterface
                 'id'      => $action->getId(),
                 'data'    => $action->getData(),
                 'handler' => $this->app->getActionHandler(get_class($action)),
-            ]);
+            ]) . '%GLUE_MESSAGE%';
+
             ob_flush();
             flush();
 
