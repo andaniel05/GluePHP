@@ -67,14 +67,7 @@ class Response implements ResponseInterface
     {
         $actionClass = get_class($action);
         if ( ! $this->app->hasActionClass($actionClass)) {
-
             $this->app->registerActionClass($actionClass);
-
-            $registerAction = new RegisterAction(
-                $actionClass, $this->app->getActionHandler($actionClass)
-            );
-
-            $this->addAction($registerAction);
         }
 
         if ($this->sendActions) {

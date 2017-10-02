@@ -6,12 +6,13 @@ use PHPUnit\Framework\TestCase;
 use Andaniel05\GluePHP\AbstractApp;
 use Andaniel05\GluePHP\Action\AbstractAction;
 use Andaniel05\GluePHP\Action\{EvalAction, RegisterAction};
+use Andaniel05\GluePHP\Request\RequestInterface;
 use Andaniel05\GluePHP\Response\Response;
 use Andaniel05\GluePHP\Update\{UpdateResultInterface, UpdateInterface};
 
 class ResponseTest extends TestCase
 {
-    public function getResponse($code = 200)
+    public function getApp()
     {
         $app = $this->getMockBuilder(AbstractApp::class)
             ->setConstructorArgs([''])
@@ -19,7 +20,12 @@ class ResponseTest extends TestCase
             ->getMockForAbstractClass();
         $app->setSendActions(false);
 
-        return new Response($app, $code);
+        return $app;
+    }
+
+    public function getResponse($code = 200)
+    {
+        return new Response($this->getApp(), $code);
     }
 
     public function testGetApp_ReturnAppArgument()
@@ -240,15 +246,32 @@ class ResponseTest extends TestCase
 
     public function testAddAction_AddAnRegisterActionIfActionClassIsUnknowByTheApp()
     {
-        $action = new DummyAction([]);
-        $response = $this->getResponse();
-        $response->getApp()->setBooted(true);
+        $executed = false;
+        $eventName = uniqid();
 
-        $response->addAction($action);
+        $app = $this->getApp();
+        $app->setBooted(true);
 
-        $actions = array_values($response->getActions());
-        $action0 = $actions[0];
-        $this->assertInstanceOf(RegisterAction::class, $action0);
-        $this->assertSame($action, $actions[1]);
+        $request = $this->createMock(RequestInterface::class);
+        $request->method('getAppToken')->willReturn($app->getToken());
+        $request->method('getEventName')->willReturn($eventName);
+
+        $app->on($eventName, function () use (&$executed, $app) {
+            $executed = true;
+            $action = new DummyAction([]);
+
+            $response = $app->getResponse();
+            $response->addAction($action);
+
+            $actions = array_values($response->getActions());
+            $registerAction = $actions[0];
+            $this->assertInstanceOf(RegisterAction::class, $registerAction);
+            $this->assertEquals(DummyAction::class, $registerAction->getActionClass());
+            $this->assertSame($action, $actions[1]);
+        });
+
+        $app->handle($request); // Act
+
+        $this->assertTrue($executed);
     }
 }
