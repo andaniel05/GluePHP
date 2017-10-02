@@ -205,32 +205,7 @@ App.prototype.dispatchInRemote = function(name, event) {
             xhr.lastResponseLen = responseBuffer.length;
         }
 
-        if ('string' === typeof(currentResponse)) {
-            var lines = currentResponse.split('%GLUE_MESSAGE%');
-            for (var line of lines) {
-                processMessage(line);
-            }
-        }
-
-        function processMessage(text) {
-            try {
-                var message = JSON.parse(text);
-                if (message.hasOwnProperty('code')) {
-
-                    var responseEvent = GluePHP.Factory.App.createResponseEvent(message);
-                    app.dispatchInLocal('app.response', responseEvent);
-
-                    var response = responseEvent.response;
-                    response.request = xhr.request;
-                    app.processResponse(response);
-
-                } else {
-                    app.runAction(message);
-                }
-            } catch (e) {
-                console.log('Invalid message: ', text, 'Exception: ', e);
-            }
-        }
+        processMessage(currentResponse);
     };
 
     xhr.onreadystatechange = function() {
@@ -242,20 +217,7 @@ App.prototype.dispatchInRemote = function(name, event) {
             );
 
             if (xhr.status === 200 && xhr.streaming == false) {
-
-                try {
-                    var response = JSON.parse(xhr.responseText);
-                } catch (e) {
-                    console.log(e, xhr.responseText);
-                }
-
-                var responseEvent = GluePHP.Factory.App.createResponseEvent(response);
-                app.dispatchInLocal('app.response', responseEvent);
-
-                response = responseEvent.response;
-                response.request = this.request;
-                app.processResponse(response);
-
+                processMessage(xhr.responseText);
             } else {
                 var failedResponseEvent = GluePHP.Factory.App.createFailedResponseEvent(request);
                 app.dispatchInLocal('app.failed_response', failedResponseEvent);
@@ -276,6 +238,34 @@ App.prototype.dispatchInRemote = function(name, event) {
         if (component) {
             var event = GluePHP.Factory.Component.createRemoteUpdateEvent(update.data);
             component.dispatchInLocal('remote_update', event);
+        }
+    }
+
+    function processMessage(text) {
+
+        if ('string' !== typeof(text)) {
+            return
+        }
+
+        var lines = text.split('%GLUE_MESSAGE%');
+        for (var line of lines) {
+            try {
+                var message = JSON.parse(line);
+                if (message.hasOwnProperty('code')) {
+
+                    var responseEvent = GluePHP.Factory.App.createResponseEvent(message);
+                    app.dispatchInLocal('app.response', responseEvent);
+
+                    var response = responseEvent.response;
+                    response.request = xhr.request;
+                    app.processResponse(response);
+
+                } else {
+                    app.runAction(message);
+                }
+            } catch (e) {
+                console.log('Invalid line message: ', line, 'Exception: ', e);
+            }
         }
     }
 };
