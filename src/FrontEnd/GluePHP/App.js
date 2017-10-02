@@ -39,25 +39,25 @@ App.prototype.dispatchInRemote = function(name, event) {
 
     this.dispatchInLocal('app.request', requestEvent);
 
-    var httpRequest = new XMLHttpRequest();
-    httpRequest.request = request;
-    httpRequest.streaming = false;
+    var xhr = new XMLHttpRequest();
+    xhr.request = request;
+    xhr.streaming = false;
+    xhr.lastResponseLen = 0;
 
-    var lastResponseLen = false;
-    httpRequest.onprogress = function(event) {
+    xhr.onprogress = function(event) {
 
         if ( ! event.currentTarget) return;
-        httpRequest.streaming = true;
+        xhr.streaming = true;
 
-        var currentResponse;
+        var currentResponse = null;
         var responseBuffer = event.currentTarget.response;
 
-        if (lastResponseLen === false) {
+        if (xhr.lastResponseLen === false) {
             currentResponse = responseBuffer;
-            lastResponseLen = responseBuffer.length;
+            xhr.lastResponseLen = responseBuffer.length;
         } else {
-            currentResponse = responseBuffer.substring(lastResponseLen);
-            lastResponseLen = responseBuffer.length;
+            currentResponse = responseBuffer.substring(xhr.lastResponseLen);
+            xhr.lastResponseLen = responseBuffer.length;
         }
 
         try {
@@ -80,20 +80,20 @@ App.prototype.dispatchInRemote = function(name, event) {
         }
     };
 
-    httpRequest.onreadystatechange = function() {
+    xhr.onreadystatechange = function() {
 
-        if (httpRequest.readyState === XMLHttpRequest.DONE) {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
 
             app.httpRequests.splice(
-                app.httpRequests.indexOf(httpRequest), 1
+                app.httpRequests.indexOf(xhr), 1
             );
 
-            if (httpRequest.status === 200 && httpRequest.streaming == false) {
+            if (xhr.status === 200 && xhr.streaming == false) {
 
                 try {
-                    var response = JSON.parse(httpRequest.responseText);
+                    var response = JSON.parse(xhr.responseText);
                 } catch (e) {
-                    console.log(e, httpRequest.responseText);
+                    console.log(e, xhr.responseText);
                 }
 
                 var responseEvent = GluePHP.Factory.App.createResponseEvent(response);
@@ -110,11 +110,11 @@ App.prototype.dispatchInRemote = function(name, event) {
         }
     };
 
-    httpRequest.open(this.requestMethod, this.url, true);
-    httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.open(this.requestMethod, this.url, true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-    httpRequest.send(this.requestKey + '=' + JSON.stringify(requestEvent.request));
-    app.httpRequests.push(httpRequest);
+    xhr.send(this.requestKey + '=' + JSON.stringify(requestEvent.request));
+    app.httpRequests.push(xhr);
 
     this.buffer = {};
 
