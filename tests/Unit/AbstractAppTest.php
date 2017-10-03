@@ -70,29 +70,6 @@ class AbstractAppTest extends TestCase
         $this->assertEquals(200, $response->getCode());
     }
 
-    public function providerResponseHasEqualAppTokenThatAppInAllCases()
-    {
-        return [
-            ['token1', 'token2'],
-            ['token1', 'token1'],
-        ];
-    }
-
-    /**
-     * @dataProvider providerResponseHasEqualAppTokenThatAppInAllCases
-     */
-    public function testResponseHasEqualAppTokenThatAppInAllCases($appToken, $requestToken)
-    {
-        $app = $this->getApp($appToken);
-
-        $request = $this->createMock(RequestInterface::class);
-        $request->method('getAppToken')->willReturn($requestToken);
-
-        $response = $app->handle($request);
-
-        $this->assertEquals($app->getToken(), $response->getAppToken());
-    }
-
     public function testOn_IsShortcutToAddListenerOnDispatcher()
     {
         $eventName = 'app.request';
@@ -406,43 +383,6 @@ class AbstractAppTest extends TestCase
         ];
 
         $this->assertEquals($expected, $app->getSnapshot());
-    }
-
-    public function testResponseHasClientUpdateWhenTheComponentDataIsChangeOnRequestProcess()
-    {
-        $app = $this->getMockBuilder(AbstractApp::class)
-            ->setConstructorArgs([''])
-            ->setMethods(['sidebars'])
-            ->getMockForAbstractClass();
-        $app->method('sidebars')->willReturn(['sidebar1']);
-        $app->__construct('');
-        $app->setStatusCheck(false);
-        $app->on('event1', function ($event) use ($app) {
-            $app->getComponent('component1')->setName('daniel', false);
-        });
-
-        $component1 = new class('component1') extends AbstractComponent {
-
-            /**
-             * @Glue
-             */
-            protected $name = '';
-        };
-
-        $sidebar1 = $app->getSidebar('sidebar1');
-        $sidebar1->addComponent($component1);
-
-        $request = $this->createMock(RequestInterface::class);
-        $request->method('getAppToken')->willReturn($app->getToken());
-        $request->method('getStatus')->willReturn(null);
-        $request->method('getEventName')->willReturn('event1');
-
-        $response = $app->handle($request);
-        $clientUpdates = $response->getClientUpdates();
-        $clientUpdate = array_shift($clientUpdates);
-
-        $this->assertEquals('component1', $clientUpdate->getComponentId());
-        $this->assertEquals(['name' => 'daniel'], $clientUpdate->getData());
     }
 
     public function testTheTriggeredEventContainsTheApp()
@@ -779,22 +719,6 @@ class AbstractAppTest extends TestCase
         $this->assertTrue(isset($classes[$class1]));
     }
 
-    public function testNotExistsClientUpdateWhenComponentDataIsNotChanged()
-    {
-        $componentId = uniqid('component');
-        $component1 = new class($componentId) extends AbstractComponent {
-            public function html(): ?string {}
-        };
-
-        $body = $this->app->getSidebar('body');
-        $body->addComponent($component1);
-
-        $request = new Request($this->app->getToken(), null, 'event1');
-        $response = $this->app->handle($request);
-
-        $this->assertEmpty($response->getClientUpdates());
-    }
-
     public function testEventListenersCanBeSerialized()
     {
         $secret = uniqid();
@@ -945,48 +869,6 @@ class AbstractAppTest extends TestCase
     public function testUpdateAttributeActionIsRegisteredByDefault()
     {
         $this->assertTrue($this->app->hasActionClass(UpdateAttributeAction::class));
-    }
-
-    public function testTheResponseDoNotIncludeClientUpdatesWhenAlreadyHasBeenSentActionUpdates()
-    {
-        $eventName = uniqid('event');
-        $componentId = uniqid('component');
-        $value = uniqid();
-        $testExecuted = false;
-
-        $component = new class($componentId) extends AbstractComponent {
-
-            /**
-             * @Glue
-             */
-            protected $attr;
-        };
-
-        $this->app->appendComponent('body', $component);
-        $this->app->setSendActions(false);
-        $this->app->on($eventName, function($event) use (&$testExecuted, $componentId, $value) {
-            $testExecuted = true;
-            $app = $event->getApp();
-            $component = $app->getComponent($componentId);
-            $component->setAttr($value);
-        });
-
-        $request = $this->createMock(RequestInterface::class);
-        $request->method('getAppToken')->willReturn($this->app->getToken());
-        $request->method('getEventName')->willReturn($eventName);
-
-        $response = $this->app->handle($request);
-
-        $actions = $response->getActions();
-        $action = array_pop($actions);
-
-        $this->assertTrue($testExecuted);
-        $this->assertEmpty($response->getClientUpdates());
-
-        $this->assertInstanceOf(UpdateAttributeAction::class, $action);
-        $this->assertEquals($componentId, $action->getComponentId());
-        $this->assertEquals('attr', $action->getAttribute());
-        $this->assertEquals($value, $action->getValue());
     }
 
     public function providerControllerPath()

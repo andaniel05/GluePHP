@@ -92,32 +92,6 @@ class ResponseTest extends TestCase
         $this->assertSame($result2, $results['result2']);
     }
 
-    public function testGetClientUpdates_ReturnAnEmptyArrayByDefault()
-    {
-        $response = $this->getResponse();
-
-        $this->assertEquals([], $response->getClientUpdates());
-    }
-
-    public function testGetClientUpdates_ReturnAllInsertedUpdates()
-    {
-        $update1 = $this->createMock(UpdateInterface::class);
-        $update1->method('getId')->willReturn('update1');
-
-        $update2 = $this->createMock(UpdateInterface::class);
-        $update2->method('getId')->willReturn('update2');
-
-        $response = $this->getResponse();
-
-        $response->addClientUpdate($update1);
-        $response->addClientUpdate($update2);
-
-        $clientUpdates = $response->getClientUpdates();
-
-        $this->assertSame($update1, $clientUpdates['update1']);
-        $this->assertSame($update2, $clientUpdates['update2']);
-    }
-
     public function testGetActions_ReturnAnEmptyArrayByDefault()
     {
         $response = $this->getResponse();
@@ -139,15 +113,12 @@ class ResponseTest extends TestCase
     public function testToJSON_Case1()
     {
         $app = $this->createMock(AbstractApp::class);
-        $app->method('getToken')->willReturn('app1');
         $response = new Response($app);
 
         $array = json_decode($response->toJSON(), true);
 
-        $this->assertEquals('app1', $array['appToken']);
         $this->assertEquals(200, $array['code']);
         $this->assertEquals([], $array['updateResults']);
-        $this->assertEquals([], $array['clientUpdates']);
         $this->assertEquals([], $array['actions']);
     }
 
@@ -161,12 +132,6 @@ class ResponseTest extends TestCase
         $updateResult1->method('getId')->willReturn('updateResult1');
         $updateResult1->method('getUpdate')->willReturn($update1);
         $updateResult1->method('getErrors')->willReturn($errors1);
-
-        $data1 = ['attr1' => 'value1'];
-        $clientUpdate1 = $this->createMock(UpdateInterface::class);
-        $clientUpdate1->method('getId')->willReturn('clientUpdate1');
-        $clientUpdate1->method('getComponentId')->willReturn('component1');
-        $clientUpdate1->method('getData')->willReturn($data1);
 
         $dataAction1 = ['data1' => 'value1'];
         $action1 = new EvalAction($dataAction1, 'action1');
@@ -182,7 +147,6 @@ class ResponseTest extends TestCase
 
         $response = new Response($app);
         $response->addUpdateResult($updateResult1);
-        $response->addClientUpdate($clientUpdate1);
         $response->addAction($action1);
 
         // Act
@@ -196,14 +160,6 @@ class ResponseTest extends TestCase
             ],
         ];
 
-        $expectedClientUpdates = [
-            'clientUpdate1' => [
-                'id'          => 'clientUpdate1',
-                'componentId' => 'component1',
-                'data'        => $data1,
-            ],
-        ];
-
         $expectedActions = [
             'action1' => [
                 'id'      => 'action1',
@@ -212,10 +168,8 @@ class ResponseTest extends TestCase
             ],
         ];
 
-        $this->assertEquals('app1', $array['appToken']);
         $this->assertEquals(200, $array['code']);
         $this->assertEquals($expectedUpdateResults, $array['updateResults']);
-        $this->assertEquals($expectedClientUpdates, $array['clientUpdates']);
         $this->assertEquals($expectedActions, $array['actions']);
     }
 

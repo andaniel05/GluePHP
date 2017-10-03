@@ -10,17 +10,11 @@ interface ResponseInterface
 {
     public function getApp(): AbstractApp;
 
-    public function getAppToken(): string;
-
     public function getCode(): int;
 
     public function getUpdateResults(): array;
 
     public function addUpdateResult(UpdateResultInterface $result): void;
-
-    public function getClientUpdates(): array;
-
-    public function addClientUpdate(UpdateInterface $update): void;
 
     public function getActions(): array;
 

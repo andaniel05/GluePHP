@@ -114,39 +114,8 @@ abstract class AbstractApp extends AbstractPage
             $response->addUpdateResult($result);
         }
 
-        $snapshot1 = $this->getSnapshot();
         $event = new Event($this, $request->getEventName(), $request->getEventData());
         $this->dispatcher->dispatch($request->getEventName(), $event);
-        $snapshot2 = $this->getSnapshot();
-
-        $clientUpdatesFromActions = [];
-        foreach ($response->getActions() as $action) {
-            if ($action instanceOf UpdateAttributeAction) {
-
-                $componentId = $action->getComponentId();
-                $attribute   = $action->getAttribute();
-                $value       = $action->getValue();
-
-                $clientUpdatesFromActions[$componentId][$attribute] = $value;
-            }
-        }
-
-        foreach ($snapshot1 as $componentId => $data1) {
-            if (isset($snapshot2[$componentId])) {
-
-                $diff = array_diff_assoc($snapshot2[$componentId], $data1);
-
-                if (isset($clientUpdatesFromActions[$componentId])) {
-                    $diff = array_diff_assoc($diff, $clientUpdatesFromActions[$componentId]);
-                }
-
-                if ( ! empty($diff)) {
-                    $response->addClientUpdate(
-                        new Update($componentId, $diff, uniqid('cu_'))
-                    );
-                }
-            }
-        }
 
         return $response;
     }

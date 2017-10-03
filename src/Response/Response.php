@@ -13,7 +13,6 @@ class Response implements ResponseInterface
     protected $app;
     protected $code;
     protected $updateResults = [];
-    protected $clientUpdates = [];
     protected $actions = [];
 
     public function __construct(AbstractApp $app, int $code = 200)
@@ -26,11 +25,6 @@ class Response implements ResponseInterface
     public function getApp(): AbstractApp
     {
         return $this->app;
-    }
-
-    public function getAppToken(): string
-    {
-        return $this->app->getToken();
     }
 
     public function getCode(): int
@@ -46,16 +40,6 @@ class Response implements ResponseInterface
     public function addUpdateResult(UpdateResultInterface $result): void
     {
         $this->updateResults[$result->getId()] = $result;
-    }
-
-    public function getClientUpdates(): array
-    {
-        return $this->clientUpdates;
-    }
-
-    public function addClientUpdate(UpdateInterface $update): void
-    {
-        $this->clientUpdates[$update->getId()] = $update;
     }
 
     public function getActions(): array
@@ -99,15 +83,6 @@ class Response implements ResponseInterface
             ];
         }
 
-        $clientUpdates = [];
-        foreach ($this->clientUpdates as $id => $clientUpdate) {
-            $clientUpdates[$id] = [
-                'id'          => $clientUpdate->getId(),
-                'componentId' => $clientUpdate->getComponentId(),
-                'data'        => $clientUpdate->getData(),
-            ];
-        }
-
         $actions = [];
         foreach ($this->actions as $id => $action) {
             $actions[$id] = [
@@ -118,10 +93,8 @@ class Response implements ResponseInterface
         }
 
         return json_encode([
-            'appToken'      => $this->app->getToken(),
             'code'          => $this->code,
             'updateResults' => $updateResults,
-            'clientUpdates' => $clientUpdates,
             'actions'       => $actions,
         ]);
     }
