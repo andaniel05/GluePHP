@@ -19,8 +19,12 @@ return new class('') extends AbstractApp
         }
 
         $gluePhp = $this->getAsset('gluephp');
-        $gluePhpSource = (isset($_GET['compress']) && $_GET['compress'] == true) ?
-            $gluePhp->getContent() : $gluePhp->getMinimizedContent();
+        $gluePhpSource = $gluePhp->getMinimizedContent();
+
+        if ( ! (isset($_GET['compress']) && $_GET['compress'] == true)) {
+            $gluePhp->setMinimized(false);
+            $gluePhpSource = $gluePhp->getContent();
+        }
 
         return <<<HTML
 <!DOCTYPE html>
