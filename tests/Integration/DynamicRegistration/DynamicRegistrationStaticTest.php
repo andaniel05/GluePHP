@@ -14,12 +14,12 @@ class DynamicRegistrationStaticTest extends StaticTestCase
             \WebDriverBy::cssSelector('#cv-button button')
         );
         $this->button->click(); // Act
-        $this->waitForResponse();
     }
 
     public function testRegisterActionClass()
     {
         $this->clickButton(__DIR__ . '/apps/app1.php');
+        $this->waitForResponse();
 
         $secret = uniqid();
         $this->script("app.actionHandlers['alert']('$secret')");
@@ -30,6 +30,7 @@ class DynamicRegistrationStaticTest extends StaticTestCase
     public function testRegisterComponentClass()
     {
         $this->clickButton(__DIR__ . '/apps/app2.php');
+        $this->waitForResponse();
 
         $id = uniqid();
         $component = $this->script("return new app.componentClasses.input('$id')");
@@ -40,6 +41,10 @@ class DynamicRegistrationStaticTest extends StaticTestCase
     public function testTheUnknowActionsAreRegisteringDynamically()
     {
         $this->clickButton(__DIR__ . '/apps/app3.php');
+
+        $this->driver->wait()->until(
+            \WebDriverExpectedCondition::alertIsPresent()
+        );
 
         $this->assertEquals('secret', $this->driver->switchTo()->alert()->getText());
         $this->driver->switchTo()->alert()->accept();
