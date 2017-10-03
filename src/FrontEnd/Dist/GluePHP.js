@@ -360,15 +360,6 @@ App.prototype.processResponse = function(response) {
             )
         });
 
-        for (var id in response.clientUpdates) {
-            var clientUpdate = response.clientUpdates[id];
-            var component = app.getComponent(clientUpdate.componentId);
-            for (var attr in clientUpdate.data) {
-                var setter = GluePHP.Helpers.getSetter(attr);
-                component[setter](clientUpdate.data[attr], false);
-            }
-        }
-
         for (var id in response.actions) {
             app.runAction(response.actions[id]);
         }

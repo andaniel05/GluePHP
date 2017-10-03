@@ -626,23 +626,5 @@ suite('GluePHP.App', function() {
                     .and(sinon.match.has('data', sinon.match({attr2: 22})))
             );
         });
-
-        test('all client updates are executed', function() {
-
-            var response = {
-                code: 200,
-                request: {
-                    serverUpdates: [],
-                },
-                clientUpdates: {
-                    update1: {componentId: 'component1', data: {attr1: 11, attr2: 22}},
-                },
-            };
-
-            this.app.processResponse(response);
-
-            assert.equal(this.component1.model.attr1, 11);
-            assert.equal(this.component1.model.attr2, 22);
-        });
     });
 });

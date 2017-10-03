@@ -236,7 +236,7 @@ abstract class AbstractApp extends AbstractPage
         if ($this->inProcess()) {
             $model = Model::get($componentClass);
             $action = new EvalAction($model->getJavaScriptClass($this));
-            $this->act($action);
+            $this->response->addAction($action);
         }
     }
 
