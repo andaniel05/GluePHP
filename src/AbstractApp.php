@@ -13,8 +13,9 @@ use Andaniel05\GluePHP\Update\{UpdateInterface,
     UpdateResultInterface, UpdateResult, Update};
 use Andaniel05\GluePHP\Component\AbstractComponent;
 use Andaniel05\GluePHP\Component\Model\{ModelInterface, Model};
-use Andaniel05\ComposedViews\AbstractPage;
 use Symfony\Component\EventDispatcher\{EventDispatcherInterface, EventDispatcher};
+use Andaniel05\ComposedViews\{AbstractPage, PageEvents};
+use Andaniel05\ComposedViews\Event\AfterInsertionEvent;
 use Andaniel05\ComposedViews\Component\AbstractComponent as AbstractPageComponent;
 
 abstract class AbstractApp extends AbstractPage
@@ -49,6 +50,10 @@ abstract class AbstractApp extends AbstractPage
         $this->addAsset($appScript);
 
         parent::__construct($baseUrl, $dispatcher);
+
+        $dispatcher->addListener(
+            PageEvents::AFTER_INSERTION, [$this, 'onAfterInsertion']
+        );
 
         $this->registerActionClass(EvalAction::class);
         $this->registerActionClass(RegisterAction::class);
@@ -343,5 +348,11 @@ abstract class AbstractApp extends AbstractPage
     {
         parent::appendComponent($parentId, $component);
         $component->setApp($this);
+    }
+
+    public function onAfterInsertion(AfterInsertionEvent $event)
+    {
+        $action = new AppendAction($event->getParent(), $event->getChild());
+        $this->act($action);
     }
 }
