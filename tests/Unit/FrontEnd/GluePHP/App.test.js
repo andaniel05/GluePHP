@@ -293,7 +293,7 @@ suite('GluePHP.App', function() {
 
             this.server.respondWith(
                 'POST', url,
-                [200, {'Content-Type': 'application/json'}, '[]']
+                [200, {'Content-Type': 'application/json'}, '{"code": 200}']
             );
 
             var app = new App(url);
@@ -318,7 +318,7 @@ suite('GluePHP.App', function() {
 
             test('is dispatched when the response is received', function() {
 
-                var response = { data1: 1, data2: 2 };
+                var response = { code: 200, data1: 1, data2: 2 };
 
                 this.server.respondWith(
                     'POST',
@@ -346,7 +346,7 @@ suite('GluePHP.App', function() {
                     'POST',
                     'http://localhost/controller.php',
                     [200, {'Content-Type': 'application/json'},
-                    JSON.stringify({ data1: 1, data2: 2 })
+                    JSON.stringify({ code: 200, data1: 1, data2: 2 })
                 ]);
 
                 var dummyResponse = {};

@@ -131,7 +131,7 @@ App.prototype.dispatchInRemote = function(name, event) {
                     app.runAction(message);
                 }
             } catch (e) {
-                console.log('Invalid line message: ', line, 'Exception: ', e);
+                console.log('Invalid message line: ', line, 'Error: ', e);
             }
         }
     }
