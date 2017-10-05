@@ -51,9 +51,9 @@ abstract class AbstractApp extends AbstractPage
 
         parent::__construct($baseUrl, $dispatcher);
 
-        $dispatcher->addListener(
-            PageEvents::AFTER_INSERTION, [$this, 'onAfterInsertion']
-        );
+        // $dispatcher->addListener(
+        //     PageEvents::AFTER_INSERTION, [$this, 'onAfterInsertion']
+        // );
 
         $this->registerActionClass(EvalAction::class);
         $this->registerActionClass(RegisterAction::class);

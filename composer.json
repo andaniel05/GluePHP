@@ -25,9 +25,6 @@
         {
             "type": "composer",
             "url": "http://localhost/satis/andaniel05/"
-        },
-        {
-            "packagist": false
         }
     ],
     "config": {

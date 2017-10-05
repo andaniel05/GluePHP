@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "596711233801305b13daa967f96abe45",
+    "content-hash": "039142f70f358a88a936ac3d220ba68f",
     "packages": [
         {
             "name": "andaniel05/composed-views",
@@ -194,16 +194,16 @@
         },
         {
             "name": "opis/closure",
-            "version": "3.0.4",
+            "version": "3.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opis/closure.git",
-                "reference": "7361ea0fccf7e52e8aa885995bab234879d4659d"
+                "reference": "bc2ca2b6f51a1de1c8d9cf8df2b63d2348f92aa6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opis/closure/zipball/7361ea0fccf7e52e8aa885995bab234879d4659d",
-                "reference": "7361ea0fccf7e52e8aa885995bab234879d4659d",
+                "url": "https://api.github.com/repos/opis/closure/zipball/bc2ca2b6f51a1de1c8d9cf8df2b63d2348f92aa6",
+                "reference": "bc2ca2b6f51a1de1c8d9cf8df2b63d2348f92aa6",
                 "shasum": ""
             },
             "require": {
@@ -247,7 +247,7 @@
                 "serialization",
                 "serialize"
             ],
-            "time": "2017-09-18T12:24:10+00:00"
+            "time": "2017-09-18T14:30:50+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -972,16 +972,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "6.3.0",
+            "version": "6.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "9501bab711403a1ab5b8378a8adb4ec3db3debdb"
+                "reference": "c0ff817b36a827e64bf5f57bc72278150cf30a77"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/9501bab711403a1ab5b8378a8adb4ec3db3debdb",
-                "reference": "9501bab711403a1ab5b8378a8adb4ec3db3debdb",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c0ff817b36a827e64bf5f57bc72278150cf30a77",
+                "reference": "c0ff817b36a827e64bf5f57bc72278150cf30a77",
                 "shasum": ""
             },
             "require": {
@@ -1052,7 +1052,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-08-04T05:20:39+00:00"
+            "time": "2017-09-24T07:25:54+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
