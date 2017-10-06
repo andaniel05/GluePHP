@@ -194,16 +194,16 @@
         },
         {
             "name": "opis/closure",
-            "version": "3.0.5",
+            "version": "3.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opis/closure.git",
-                "reference": "bc2ca2b6f51a1de1c8d9cf8df2b63d2348f92aa6"
+                "reference": "10ed3ad04547dc3c749e64b222b0f8a1f99f74b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opis/closure/zipball/bc2ca2b6f51a1de1c8d9cf8df2b63d2348f92aa6",
-                "reference": "bc2ca2b6f51a1de1c8d9cf8df2b63d2348f92aa6",
+                "url": "https://api.github.com/repos/opis/closure/zipball/10ed3ad04547dc3c749e64b222b0f8a1f99f74b4",
+                "reference": "10ed3ad04547dc3c749e64b222b0f8a1f99f74b4",
                 "shasum": ""
             },
             "require": {
@@ -247,20 +247,20 @@
                 "serialization",
                 "serialize"
             ],
-            "time": "2017-09-18T14:30:50+00:00"
+            "time": "2017-10-06T08:03:41+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v3.3.9",
+            "version": "v3.3.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "54ca9520a00386f83bca145819ad3b619aaa2485"
+                "reference": "d7ba037e4b8221956ab1e221c73c9e27e05dd423"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/54ca9520a00386f83bca145819ad3b619aaa2485",
-                "reference": "54ca9520a00386f83bca145819ad3b619aaa2485",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/d7ba037e4b8221956ab1e221c73c9e27e05dd423",
+                "reference": "d7ba037e4b8221956ab1e221c73c9e27e05dd423",
                 "shasum": ""
             },
             "require": {
@@ -310,7 +310,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2017-07-29T21:54:42+00:00"
+            "time": "2017-10-02T06:42:24+00:00"
         }
     ],
     "packages-dev": [
@@ -972,16 +972,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "6.3.1",
+            "version": "6.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "c0ff817b36a827e64bf5f57bc72278150cf30a77"
+                "reference": "a1bcaca096998de32c29535fdd2dea0c475e8f61"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c0ff817b36a827e64bf5f57bc72278150cf30a77",
-                "reference": "c0ff817b36a827e64bf5f57bc72278150cf30a77",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a1bcaca096998de32c29535fdd2dea0c475e8f61",
+                "reference": "a1bcaca096998de32c29535fdd2dea0c475e8f61",
                 "shasum": ""
             },
             "require": {
@@ -1026,7 +1026,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "6.3.x-dev"
+                    "dev-master": "6.4.x-dev"
                 }
             },
             "autoload": {
@@ -1052,7 +1052,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-09-24T07:25:54+00:00"
+            "time": "2017-10-06T03:14:57+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
