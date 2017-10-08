@@ -8,7 +8,7 @@
     ],
     "require": {
         "php": ">=7.1.0",
-        "andaniel05/composed-views": "^1.0.0-alpha1",
+        "andaniel05/composed-views": "dev-master",
         "opis/closure": "^3.0.0"
     },
     "require-dev": {

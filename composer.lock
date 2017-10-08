@@ -4,27 +4,24 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "039142f70f358a88a936ac3d220ba68f",
+    "content-hash": "9609bb633939c4592ef8df980f272458",
     "packages": [
         {
             "name": "andaniel05/composed-views",
-            "version": "v1.2.5-alpha1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "D:\\Andy\\Repositorios\\Andaniel05\\ComposedViews",
-                "reference": "2067bef5c9bc56ad2380a3f0ee61034d02b88bbd"
-            },
-            "dist": {
-                "type": "tar",
-                "url": "http://localhost/satis/andaniel05//dist/andaniel05-composed-views-v1.2.5-alpha1-5e9c0e.tar",
-                "reference": "2067bef5c9bc56ad2380a3f0ee61034d02b88bbd",
-                "shasum": "dadbe9e8fa17d884b06c6ff5b1c5d1f457251ef1"
+                "reference": "fbfb5e40ff7a7b469f44dc1c29abbad09e84c6e2"
             },
             "require": {
                 "matthiasmullie/minify": "^1.3",
                 "myclabs/deep-copy": "^1.5",
                 "php": ">=7.1.0",
                 "symfony/event-dispatcher": "^3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.0"
             },
             "type": "library",
             "autoload": {
@@ -39,7 +36,7 @@
                     "email": "andaniel05@gmail.com"
                 }
             ],
-            "time": "2017-10-01T19:30:50+00:00"
+            "time": "2017-10-08T12:34:22+00:00"
         },
         {
             "name": "matthiasmullie/minify",
@@ -1766,7 +1763,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "andaniel05/composed-views": 15,
+        "andaniel05/composed-views": 20,
         "facebook/webdriver": 20
     },
     "prefer-stable": false,
