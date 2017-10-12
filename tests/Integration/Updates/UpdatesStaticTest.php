@@ -24,7 +24,6 @@ class UpdatesStaticTest extends StaticTestCase
         return [
             [__DIR__ . '/apps/app1.php'],
             [__DIR__ . '/apps/app2.php'],
-            [__DIR__ . '/apps/app3.php'],
         ];
     }
 
