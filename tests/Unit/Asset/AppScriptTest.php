@@ -8,7 +8,7 @@ use Andaniel05\GluePHP\Asset\AppScript;
 
 class AppScriptTest extends TestCase
 {
-    public function testGetSource_InvokeToUpdateComponentClassesOnApp()
+    public function testInvokeToUpdateComponentClassesOnApp()
     {
         $app = $this->getMockBuilder(AbstractApp::class)
             ->setConstructorArgs([''])
@@ -18,7 +18,5 @@ class AppScriptTest extends TestCase
             ->method('updateComponentClasses');
 
         $script = new AppScript('script', $app);
-
-        $script->getSource();
     }
 }

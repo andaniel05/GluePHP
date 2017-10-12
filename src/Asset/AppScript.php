@@ -13,8 +13,8 @@ class AppScript extends TagScriptAsset
 
     public function __construct(string $id, AbstractApp $app, array $dependencies = [], array $groups = [])
     {
-        parent::__construct($id, '', $dependencies, $groups);
         $this->app = $app;
+        parent::__construct($id, '', $dependencies, $groups);
     }
 
     public function getContent(): ?string

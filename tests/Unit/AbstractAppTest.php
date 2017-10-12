@@ -367,9 +367,10 @@ class AbstractAppTest extends TestCase
 
         $app = $this->getMockBuilder(AbstractApp::class)
             ->setConstructorArgs([''])
-            ->setMethods(['components'])
             ->getMockForAbstractClass();
-        $app->method('components')->willReturn([$component1, $component2]);
+
+        $app->appendComponent('body', $component1);
+        $app->appendComponent('body', $component2);
 
         $expected = [
             'component1' => [
