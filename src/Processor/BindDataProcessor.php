@@ -8,6 +8,11 @@ class BindDataProcessor extends AbstractProcessor
     {
         return <<<JAVASCRIPT
     var bindData = function(attribute) {
+
+        if ( ! (component.html instanceof Element)) {
+            return;
+        }
+
         var items = component.html.querySelectorAll('*[' + attribute + ']');
         items.forEach(function(item) {
 
