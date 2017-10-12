@@ -100,4 +100,19 @@ abstract class AbstractComponent extends AbstractViewComponent
             $this->app->act($action);
         }
     }
+
+    public function renderizeChildren(): ?string
+    {
+        $result = '';
+
+        foreach ($this->getAllComponents() as $component) {
+            $result .= <<<HTML
+<div class="cv-component cv-{$component->getId()}" id="cv-{$component->getId()}">
+    {$component->html()}
+</div>
+HTML;
+        }
+
+        return $result;
+    }
 }
