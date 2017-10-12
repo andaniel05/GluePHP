@@ -3,7 +3,7 @@
 namespace Andaniel05\GluePHP\Component;
 
 use Andaniel05\GluePHP\AbstractApp;
-use Andaniel05\GluePHP\Action\{AbstractAction, UpdateAttributeAction};
+use Andaniel05\GluePHP\Action\{AbstractAction, UpdateAction};
 use Andaniel05\GluePHP\Component\Model\{ModelInterface, Model};
 use Andaniel05\ComposedViews\Component\AbstractComponent as AbstractViewComponent;
 
@@ -58,7 +58,7 @@ abstract class AbstractComponent extends AbstractViewComponent
 
                 if ($sendUpdateAction && $this->app) {
 
-                    $updateAction = new UpdateAttributeAction(
+                    $updateAction = new UpdateAction(
                         $this->getId(), $attribute, $arguments[0]
                     );
 

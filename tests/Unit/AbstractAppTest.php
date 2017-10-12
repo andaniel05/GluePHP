@@ -7,7 +7,7 @@ use Andaniel05\ComposedViews\Component\Sidebar;
 use Andaniel05\GluePHP\{AbstractApp, AppEvents};
 use Andaniel05\GluePHP\Asset\{GluePHPScript, AppScript};
 use Andaniel05\GluePHP\Action\{EvalAction, RegisterAction,
-    UpdateAttributeAction};
+    UpdateAction};
 use Andaniel05\GluePHP\Request\{RequestInterface, Request};
 use Andaniel05\GluePHP\Response\ResponseInterface;
 use Andaniel05\GluePHP\Update\{Update, UpdateInterface, UpdateResultInterface};
@@ -867,9 +867,9 @@ class AbstractAppTest extends TestCase
         $this->assertTrue($this->app->hasActionClass(RegisterAction::class));
     }
 
-    public function testUpdateAttributeActionIsRegisteredByDefault()
+    public function testUpdateActionIsRegisteredByDefault()
     {
-        $this->assertTrue($this->app->hasActionClass(UpdateAttributeAction::class));
+        $this->assertTrue($this->app->hasActionClass(UpdateAction::class));
     }
 
     public function providerControllerPath()

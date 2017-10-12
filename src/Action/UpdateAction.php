@@ -4,7 +4,7 @@ namespace Andaniel05\GluePHP\Action;
 
 use Andaniel05\GluePHP\Action\AbstractAction;
 
-class UpdateAttributeAction extends AbstractAction
+class UpdateAction extends AbstractAction
 {
     public function __construct(string $componentId, string $attribute, $value)
     {

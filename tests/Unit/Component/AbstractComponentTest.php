@@ -4,7 +4,7 @@ namespace Andaniel05\GluePHP\Tests\Unit\Component;
 
 use PHPUnit\Framework\TestCase;
 use Andaniel05\GluePHP\AbstractApp;
-use Andaniel05\GluePHP\Action\{AbstractAction, UpdateAttributeAction};
+use Andaniel05\GluePHP\Action\{AbstractAction, UpdateAction};
 use Andaniel05\GluePHP\Component\AbstractComponent;
 use Andaniel05\GluePHP\Component\Model\{Model, ModelInterface};
 use Andaniel05\GluePHP\Response\Response;
@@ -115,7 +115,7 @@ class AbstractComponentTest extends TestCase
         $component->unexistentMethod();
     }
 
-    public function testDynamicSetterAddAnUpdateAttributeActionWhenExistsResponseInAppAndSecondArgumentIsMissing()
+    public function testDynamicSetterAddAnUpdateActionWhenExistsResponseInAppAndSecondArgumentIsMissing()
     {
         $app = $this->getMockBuilder(AbstractApp::class)
             ->setConstructorArgs([''])
@@ -144,13 +144,13 @@ class AbstractComponentTest extends TestCase
         $actions = $response->getActions();
         $action = array_pop($actions);
 
-        $this->assertInstanceOf(UpdateAttributeAction::class, $action);
+        $this->assertInstanceOf(UpdateAction::class, $action);
         $this->assertEquals($componentId, $action->getComponentId());
         $this->assertEquals('attr', $action->getAttribute());
         $this->assertEquals($value, $action->getValue());
     }
 
-    public function testDynamicSetterDoNotAddAnUpdateAttributeActionWhenSecondArgumentIsFalse()
+    public function testDynamicSetterDoNotAddAnUpdateActionWhenSecondArgumentIsFalse()
     {
         $app = $this->getMockBuilder(AbstractApp::class)
             ->setConstructorArgs([''])

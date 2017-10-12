@@ -3,7 +3,7 @@
 namespace Andaniel05\GluePHP;
 
 use Andaniel05\GluePHP\Action\{AbstractAction, CanSendActionsTrait, EvalAction,
-    RegisterAction, UpdateAttributeAction};
+    RegisterAction, UpdateAction};
 use Andaniel05\GluePHP\Asset\{GluePHPScript, AppScript};
 use Andaniel05\GluePHP\Processor\{BindEventsProcessor, BindDataProcessor};
 use Andaniel05\GluePHP\Request\RequestInterface;
@@ -57,7 +57,7 @@ abstract class AbstractApp extends AbstractPage
 
         $this->registerActionClass(EvalAction::class);
         $this->registerActionClass(RegisterAction::class);
-        $this->registerActionClass(UpdateAttributeAction::class);
+        $this->registerActionClass(UpdateAction::class);
 
         $this->registerProcessorClass(BindEventsProcessor::class);
         $this->registerProcessorClass(BindDataProcessor::class);
