@@ -5,6 +5,7 @@ namespace Andaniel05\GluePHP\Component;
 use Andaniel05\GluePHP\AbstractApp;
 use Andaniel05\GluePHP\Action\{AbstractAction, UpdateAction};
 use Andaniel05\GluePHP\Component\Model\{ModelInterface, Model};
+use Andaniel05\ComposedViews\AbstractPage;
 use Andaniel05\ComposedViews\Component\AbstractComponent as AbstractViewComponent;
 
 abstract class AbstractComponent extends AbstractViewComponent
@@ -20,12 +21,19 @@ abstract class AbstractComponent extends AbstractViewComponent
 
     public function getApp(): ?AbstractApp
     {
-        return $this->page;
+        return $this->app;
     }
 
     public function setApp(?AbstractApp $app): void
     {
         $this->app = $this->page = $app;
+    }
+
+    public function setPage(?AbstractPage $page)
+    {
+        parent::setPage($page);
+
+        $this->app = $page;
     }
 
     public function baseUrl(string $assetUrl = ''): string

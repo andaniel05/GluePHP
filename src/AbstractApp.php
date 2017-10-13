@@ -3,7 +3,7 @@
 namespace Andaniel05\GluePHP;
 
 use Andaniel05\GluePHP\Action\{AbstractAction, CanSendActionsTrait, EvalAction,
-    RegisterAction, UpdateAction};
+    AppendAction, RegisterAction, UpdateAction};
 use Andaniel05\GluePHP\Asset\{GluePHPScript, AppScript};
 use Andaniel05\GluePHP\Processor\{BindEventsProcessor, BindDataProcessor};
 use Andaniel05\GluePHP\Request\RequestInterface;
@@ -51,10 +51,11 @@ abstract class AbstractApp extends AbstractPage
 
         parent::__construct($baseUrl, $dispatcher);
 
-        // $dispatcher->addListener(
-        //     PageEvents::AFTER_INSERTION, [$this, 'onAfterInsertion']
-        // );
+        $dispatcher->addListener(
+            PageEvents::AFTER_INSERTION, [$this, 'onAfterInsertion']
+        );
 
+        $this->registerActionClass(AppendAction::class);
         $this->registerActionClass(EvalAction::class);
         $this->registerActionClass(RegisterAction::class);
         $this->registerActionClass(UpdateAction::class);
@@ -290,18 +291,6 @@ abstract class AbstractApp extends AbstractPage
     public function getFrontProcessorClass(string $processorClass): ?string
     {
         return $this->processorClasses[$processorClass] ?? null;
-    }
-
-    public function __wakeup()
-    {
-        // Esto es un hack
-        //
-
-        $closure = function () {
-            $this->sorted = [];
-        };
-
-        $closure->call($this->dispatcher);
     }
 
     public function isBooted(): bool

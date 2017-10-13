@@ -3,7 +3,7 @@
 namespace Andaniel05\GluePHP\Action;
 
 use Andaniel05\GluePHP\Action\AbstractAction;
-use Andaniel05\GluePHP\Component\AbstractComponent;
+use Andaniel05\ComposedViews\Component\AbstractComponent;
 
 class AppendAction extends AbstractAction
 {

@@ -254,4 +254,17 @@ class AbstractComponentTest extends TestCase
 
         $this->assertAttributeEquals($app, 'app', $component);
     }
+
+    public function testSetPage_SetTheAppAndThePage()
+    {
+        $page = $this->createMock(AbstractApp::class);
+        $component = $this->getMockForAbstractClass(
+            AbstractComponent::class, ['component']
+        );
+
+        $component->setPage($page);
+
+        $this->assertAttributeEquals($page, 'page', $component);
+        $this->assertAttributeEquals($page, 'app', $component);
+    }
 }
