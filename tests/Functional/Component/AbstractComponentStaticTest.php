@@ -13,7 +13,7 @@ class AbstractComponentStaticTest extends StaticTestCase
         $componentId = uniqid('component');
         $component = getDummyComponent($componentId);
 
-        $this->body->addComponent($component);
+        $this->body->addChild($component);
         $this->writeDocument($this->app->html());
 
         $frontClassName = $this->app->getFrontComponentClass(
@@ -30,7 +30,7 @@ class AbstractComponentStaticTest extends StaticTestCase
     {
         $component1 = getDummyComponent('component1');
 
-        $this->body->addComponent($component1);
+        $this->body->addChild($component1);
         $this->writeDocument($this->app->html());
 
         $this->assertTrue($this->script("return app === app.getComponent('component1').app"));
@@ -64,7 +64,7 @@ class AbstractComponentStaticTest extends StaticTestCase
         };
 
         $component1->attr1 = $value;
-        $this->body->addComponent($component1);
+        $this->body->addChild($component1);
         $this->writeDocument($this->app->html());
         $this->script('window.component1 = app.getComponent("component1")');
 
@@ -97,7 +97,7 @@ class AbstractComponentStaticTest extends StaticTestCase
         };
 
         $component1->attr1 = $value;
-        $this->body->addComponent($component1);
+        $this->body->addChild($component1);
         $this->writeDocument($this->app->html());
     }
 
@@ -116,7 +116,7 @@ class AbstractComponentStaticTest extends StaticTestCase
 
         $value = uniqid();
 
-        $this->body->addComponent($component);
+        $this->body->addChild($component);
         $this->writeDocument($this->app->html());
         $this->script("window.component = app.getComponent('{$componentId}')");
         $this->script("component.setAttr1('$value')");
@@ -144,7 +144,7 @@ class AbstractComponentStaticTest extends StaticTestCase
 
         $value = uniqid();
 
-        $this->body->addComponent($component);
+        $this->body->addChild($component);
         $this->writeDocument($this->app->html());
         $this->script("window.component = app.getComponent('{$componentId}')");
         $this->script("component.setAttr1('$value', false)");
@@ -169,7 +169,7 @@ class AbstractComponentStaticTest extends StaticTestCase
         $array = range(0, rand(0, 10));
 
         $component1->attr1 = $array;
-        $this->body->addComponent($component1);
+        $this->body->addChild($component1);
         $this->writeDocument($this->app->html());
         $this->script('window.component1 = app.getComponent("component1")');
 
@@ -194,7 +194,7 @@ class AbstractComponentStaticTest extends StaticTestCase
         $obj->{$attribute} = $value;
 
         $component1->attr1 = $obj;
-        $this->body->addComponent($component1);
+        $this->body->addChild($component1);
         $this->writeDocument($this->app->html());
         $this->script('window.component1 = app.getComponent("component1")');
 
@@ -221,7 +221,7 @@ class AbstractComponentStaticTest extends StaticTestCase
             }
         };
 
-        $this->body->addComponent($component1);
+        $this->body->addChild($component1);
         $this->writeDocument($this->app->html());
         $this->script('window.component1 = app.getComponent("component1")');
 
@@ -256,7 +256,7 @@ JAVASCRIPT;
         $class1 = get_class($component1);
         $class1::$method = $method;
 
-        $this->body->addComponent($component1);
+        $this->body->addChild($component1);
         $this->writeDocument($this->app->html());
         $this->script('window.component1 = app.getComponent("component1")');
 
@@ -294,7 +294,7 @@ JAVASCRIPT;
             }
         };
 
-        $this->body->addComponent($component);
+        $this->body->addChild($component);
 
         $this->app->setControllerPath(null);
         $this->writeDocument($this->app->html());
@@ -345,7 +345,7 @@ JAVASCRIPT;
             }
         };
 
-        $this->body->addComponent($component);
+        $this->body->addChild($component);
 
         $this->app->setControllerPath(null);
         $this->writeDocument($this->app->html());
@@ -429,7 +429,7 @@ JAVASCRIPT;
             }
         };
 
-        $this->body->addComponent($component1);
+        $this->body->addChild($component1);
         $this->writeDocument($this->app->html());
         $this->script('window.component1 = app.getComponent("component1")');
 
@@ -476,7 +476,7 @@ JAVASCRIPT;
             }
         };
 
-        $this->body->addComponent($component1);
+        $this->body->addChild($component1);
         $this->writeDocument($this->app->html());
         $this->script('window.component1 = app.getComponent("component1")');
 

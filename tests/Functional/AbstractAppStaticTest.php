@@ -122,7 +122,7 @@ class AbstractAppStaticTest extends StaticTestCase
         };
 
         $component = new class('component') extends AbstractComponent {};
-        $this->body->addComponent($component);
+        $this->body->addChild($component);
         $this->app->registerProcessorClass(get_class($processor));
         $this->writeDocument($this->app->html());
 
