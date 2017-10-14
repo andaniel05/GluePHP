@@ -114,9 +114,15 @@ abstract class AbstractComponent extends AbstractViewComponent
         $result = '';
 
         foreach ($this->getChildren() as $component) {
-            $result .= self::containerView(
-                $component->getId(), $component->html()
-            );
+
+            $id = $component->getId();
+            $html = $component->html();
+
+            if (is_string($id) && is_string($html)) {
+                $result .= static::containerView(
+                    $component->getId(), $component->html()
+                );
+            }
         }
 
         return $result;
