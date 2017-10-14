@@ -3,16 +3,20 @@
 namespace Andaniel05\GluePHP\Action;
 
 use Andaniel05\GluePHP\Action\AbstractAction;
-use Andaniel05\ComposedViews\Component\AbstractComponent;
+use Andaniel05\GluePHP\Component\AbstractComponent;
 
 class AppendAction extends AbstractAction
 {
     public function __construct(AbstractComponent $parent, AbstractComponent $child)
     {
+        $html = AbstractComponent::containerView(
+            $child->getId(), $child->html()
+        );
+
         parent::__construct([
             'parentId' => $parent->getId(),
             'childId'  => $child->getId(),
-            'html'     => $child->html(),
+            'html'     => $html,
         ]);
     }
 
