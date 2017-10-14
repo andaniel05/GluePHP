@@ -108,4 +108,19 @@ abstract class AbstractComponent extends AbstractViewComponent
             $this->app->act($action);
         }
     }
+
+    public function renderizeChildren(): ?string
+    {
+        $result = '';
+
+        foreach ($this->getChildren() as $component) {
+            $result .= <<<HTML
+<div class="gphp-component gphp-{$component->getId()}" id="gphp-{$component->getId()}">
+    {$component->html()}
+</div>
+HTML;
+        }
+
+        return $result;
+    }
 }

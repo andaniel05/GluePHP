@@ -112,7 +112,7 @@ JAVASCRIPT;
 (function (app) {
 'use strict';
 
-    var html = document.querySelector('#cv-{$component->getId()}');
+    var html = document.querySelector('#gphp-{$component->getId()}');
     var component = new app.componentClasses['{$componentClass}']('{$component->getId()}', app, {$jsModel}, html);
     app.addComponent(component);
 

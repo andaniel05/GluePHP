@@ -9,13 +9,13 @@ class UpdatesStaticTest extends StaticTestCase
     public function loadComponents()
     {
         $this->button = $this->driver->findElement(
-            \WebDriverBy::cssSelector('#cv-button button')
+            \WebDriverBy::cssSelector('#gphp-button button')
         );
         $this->input1 = $this->driver->findElement(
-            \WebDriverBy::cssSelector('#cv-input1 input')
+            \WebDriverBy::cssSelector('#gphp-input1 input')
         );
         $this->input2 = $this->driver->findElement(
-            \WebDriverBy::cssSelector('#cv-input2 input')
+            \WebDriverBy::cssSelector('#gphp-input2 input')
         );
     }
 
