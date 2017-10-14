@@ -11,12 +11,12 @@ use Andaniel05\GluePHP\Response\{ResponseInterface, Response};
 use Andaniel05\GluePHP\Event\{Event, RequestEvent, ResponseEvent};
 use Andaniel05\GluePHP\Update\{UpdateInterface,
     UpdateResultInterface, UpdateResult, Update};
-use Andaniel05\GluePHP\Component\AbstractComponent;
+use Andaniel05\GluePHP\Component\{AbstractComponent, Sidebar};
 use Andaniel05\GluePHP\Component\Model\{ModelInterface, Model};
 use Symfony\Component\EventDispatcher\{EventDispatcherInterface, EventDispatcher};
 use Andaniel05\ComposedViews\{AbstractPage, PageEvents};
 use Andaniel05\ComposedViews\Event\AfterInsertionEvent;
-use Andaniel05\ComposedViews\Component\AbstractComponent as AbstractPageComponent;
+use Andaniel05\ComposedViews\Component\ComponentInterface as PageComponentInterface;
 
 abstract class AbstractApp extends AbstractPage
 {
@@ -258,7 +258,7 @@ abstract class AbstractApp extends AbstractPage
 
     public function getFrontComponentClass(string $componentClass): ?string
     {
-        return $this->componentClasses[$componentClass];
+        return $this->componentClasses[$componentClass] ?? null;
     }
 
     public function updateComponentClasses(): void
@@ -333,7 +333,7 @@ abstract class AbstractApp extends AbstractPage
         return $this->request && $this->response;
     }
 
-    public function appendComponent(string $parentId, AbstractPageComponent $component): void
+    public function appendComponent(string $parentId, PageComponentInterface $component): void
     {
         parent::appendComponent($parentId, $component);
         $component->setApp($this);
@@ -344,6 +344,32 @@ abstract class AbstractApp extends AbstractPage
         if ($this->inProcess()) {
             $action = new AppendAction($event->getParent(), $event->getChild());
             $this->act($action);
+        }
+    }
+
+    protected function initializeSidebars(): void
+    {
+        foreach ($this->sidebars() as $key => $value) {
+
+            $sidebar = null;
+
+            if (is_integer($key) && is_string($value)) {
+                $sidebar = new Sidebar($value);
+            } elseif (is_string($key) && is_array($value)) {
+
+                $sidebar = new Sidebar($key);
+                foreach ($value as $component) {
+                    if ($component instanceOf ComponentInterface) {
+                        $sidebar->addChild($component);
+                    }
+                }
+
+            }
+
+            if ($sidebar) {
+                $sidebar->setPage($this);
+                $this->components[$sidebar->getId()] = $sidebar;
+            }
         }
     }
 }

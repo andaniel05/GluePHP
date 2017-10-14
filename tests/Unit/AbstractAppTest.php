@@ -3,7 +3,6 @@
 namespace Andaniel05\GluePHP\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use Andaniel05\ComposedViews\Component\Sidebar;
 use Andaniel05\GluePHP\{AbstractApp, AppEvents};
 use Andaniel05\GluePHP\Asset\{GluePHPScript, AppScript};
 use Andaniel05\GluePHP\Action\{AppendAction, EvalAction, RegisterAction,
@@ -11,7 +10,7 @@ use Andaniel05\GluePHP\Action\{AppendAction, EvalAction, RegisterAction,
 use Andaniel05\GluePHP\Request\{RequestInterface, Request};
 use Andaniel05\GluePHP\Response\ResponseInterface;
 use Andaniel05\GluePHP\Update\{Update, UpdateInterface, UpdateResultInterface};
-use Andaniel05\GluePHP\Component\AbstractComponent;
+use Andaniel05\GluePHP\Component\{AbstractComponent, Sidebar};
 use Andaniel05\GluePHP\Component\Model\{ModelInterface, Model};
 use Andaniel05\GluePHP\Event\Event;
 use Andaniel05\GluePHP\Tests\Unit\Component\{DummyComponent1, DummyComponent2};
@@ -342,11 +341,6 @@ class AbstractAppTest extends TestCase
         $this->assertNotEquals(409, $response->getCode());
     }
 
-    public function testGetSnapshot_ReturnAnEmptyArrayByDefault()
-    {
-        $this->assertEquals([], $this->app->getSnapshot());
-    }
-
     public function testGetSnapshot_ReturnAnArrayWithTheComponentValues()
     {
         $component1 = $this->getMockBuilder(DummyComponent1::class)
@@ -373,6 +367,7 @@ class AbstractAppTest extends TestCase
         $app->appendComponent('body', $component2);
 
         $expected = [
+            'body' => [],
             'component1' => [
                 'attr1' => 1,
                 'attr2' => 2,
@@ -712,7 +707,7 @@ class AbstractAppTest extends TestCase
 
         $class1 = get_class($component1);
         $body = $this->app->getSidebar('body');
-        $body->addComponent($component1);
+        $body->addChild($component1);
 
         $this->app->updateComponentClasses();
 
@@ -991,5 +986,10 @@ class AbstractAppTest extends TestCase
         $this->app->handle($request);
 
         $this->assertTrue($executed);
+    }
+
+    public function testGetFrontComponentClass_ReturnNullWhenClassDoNotExists()
+    {
+        $this->assertNull($this->app->getFrontComponentClass(uniqid()));
     }
 }
