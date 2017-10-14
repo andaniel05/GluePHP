@@ -114,13 +114,20 @@ abstract class AbstractComponent extends AbstractViewComponent
         $result = '';
 
         foreach ($this->getChildren() as $component) {
-            $result .= <<<HTML
-<div class="gphp-component gphp-{$component->getId()}" id="gphp-{$component->getId()}">
-    {$component->html()}
-</div>
-HTML;
+            $result .= self::containerView(
+                $component->getId(), $component->html()
+            );
         }
 
         return $result;
+    }
+
+    public static function containerView(string $id, string $html): string
+    {
+        return <<<HTML
+<div class="gphp-component gphp-{$id}" id="gphp-{$id}">
+    {$html}
+</div>
+HTML;
     }
 }
