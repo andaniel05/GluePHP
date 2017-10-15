@@ -267,4 +267,31 @@ class AbstractComponentTest extends TestCase
         $this->assertAttributeEquals($page, 'page', $component);
         $this->assertAttributeEquals($page, 'app', $component);
     }
+
+    public function testRenderizeChildren_WrapTheChildrenInsideADivContainer()
+    {
+        $parentId = uniqid('parent');
+        $parent = $this->getMockForAbstractClass(
+            AbstractComponent::class, [$parentId]
+        );
+
+        $html = uniqid();
+        $childId = uniqid('child');
+        $child = $this->createMock(AbstractComponent::class);
+        $child->method('getId')->willReturn($childId);
+        $child->method('html')->willReturn($html);
+        $childView = AbstractComponent::containerView($childId, $html);
+
+        $parent->addChild($child);
+
+        $expected = <<<HTML
+<div class="gphp-children gphp-{$parentId}-children">
+    {$childView}
+</div>
+HTML;
+
+        $this->assertXmlStringEqualsXmlString(
+            $expected, $parent->renderizeChildren()
+        );
+    }
 }

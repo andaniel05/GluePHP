@@ -112,7 +112,6 @@ abstract class AbstractComponent extends AbstractViewComponent
     public function renderizeChildren(): ?string
     {
         $result = '';
-
         foreach ($this->getChildren() as $component) {
 
             $id = $component->getId();
@@ -125,13 +124,22 @@ abstract class AbstractComponent extends AbstractViewComponent
             }
         }
 
-        return $result;
+        return static::childrenContainerView($this->id, $result);
     }
 
     public static function containerView(string $id, string $html): string
     {
         return <<<HTML
 <div class="gphp-component gphp-{$id}" id="gphp-{$id}">
+    {$html}
+</div>
+HTML;
+    }
+
+    public static function childrenContainerView(string $id, string $html): string
+    {
+        return <<<HTML
+<div class="gphp-children gphp-{$id}-children">
     {$html}
 </div>
 HTML;
