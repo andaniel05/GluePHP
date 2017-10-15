@@ -17,7 +17,7 @@ class AppendStaticTest extends StaticTestCase
         $this->waitForResponse();
 
         $button2 = $this->driver->findElement(
-            \WebDriverBy::cssSelector('#gphp-button2 .gphp-children button')
+            \WebDriverBy::cssSelector('#gphp-body .gphp-children #gphp-button2')
         );
         $this->assertInstanceOf(\RemoteWebElement::class, $button2);
     }
