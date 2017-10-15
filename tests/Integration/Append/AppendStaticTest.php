@@ -6,7 +6,7 @@ use Andaniel05\GluePHP\Tests\StaticTestCase;
 
 class AppendStaticTest extends StaticTestCase
 {
-    public function test1()
+    public function testTheHtmlChildIsInsertedOnTheChildrenContainer()
     {
         $this->driver->get(appUrl(__DIR__ . '/apps/app1.php'));
         $button1 = $this->driver->findElement(
@@ -17,7 +17,7 @@ class AppendStaticTest extends StaticTestCase
         $this->waitForResponse();
 
         $button2 = $this->driver->findElement(
-            \WebDriverBy::cssSelector('#gphp-button2 button')
+            \WebDriverBy::cssSelector('#gphp-button2 .gphp-children button')
         );
         $this->assertInstanceOf(\RemoteWebElement::class, $button2);
     }

@@ -333,7 +333,7 @@ App.prototype.dispatchInRemote = function(name, event) {
             return
         }
 
-        var lines = text.split('%GLUE_MESSAGE%');
+        var lines = text.split('%G_MSG%');
         for (var id in lines) {
             var line = lines[id];
             try {
