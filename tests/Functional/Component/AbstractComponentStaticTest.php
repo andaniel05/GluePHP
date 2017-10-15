@@ -225,7 +225,7 @@ class AbstractComponentStaticTest extends StaticTestCase
         $this->writeDocument($this->app->html());
         $this->script('window.component1 = app.getComponent("component1")');
 
-        $this->assertContains($secret, $this->script('return component1.html.innerHTML'));
+        $this->assertContains($secret, $this->script('return component1.element.innerHTML'));
     }
 
     public function testTheStaticMethodExtendClassScriptFromComponentClassCanExtendTheJavaScriptClass()

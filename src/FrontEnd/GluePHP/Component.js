@@ -6,14 +6,14 @@
 (function(GluePHP) {
 'use strict';
 
-function Component(id, app, model = {}, html) {
+function Component(id, app, model = {}, element) {
 
     GluePHP.BaseEntity.call(this);
 
-    this.id    = id;
-    this.app   = app;
-    this.model = Object.seal(model);
-    this.html  = html;
+    this.id      = id;
+    this.app     = app;
+    this.model   = Object.seal(model);
+    this.element = element;
 };
 
 Component.prototype = Object.create(GluePHP.BaseEntity.prototype);

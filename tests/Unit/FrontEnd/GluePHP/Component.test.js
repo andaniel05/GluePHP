@@ -43,12 +43,12 @@ suite('GluePHP.Component', function() {
         });
     });
 
-    suite('#html', function() {
+    suite('#element', function() {
 
-        test('is equal to html argument', function() {
-            var html = {};
-            var component = new Component('component1', null, null, html);
-            assert.equal(component.html, html);
+        test('is equal to element argument', function() {
+            var element = {};
+            var component = new Component('component1', null, null, element);
+            assert.equal(component.element, element);
         });
     });
 

@@ -9,11 +9,11 @@ class BindEventsProcessor extends AbstractProcessor
         return <<<JAVASCRIPT
     var bindEvents = function(attribute) {
 
-        if ( ! (component.html instanceof Element)) {
+        if ( ! (component.element instanceof Element)) {
             return;
         }
 
-        var items = component.html.querySelectorAll('*[' + attribute + ']');
+        var items = component.element.querySelectorAll('*[' + attribute + ']');
         items.forEach(function(item) {
             var events = item.getAttribute(attribute).split(' ');
             events.forEach(function (eventName) {
