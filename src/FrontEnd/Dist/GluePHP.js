@@ -472,10 +472,12 @@ function Component(id, app, model = {}, element) {
 
     GluePHP.BaseEntity.call(this);
 
-    this.id      = id;
-    this.app     = app;
-    this.model   = Object.seal(model);
+    this.id = id;
+    this.app = app;
+    this.model = Object.seal(model);
     this.element = element;
+    this.childrenElement = element instanceof Element ?
+        element.querySelector('.gphp-children') : null;
 };
 
 Component.prototype = Object.create(GluePHP.BaseEntity.prototype);

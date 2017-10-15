@@ -26,13 +26,13 @@ class AppendAction extends AbstractAction
     var parent = app.getComponent(data.parentId);
 
     if (parent instanceof GluePHP.Component &&
-        parent.element instanceof Element)
+        parent.childrenElement instanceof Element)
     {
         var childElement = document.createElement('div');
         childElement.innerHTML = data.html;
         childElement = childElement.firstChild;
 
-        parent.element.append(childElement);
+        parent.childrenElement.append(childElement);
     }
 
 JAVASCRIPT;

@@ -52,6 +52,31 @@ suite('GluePHP.Component', function() {
         });
     });
 
+    suite('#childrenElement', function() {
+
+        test('is null when element is null', function() {
+            var component = new Component('component1', null, null, null);
+            assert.isNull(component.childrenElement);
+        });
+
+        test('is null when element not has a children container', function() {
+            var element = document.createElement('div');
+            var component = new Component('component1', null, null, element);
+            assert.isNull(component.childrenElement);
+        });
+
+        test('contains the children html element', function() {
+
+            var element = document.createElement('div');
+            element.innerHTML = '<div class="gphp-children" data-key=""></div>';
+
+            var component = new Component('component1', null, null, element);
+
+            assert.instanceOf(component.childrenElement, Element);
+            assert.isTrue(component.childrenElement.hasAttribute('data-key'));
+        });
+    });
+
     suite('#dispatchInApp()', function() {
         test('dispatch the event in the app. The event name is transformed to <componentId>.<eventName>', function() {
 
