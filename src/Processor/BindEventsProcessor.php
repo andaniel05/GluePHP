@@ -13,15 +13,30 @@ class BindEventsProcessor extends AbstractProcessor
             return;
         }
 
-        var items = component.element.querySelectorAll('*[' + attribute + ']');
-        items.forEach(function(item) {
-            var events = item.getAttribute(attribute).split(' ');
-            events.forEach(function (eventName) {
-                item.addEventListener(eventName, function(event) {
-                    component.dispatch(eventName, event);
-                });
-            });
-        });
+        var childrenClass = 'gphp-' + component.id + '-children';
+
+        var traverse = function(element) {
+
+            for (var child of element.children) {
+
+                if (child.classList.contains(childrenClass)) {
+                    continue;
+                }
+
+                if (child.hasAttribute(attribute)) {
+                    var events = child.getAttribute(attribute).split(' ');
+                    events.forEach(function (eventName) {
+                        child.addEventListener(eventName, function(event) {
+                            component.dispatch(eventName, event);
+                        });
+                    });
+                }
+
+                traverse(child);
+            }
+        };
+
+        traverse(component.element);
     };
 
     bindEvents('g-event');
