@@ -14,6 +14,7 @@ function Component(id, app, model = {}, element) {
     this.app = app;
     this.model = Object.seal(model);
     this.element = element;
+    this.childrenClass = 'gphp-' + id + '-children';
     this.childrenElement = element instanceof Element ?
         element.querySelector('.gphp-children') : null;
 };

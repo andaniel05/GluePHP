@@ -77,6 +77,15 @@ suite('GluePHP.Component', function() {
         });
     });
 
+    suite('#childrenClass', function() {
+        ['component1', 'component2'].forEach(function(id) {
+            test(`is "gphp-${id}-children" when component id is "${id}"`, function() {
+                var component = new Component(id);
+                assert.equal(component.childrenClass, 'gphp-' + id +'-children');
+            });
+        });
+    });
+
     suite('#dispatchInApp()', function() {
         test('dispatch the event in the app. The event name is transformed to <componentId>.<eventName>', function() {
 
