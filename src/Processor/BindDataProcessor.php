@@ -13,24 +13,38 @@ class BindDataProcessor extends AbstractProcessor
             return;
         }
 
-        var items = component.element.querySelectorAll('*[' + attribute + ']');
-        items.forEach(function(item) {
+        var traverse = function(element) {
 
-            var modelAttribute = item.getAttribute(attribute);
-            var setterName = GluePHP.Helpers.getSetter(modelAttribute);
+            for (var child of element.children) {
 
-            component.model[modelAttribute] = item.value;
+                if (child.classList.contains(component.childrenClass)) {
+                    continue;
+                }
 
-            item.onchange = function(event) {
-                component[setterName](item.value);
-            };
+                if (child.hasAttribute(attribute)) {
 
-            var oldSetter = component[setterName];
-            component[setterName] = function(value, registerUpdate = true) {
-                oldSetter.call(this, value, registerUpdate);
-                item.value = value;
+                    var modelAttribute = child.getAttribute(attribute);
+                    var setterName = GluePHP.Helpers.getSetter(modelAttribute);
+
+                    component.model[modelAttribute] = child.value;
+
+                    child.onchange = function(event) {
+                        component[setterName](child.value);
+                    };
+
+                    var oldSetter = component[setterName];
+                    component[setterName] = function(value, registerUpdate = true) {
+                        oldSetter.call(this, value, registerUpdate);
+                        child.value = value;
+                    }
+
+                }
+
+                traverse(child);
             }
-        });
+        };
+
+        traverse(component.element);
     };
 
     bindData('g-bind');
