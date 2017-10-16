@@ -13,13 +13,11 @@ class BindEventsProcessor extends AbstractProcessor
             return;
         }
 
-        var childrenClass = 'gphp-' + component.id + '-children';
-
         var traverse = function(element) {
 
             for (var child of element.children) {
 
-                if (child.classList.contains(childrenClass)) {
+                if (child.classList.contains(component.childrenClass)) {
                     continue;
                 }
 
@@ -41,6 +39,7 @@ class BindEventsProcessor extends AbstractProcessor
 
     bindEvents('g-event');
     bindEvents('data-g-event');
+
 JAVASCRIPT;
     }
 }
