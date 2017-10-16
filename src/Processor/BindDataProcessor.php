@@ -7,11 +7,13 @@ class BindDataProcessor extends AbstractProcessor
     public static function script(): string
     {
         return <<<JAVASCRIPT
-    var bindData = function(attribute) {
 
-        if ( ! (component.element instanceof Element)) {
-            return;
-        }
+    if (component.element instanceof Element) {
+        bindData('g-bind');
+        bindData('data-g-bind');
+    }
+
+    function bindData(attribute) {
 
         var traverse = function(element) {
 
@@ -47,8 +49,6 @@ class BindDataProcessor extends AbstractProcessor
         traverse(component.element);
     };
 
-    bindData('g-bind');
-    bindData('data-g-bind');
 JAVASCRIPT;
     }
 }

@@ -7,11 +7,13 @@ class BindEventsProcessor extends AbstractProcessor
     public static function script(): string
     {
         return <<<JAVASCRIPT
-    var bindEvents = function(attribute) {
 
-        if ( ! (component.element instanceof Element)) {
-            return;
-        }
+    if (component.element instanceof Element) {
+        bindEvents('g-event');
+        bindEvents('data-g-event');
+    }
+
+    function bindEvents(attribute) {
 
         var traverse = function(element) {
 
@@ -36,9 +38,6 @@ class BindEventsProcessor extends AbstractProcessor
 
         traverse(component.element);
     };
-
-    bindEvents('g-event');
-    bindEvents('data-g-event');
 
 JAVASCRIPT;
     }
