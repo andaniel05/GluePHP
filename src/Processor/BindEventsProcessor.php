@@ -14,29 +14,16 @@ class BindEventsProcessor extends AbstractProcessor
     }
 
     function bindEvents(attribute) {
-
-        var traverse = function(element) {
-
-            for (var child of element.children) {
-
-                if (child.classList.contains(component.childrenClass)) {
-                    continue;
-                }
-
-                if (child.hasAttribute(attribute)) {
-                    var events = child.getAttribute(attribute).split(' ');
-                    events.forEach(function (eventName) {
-                        child.addEventListener(eventName, function(event) {
-                            component.dispatch(eventName, event);
-                        });
+        traverseElements(function(child) {
+            if (child.hasAttribute(attribute)) {
+                var events = child.getAttribute(attribute).split(' ');
+                events.forEach(function (eventName) {
+                    child.addEventListener(eventName, function(event) {
+                        component.dispatch(eventName, event);
                     });
-                }
-
-                traverse(child);
+                });
             }
-        };
-
-        traverse(component.element);
+        });
     };
 
 JAVASCRIPT;

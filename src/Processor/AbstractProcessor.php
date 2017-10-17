@@ -10,7 +10,33 @@ abstract class AbstractProcessor
 
         return <<<JAVASCRIPT
 function(component) {
-    {$script}
+
+{$script}
+
+    function traverseElements(callback, includeChildren = false) {
+
+        if ( ! (component.element instanceof Element)) {
+            return;
+        }
+
+        var traverse = function(element) {
+
+            for (var child of element.children) {
+
+                if (false === includeChildren &&
+                    child.classList.contains(component.childrenClass))
+                {
+                    continue;
+                }
+
+                callback(child);
+
+                traverse(child);
+            }
+        };
+
+        traverse(component.element);
+    };
 }
 JAVASCRIPT;
     }
