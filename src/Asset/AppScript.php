@@ -73,7 +73,7 @@ JAVASCRIPT;
 // {$frontId}
 (function(app) {
 'use strict';
-    app.processors.push({$processorClass::scriptWrapper()});
+    app.processors['{$frontId}'] = {$processorClass::scriptWrapper()};
 })({$appId});
 
 JAVASCRIPT;
@@ -107,15 +107,23 @@ JAVASCRIPT;
             }
             $jsModel .= '}';
 
-            $model = $component->getModel();
+            $applyProcessors = '';
+            foreach ($component->processors() as $processorClass) {
+                $processorFrontId = $this->app->getFrontProcessorClass($processorClass);
+                $applyProcessors .= "app.processors['{$processorFrontId}'](component);\n";
+            }
 
             $createComponents .= <<<JAVASCRIPT
 (function (app) {
 'use strict';
 
     var html = document.querySelector('#gphp-{$component->getId()}');
-    var component = new app.componentClasses['{$componentClass}']('{$component->getId()}', app, {$jsModel}, html);
+    var CClass = app.componentClasses['{$componentClass}'];
+    var component = new CClass('{$component->getId()}', app, {$jsModel}, html);
+
     app.addComponent(component);
+
+    {$applyProcessors}
 
 })({$appId});
 
@@ -150,28 +158,11 @@ window.{$appId} = new GluePHP.App(
 
 {$registerComponentClasses}
 
-// Crea e inicializa los componentes.
+// Crea, inicializa y procesa los componentes.
 //
 
 {$createComponents}
 
-// Procesa todos los components
-//
-
-(function(app) {
-'use strict';
-
-    function traverse(container) {
-        for (var id in container.components) {
-            var component = container.components[id];
-            app.processComponent(component);
-            traverse(component);
-        }
-    };
-
-    traverse(app);
-
-})({$appId});
 JAVASCRIPT;
     }
 }

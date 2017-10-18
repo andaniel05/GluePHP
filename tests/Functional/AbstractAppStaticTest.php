@@ -121,7 +121,23 @@ class AbstractAppStaticTest extends StaticTestCase
             }
         };
 
-        $component = new class('component') extends AbstractComponent {};
+        $processorClass = get_class($processor);
+        $component = new class('component', $processorClass) extends AbstractComponent {
+
+            public function __construct($id, $processorClass)
+            {
+                parent::__construct($id);
+
+                $this->processorClass = $processorClass;
+            }
+
+
+            public function processors(): array
+            {
+                return [$this->processorClass];
+            }
+        };
+
         $this->body->addChild($component);
         $this->app->registerProcessorClass(get_class($processor));
         $this->writeDocument($this->app->html());

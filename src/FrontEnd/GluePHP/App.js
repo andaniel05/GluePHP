@@ -226,7 +226,8 @@ App.prototype.processResponse = function(response) {
 };
 
 App.prototype.processComponent = function(component) {
-    for (var processor of this.processors) {
+    for (var id in this.processors) {
+        var processor = this.processors[id];
         processor(component);
     }
 };
