@@ -8,12 +8,12 @@
     ],
     "require": {
         "php": ">=7.1.0",
-        "andaniel05/composed-views": "dev-master",
-        "opis/closure": "^3.0.0"
+        "andaniel05/composed-views": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "^6.0",
-        "facebook/webdriver": "dev-master"
+        "facebook/webdriver": "dev-master",
+        "opis/closure": "^3.0.0"
     },
     "autoload": {
         "psr-4": {
