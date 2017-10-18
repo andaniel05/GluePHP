@@ -19,4 +19,16 @@ class AppScriptTest extends TestCase
 
         $script = new AppScript('script', $app);
     }
+
+    public function testInvokeToUpdateProcessorClassesOnApp()
+    {
+        $app = $this->getMockBuilder(AbstractApp::class)
+            ->setConstructorArgs([''])
+            ->setMethods(['updateProcessorClasses'])
+            ->getMockForAbstractClass();
+        $app->expects($this->once())
+            ->method('updateProcessorClasses');
+
+        $script = new AppScript('script', $app);
+    }
 }

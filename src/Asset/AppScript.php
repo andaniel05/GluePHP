@@ -43,6 +43,7 @@ class AppScript extends TagScriptAsset
     public function getSource(): ?string
     {
         $this->app->updateComponentClasses();
+        $this->app->updateProcessorClasses();
 
         $appId = $this->app->getId();
 
