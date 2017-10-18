@@ -8,9 +8,17 @@ use Andaniel05\GluePHP\Action\{AbstractAction, UpdateAction};
 use Andaniel05\GluePHP\Component\AbstractComponent;
 use Andaniel05\GluePHP\Component\Model\{Model, ModelInterface};
 use Andaniel05\GluePHP\Response\Response;
+use Andaniel05\GluePHP\Processor\{BindDataProcessor, BindEventsProcessor};
 
 class AbstractComponentTest extends TestCase
 {
+    public function setUp()
+    {
+        $this->component = $this->getMockForAbstractClass(
+            AbstractComponent::class, ['component']
+        );
+    }
+
     public function testComponentIdStartWithCompPrefix()
     {
         $component = $this->getMockBuilder(AbstractComponent::class)
@@ -292,6 +300,20 @@ HTML;
 
         $this->assertXmlStringEqualsXmlString(
             $expected, $parent->renderizeChildren()
+        );
+    }
+
+    public function testProcessors_ContainsBindDataProcessorByDefault()
+    {
+        $this->assertContains(
+            BindDataProcessor::class, $this->component->processors()
+        );
+    }
+
+    public function testProcessors_ContainsBindEventsProcessorByDefault()
+    {
+        $this->assertContains(
+            BindEventsProcessor::class, $this->component->processors()
         );
     }
 }
