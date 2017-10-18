@@ -14,11 +14,11 @@ function App(url, token) {
     this.token = token;
     this.buffer = {};
     this.actionHandlers = {};
-    this.processors = [];
+    this.processors = {};
     this.httpRequests = [];
     this.componentClasses = {};
     this.requestMethod = 'POST';
-    this.requestKey = 'request';
+    this.requestKey = 'glue_request';
     this.debug = false;
 };
 

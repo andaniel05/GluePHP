@@ -50,9 +50,9 @@ suite('GluePHP.App', function() {
 
     suite('#requestKey', function() {
 
-        test('is equal to "request" by default', function() {
+        test('is equal to "glue_request" by default', function() {
             var app = new App();
-            assert.equal(app.requestKey, "request");
+            assert.equal(app.requestKey, "glue_request");
         });
     });
 
@@ -210,7 +210,7 @@ suite('GluePHP.App', function() {
             app.dispatchInRemote('component.event');
             var request = this.server.requests[0];
 
-            assert.equal(request.requestBody, 'request=' + JSON.stringify(dummyRequest));
+            assert.equal(request.requestBody, 'glue_request=' + JSON.stringify(dummyRequest));
         });
 
         suite('dispatch "remote_update" in components', function() {
