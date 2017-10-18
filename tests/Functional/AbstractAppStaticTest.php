@@ -102,7 +102,7 @@ class AbstractAppStaticTest extends StaticTestCase
         $this->assertTrue($this->script($script));
     }
 
-    public function testTheProcessorsAreRegisteredInTheFrontEnd()
+    public function testTheComponentProcessorsAreRegisteredInTheFrontEnd()
     {
         $value = uniqid();
         $processor = new class($value) extends AbstractProcessor {
@@ -130,7 +130,6 @@ class AbstractAppStaticTest extends StaticTestCase
 
                 $this->processorClass = $processorClass;
             }
-
 
             public function processors(): array
             {

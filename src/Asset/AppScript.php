@@ -143,7 +143,7 @@ window.{$appId} = new GluePHP.App(
 );
 {$setDebug}
 
-// Define las clases de las acciones.
+// Define los manejadores de las acciones.
 //
 
 {$registerActionClasses}
