@@ -59,9 +59,6 @@ abstract class AbstractApp extends AbstractPage
         $this->registerActionClass(EvalAction::class);
         $this->registerActionClass(RegisterAction::class);
         $this->registerActionClass(UpdateAction::class);
-
-        $this->registerProcessorClass(BindEventsProcessor::class);
-        $this->registerProcessorClass(BindDataProcessor::class);
     }
 
     public function sidebars(): array
@@ -369,6 +366,15 @@ abstract class AbstractApp extends AbstractPage
             if ($sidebar) {
                 $sidebar->setPage($this);
                 $this->components[$sidebar->getId()] = $sidebar;
+            }
+        }
+    }
+
+    public function updateProcessorClasses(): void
+    {
+        foreach ($this->components() as $component) {
+            foreach ($component->processors() as $processorClass) {
+                $this->registerProcessorClass($processorClass);
             }
         }
     }

@@ -909,6 +909,11 @@ class AbstractAppTest extends TestCase
         $this->assertEquals($key, $this->app->getFrontProcessorClass($class));
     }
 
+    public function testGetProcessorClasses_ReturnAnEmptyArrayByDefault()
+    {
+        $this->assertEquals([], $this->app->getProcessorClasses());
+    }
+
     public function testGetProcessorClasses_ReturnAnArrayWithAllRegisteredClasses()
     {
         $class = uniqid();
@@ -991,5 +996,35 @@ class AbstractAppTest extends TestCase
     public function testGetFrontComponentClass_ReturnNullWhenClassDoNotExists()
     {
         $this->assertNull($this->app->getFrontComponentClass(uniqid()));
+    }
+
+    public function testUpdateProcessorClasses_RegisterInTheAppTheComponentProcessors()
+    {
+        $processorClass = uniqid();
+        $component = $this->createMock(AbstractComponent::class);
+        $component->method('getId')->willReturn('component');
+        $component->method('processors')->willReturn([$processorClass]);
+
+        $app = $this->getMockBuilder(AbstractApp::class)
+            ->setConstructorArgs([''])
+            ->setMethods(['registerProcessorClass'])
+            ->getMockForAbstractClass();
+        $app->expects($this->once())
+            ->method('registerProcessorClass')
+            ->with(
+                $this->equalTo($processorClass),
+                $this->equalTo(null)
+            );
+
+        $app->appendComponent('body', $component);
+
+        $app->updateProcessorClasses();
+    }
+
+    public function testTheAppSidebarsAreInstancesOfGluePHPSidebars()
+    {
+        $this->assertContainsOnlyInstancesOf(
+            Sidebar::class, $this->app->getAllSidebars()
+        );
     }
 }
