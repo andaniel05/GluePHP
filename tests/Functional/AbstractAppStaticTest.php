@@ -102,7 +102,7 @@ class AbstractAppStaticTest extends StaticTestCase
         $this->assertTrue($this->script($script));
     }
 
-    public function testTheComponentProcessorsAreRegisteredInTheFrontEnd()
+    public function testTheComponentsAreProcessingWithHisProcessors()
     {
         $value = uniqid();
         $processor = new class($value) extends AbstractProcessor {
@@ -138,7 +138,6 @@ class AbstractAppStaticTest extends StaticTestCase
         };
 
         $this->body->addChild($component);
-        $this->app->registerProcessorClass(get_class($processor));
         $this->writeDocument($this->app->html());
 
         $this->assertEquals(
