@@ -49,4 +49,14 @@ class DynamicRegistrationStaticTest extends StaticTestCase
         $this->assertEquals('secret', $this->driver->switchTo()->alert()->getText());
         $this->driver->switchTo()->alert()->accept();
     }
+
+    public function testRegisterProcessorClass()
+    {
+        $this->clickButton(__DIR__ . '/apps/app4.php');
+        $this->waitForResponse();
+
+        $this->script("app.processors.processor(app.getComponent('button'))");
+
+        $this->assertEquals('secret', $this->script("return app.getComponent('button').secret"));
+    }
 }

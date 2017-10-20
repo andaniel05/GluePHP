@@ -281,8 +281,16 @@ abstract class AbstractApp extends AbstractPage
     public function registerProcessorClass(string $processorClass, ?string $frontId = null)
     {
         $frontId = $frontId ?? uniqid('Processor');
-
         $this->processorClasses[$processorClass] = $frontId;
+
+        if ($this->inProcess()) {
+
+            $scriptWrapper = $processorClass::scriptWrapper();
+
+            $evalScript = "{$this->id}.processors.{$frontId} = {$scriptWrapper};";
+            $action = new EvalAction($evalScript);
+            $this->response->addAction($action);
+        }
     }
 
     public function getFrontProcessorClass(string $processorClass): ?string
