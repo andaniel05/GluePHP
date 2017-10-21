@@ -253,6 +253,11 @@ abstract class AbstractApp extends AbstractPage
         return isset($this->componentClasses[$componentClass]);
     }
 
+    public function hasProcessorClass(string $processorClass): bool
+    {
+        return isset($this->processorClasses[$processorClass]);
+    }
+
     public function getFrontComponentClass(string $componentClass): ?string
     {
         return $this->componentClasses[$componentClass] ?? null;
@@ -347,7 +352,7 @@ abstract class AbstractApp extends AbstractPage
     public function onAfterInsertion(AfterInsertionEvent $event)
     {
         if ($this->inProcess()) {
-            $action = new AppendAction($event->getParent(), $event->getChild());
+            $action = new AppendAction($this, $event->getParent(), $event->getChild());
             $this->act($action);
         }
     }

@@ -185,4 +185,19 @@ JAVASCRIPT;
 
         return $strVal;
     }
+
+    public static function getJavaScriptModelObject(AbstractComponent $component): string
+    {
+        $model = static::get(get_class($component));
+
+        $jsModel = '{';
+        foreach ($model->toArray() as $attr => $def) {
+            $value = call_user_func([$component, $model->getGetter($attr)]);
+            $strVal = Model::getValueForJavaScript($value);
+            $jsModel .= "{$attr}: {$strVal},";
+        }
+        $jsModel .= '}';
+
+        return $jsModel;
+    }
 }

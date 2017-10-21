@@ -9,6 +9,7 @@ use Andaniel05\GluePHP\Component\AbstractComponent;
 use Andaniel05\GluePHP\Component\Model\{Model, ModelInterface};
 use Andaniel05\GluePHP\Response\Response;
 use Andaniel05\GluePHP\Processor\{BindDataProcessor, BindEventsProcessor};
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class AbstractComponentTest extends TestCase
 {
@@ -315,5 +316,22 @@ HTML;
         $this->assertContains(
             BindEventsProcessor::class, $this->component->processors()
         );
+    }
+
+    public function testGetDispatcher_ReturnInstanceOfSymfonyEventDispatcher()
+    {
+        $this->assertInstanceOf(
+            EventDispatcherInterface::class,
+            $this->component->getDispatcher()
+        );
+    }
+
+    public function testGetDispatcher_ReturnInsertedDispatcherBySetDispatcher()
+    {
+        $dispatcher = $this->createMock(EventDispatcherInterface::class);
+
+        $this->component->setDispatcher($dispatcher);
+
+        $this->assertEquals($dispatcher, $this->component->getDispatcher());
     }
 }

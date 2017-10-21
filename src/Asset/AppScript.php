@@ -98,14 +98,7 @@ JAVASCRIPT;
 
             $componentClass = $this->app->getFrontComponentClass(get_class($component));
             $model = $component->getModel();
-
-            $jsModel = '{';
-            foreach ($model->toArray() as $attr => $def) {
-                $value = call_user_func([$component, $model->getGetter($attr)]);
-                $strVal = Model::getValueForJavaScript($value);
-                $jsModel .= "{$attr}: {$strVal},";
-            }
-            $jsModel .= '}';
+            $jsModel = Model::getJavaScriptModelObject($component);
 
             $applyProcessors = '';
             foreach ($component->processors() as $processorClass) {
@@ -117,9 +110,10 @@ JAVASCRIPT;
 (function (app) {
 'use strict';
 
-    var html = document.querySelector('#gphp-{$component->getId()}');
+    var model = {$jsModel};
+    var element = document.querySelector('#gphp-{$component->getId()}');
     var CClass = app.componentClasses['{$componentClass}'];
-    var component = new CClass('{$component->getId()}', app, {$jsModel}, html);
+    var component = new CClass('{$component->getId()}', app, model, element);
 
     app.addComponent(component);
 

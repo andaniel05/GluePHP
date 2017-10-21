@@ -2,21 +2,35 @@
 
 namespace Andaniel05\GluePHP\Action;
 
+use Andaniel05\GluePHP\AbstractApp;
 use Andaniel05\GluePHP\Action\AbstractAction;
 use Andaniel05\GluePHP\Component\AbstractComponent;
+use Andaniel05\GluePHP\Component\Model\Model;
 
 class AppendAction extends AbstractAction
 {
-    public function __construct(AbstractComponent $parent, AbstractComponent $child)
+    public function __construct(AbstractApp $app, AbstractComponent $parent, AbstractComponent $child)
     {
         $html = AbstractComponent::containerView(
             $child->getId(), $child->html()
         );
 
+        $frontProcessors = [];
+        foreach ($child->processors() as $class) {
+
+            if ( ! $app->hasProcessorClass($class)) {
+                $app->registerProcessorClass($class);
+            }
+
+            $frontProcessors[] = $app->getFrontProcessorClass($class);
+        }
+
         parent::__construct([
-            'parentId' => $parent->getId(),
-            'childId'  => $child->getId(),
-            'html'     => $html,
+            'parentId'   => $parent->getId(),
+            'childId'    => $child->getId(),
+            'html'       => $html,
+            'strModel'   => Model::getJavaScriptModelObject($child),
+            'processors' => $frontProcessors,
         ]);
     }
 
@@ -30,8 +44,15 @@ class AppendAction extends AbstractAction
     var parent = app.getComponent(data.parentId);
     parent.childrenElement.append(childElement);
 
-    var child = new GluePHP.Component(data.childId, app);
+    var model = null;
+    var str = 'model = ' + data.strModel + ';';
+    eval(str);
+    var child = new GluePHP.Component(data.childId, app, model, childElement);
     parent.addComponent(child);
+
+    data.processors.forEach(function(id) {
+        app.processors[id](child);
+    });
 
 JAVASCRIPT;
     }

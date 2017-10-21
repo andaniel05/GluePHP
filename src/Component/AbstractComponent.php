@@ -8,16 +8,20 @@ use Andaniel05\GluePHP\Component\Model\{ModelInterface, Model};
 use Andaniel05\GluePHP\Processor\{BindDataProcessor, BindEventsProcessor};
 use Andaniel05\ComposedViews\PageInterface;
 use Andaniel05\ComposedViews\Component\AbstractComponent as AbstractViewComponent;
+use Symfony\Component\EventDispatcher\{EventDispatcherInterface, EventDispatcher};
 
 abstract class AbstractComponent extends AbstractViewComponent
 {
     protected $app;
+    protected $dispatcher;
 
     public function __construct(?string $id = null)
     {
         if ( ! $id) $id = uniqid('comp_');
 
         parent::__construct($id);
+
+        $this->dispatcher = new EventDispatcher;
     }
 
     public function processors(): array
@@ -43,6 +47,16 @@ abstract class AbstractComponent extends AbstractViewComponent
         parent::setPage($page);
 
         $this->app = $page;
+    }
+
+    public function getDispatcher(): EventDispatcherInterface
+    {
+        return $this->dispatcher;
+    }
+
+    public function setDispatcher(EventDispatcherInterface $dispatcher)
+    {
+        $this->dispatcher = $dispatcher;
     }
 
     public function baseUrl(string $assetUrl = ''): string

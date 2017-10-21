@@ -696,6 +696,18 @@ class AbstractAppTest extends TestCase
         $this->assertTrue($this->app->hasComponentClass('ComponentClass1'));
     }
 
+    public function testHasProcessorClass_ReturnFalseByDefault()
+    {
+        $this->assertFalse($this->app->hasProcessorClass('ProcessorClass1'));
+    }
+
+    public function testHasProcessorClass_ReturnTrueWhenClassAlreadyIsRegistered()
+    {
+        $this->app->registerProcessorClass('ProcessorClass');
+
+        $this->assertTrue($this->app->hasProcessorClass('ProcessorClass'));
+    }
+
     public function testUpdateComponentClasses_RegisterAllTheComponentClassesInTheFrontEndMap()
     {
         $component1 = new class('component1') extends AbstractComponent {
