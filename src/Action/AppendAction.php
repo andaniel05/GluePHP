@@ -23,17 +23,15 @@ class AppendAction extends AbstractAction
     public static function handlerScript(): string
     {
         return <<<JAVASCRIPT
+    var childElement = document.createElement('div');
+    childElement.innerHTML = data.html;
+    childElement = childElement.firstChild;
+
     var parent = app.getComponent(data.parentId);
+    parent.childrenElement.append(childElement);
 
-    if (parent instanceof GluePHP.Component &&
-        parent.childrenElement instanceof Element)
-    {
-        var childElement = document.createElement('div');
-        childElement.innerHTML = data.html;
-        childElement = childElement.firstChild;
-
-        parent.childrenElement.append(childElement);
-    }
+    var child = new GluePHP.Component(data.childId, app);
+    parent.addComponent(child);
 
 JAVASCRIPT;
     }
