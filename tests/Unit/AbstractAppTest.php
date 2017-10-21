@@ -343,19 +343,13 @@ class AbstractAppTest extends TestCase
 
     public function testGetSnapshot_ReturnAnArrayWithTheComponentValues()
     {
-        $component1 = $this->getMockBuilder(DummyComponent1::class)
-            ->disableOriginalConstructor()
-            ->setMethods(['getId', 'getAttr1', 'getAttr2', 'getMyAttr3'])
-            ->getMock();
+        $component1 = $this->createMock(DummyComponent1::class);
         $component1->method('getId')->willReturn('component1');
         $component1->method('getAttr1')->willReturn(1);
         $component1->method('getAttr2')->willReturn(2);
         $component1->method('getMyAttr3')->willReturn(3);
 
-        $component2 = $this->getMockBuilder(DummyComponent2::class)
-            ->disableOriginalConstructor()
-            ->setMethods(['getId', 'getAttr4'])
-            ->getMock();
+        $component2 = $this->createMock(DummyComponent2::class);
         $component2->method('getId')->willReturn('component2');
         $component2->method('getAttr4')->willReturn(4);
 
@@ -1038,5 +1032,27 @@ class AbstractAppTest extends TestCase
         $this->assertContainsOnlyInstancesOf(
             Sidebar::class, $this->app->getAllSidebars()
         );
+    }
+
+    public function testAfterInsertionTheComponentEventsAreRegisteredOnTheApp()
+    {
+        $componentId = uniqid('component');
+        $eventName = uniqid('event');
+        $executed = false;
+
+        $listener = function () use (&$executed) {
+            $executed = true;
+        };
+
+        $component = $this->getMockForAbstractClass(
+            AbstractComponent::class, [$componentId]
+        );
+        $component->on($eventName, $listener);
+
+        $this->app->appendComponent('body', $component);
+
+        $this->app->getDispatcher()->dispatch("{$componentId}.{$eventName}");
+
+        $this->assertTrue($executed);
     }
 }

@@ -351,8 +351,23 @@ abstract class AbstractApp extends AbstractPage
 
     public function onAfterInsertion(AfterInsertionEvent $event)
     {
+        $parent = $event->getParent();
+        $child = $event->getChild();
+
+        $childListeners = $child->getDispatcher()->getListeners();
+
+        if (is_iterable($childListeners)) {
+            foreach ($childListeners as $eventName => $sorted) {
+                foreach ($sorted as $listener) {
+                    $this->dispatcher->addListener(
+                        "{$child->getId()}.{$eventName}", $listener
+                    );
+                }
+            }
+        }
+
         if ($this->inProcess()) {
-            $action = new AppendAction($this, $event->getParent(), $event->getChild());
+            $action = new AppendAction($this, $parent, $child);
             $this->act($action);
         }
     }
