@@ -227,6 +227,22 @@ class AbstractComponentTest extends TestCase
         $component->on($eventName, $closure);
     }
 
+    public function testOn_RegisterTheEventInTheComponentDispatcher()
+    {
+        $executed = false;
+        $eventName = uniqid();
+
+        $listener = function () use (&$executed) {
+            $executed = true;
+        };
+
+        $this->component->on($eventName, $listener);
+
+        $this->component->getDispatcher()->dispatch($eventName);
+
+        $this->assertTrue($executed);
+    }
+
     public function testAct_InvokeToActOnTheApp()
     {
         $action = $this->createMock(AbstractAction::class);

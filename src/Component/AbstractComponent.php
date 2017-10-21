@@ -120,6 +120,8 @@ abstract class AbstractComponent extends AbstractViewComponent
 
     public function on(string $eventName, callable $callback): void
     {
+        $this->dispatcher->addListener($eventName, $callback);
+
         if ($this->app) {
             $this->app->on("{$this->id}.{$eventName}", $callback);
         }
