@@ -60,9 +60,12 @@ JAVASCRIPT;
         $this->clickButton(__DIR__ . '/apps/app2.php');
         $this->waitForResponse();
 
-        $this->script("input = app.getComponent('input')");
+        $script = <<<JAVASCRIPT
+    var input = app.getComponent('input');
+    return input.model.text;
+JAVASCRIPT;
 
-        $this->assertEquals('secret', $this->script("return input.model.text"));
+        $this->assertEquals('secret', $this->script($script));
     }
 
     public function testTheComponentContainsHisHtmlElement()
@@ -87,7 +90,10 @@ JAVASCRIPT;
             \WebDriverBy::cssSelector('#gphp-button2 button')
         );
         $button2->click(); // Act
-        $this->waitForResponse();
+
+        $this->driver->wait()->until(
+            \WebDriverExpectedCondition::alertIsPresent()
+        );
 
         $this->assertEquals(
             'button2.click', $this->driver->switchTo()->alert()->getText()
