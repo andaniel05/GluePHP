@@ -4,30 +4,44 @@ namespace Andaniel05\GluePHP\Tests\Integration\Append;
 
 use Andaniel05\GluePHP\Tests\StaticTestCase;
 
-class AppendStaticTest extends StaticTestCase
+class NestedChildrenStaticTest extends StaticTestCase
 {
     use ClickButtonTrait;
 
     public function testTheHtmlChildIsInsertedOnTheChildrenContainer()
     {
-        $this->clickButton(__DIR__ . '/apps/app1.php');
+        $this->clickButton(__DIR__ . '/apps/app4.php');
         $this->waitForResponse();
 
         $button2 = $this->driver->findElement(
-            \WebDriverBy::cssSelector('#gphp-body .gphp-children #gphp-button2')
+            \WebDriverBy::cssSelector(
+                '.gphp-body-children .gphp-sidebar-children #gphp-button2'
+            )
         );
         $this->assertInstanceOf(\RemoteWebElement::class, $button2);
     }
 
+    public function testTheNestedComponentIsRenderedOnlyOnce()
+    {
+        $this->clickButton(__DIR__ . '/apps/app4.php');
+        $this->waitForResponse();
+
+        $this->assertEquals(
+            1, $this->script('return document.querySelectorAll("#gphp-sidebar").length')
+        );
+        $this->assertEquals(
+            1, $this->script('return document.querySelectorAll("#gphp-button2").length')
+        );
+    }
+
     public function testTheFrontObjectComponentIsCreatedAsChildOfTheParent()
     {
-        $this->clickButton(__DIR__ . '/apps/app1.php');
+        $this->clickButton(__DIR__ . '/apps/app4.php');
         $this->waitForResponse();
 
         $script = <<<JAVASCRIPT
-    var button1 = app.getComponent('button1');
-    var body = app.getComponent('body');
-    var button2 = body.getComponent('button2');
+    var sidebar = app.getComponent('sidebar');
+    var button2 = sidebar.getComponent('button2');
     return button2 instanceof GluePHP.Component;
 JAVASCRIPT;
 
@@ -36,7 +50,7 @@ JAVASCRIPT;
 
     public function testTheChildComponentKnowTheApp()
     {
-        $this->clickButton(__DIR__ . '/apps/app1.php');
+        $this->clickButton(__DIR__ . '/apps/app4.php');
         $this->waitForResponse();
 
         $script = <<<JAVASCRIPT
@@ -49,7 +63,7 @@ JAVASCRIPT;
 
     public function testTheComponentModelContainsTheValues()
     {
-        $this->clickButton(__DIR__ . '/apps/app2.php');
+        $this->clickButton(__DIR__ . '/apps/app5.php');
         $this->waitForResponse();
 
         $script = <<<JAVASCRIPT
@@ -62,7 +76,7 @@ JAVASCRIPT;
 
     public function testTheComponentContainsHisHtmlElement()
     {
-        $this->clickButton(__DIR__ . '/apps/app2.php');
+        $this->clickButton(__DIR__ . '/apps/app5.php');
         $this->waitForResponse();
 
         $this->script("input = app.getComponent('input')");
@@ -75,7 +89,7 @@ JAVASCRIPT;
 
     public function testTheComponentsAreProcessing()
     {
-        $this->clickButton(__DIR__ . '/apps/app3.php');
+        $this->clickButton(__DIR__ . '/apps/app6.php');
         $this->waitForResponse();
 
         $button2 = $this->driver->findElement(

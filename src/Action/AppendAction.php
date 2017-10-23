@@ -4,16 +4,27 @@ namespace Andaniel05\GluePHP\Action;
 
 use Andaniel05\GluePHP\AbstractApp;
 use Andaniel05\GluePHP\Action\AbstractAction;
-use Andaniel05\GluePHP\Component\AbstractComponent;
+use Andaniel05\GluePHP\Component\{AbstractComponent, Sidebar};
 use Andaniel05\GluePHP\Component\Model\Model;
 
 class AppendAction extends AbstractAction
 {
-    public function __construct(AbstractApp $app, AbstractComponent $parent, AbstractComponent $child)
+    public function __construct(AbstractApp $app, AbstractComponent $parent, AbstractComponent $child, bool $render = true)
     {
-        $html = AbstractComponent::containerView(
-            $child->getId(), $child->html()
-        );
+        $html = $render ?
+            AbstractComponent::containerView(
+                $child->getId(), $child->html()) : null;
+
+        $html = null;
+        if ($render) {
+            if ($child instanceOf Sidebar) {
+                $html = $child->html();
+            } else {
+                $html = AbstractComponent::containerView(
+                    $child->getId(), $child->html()
+                );
+            }
+        }
 
         $frontProcessors = [];
         foreach ($child->processors() as $class) {
@@ -37,12 +48,17 @@ class AppendAction extends AbstractAction
     public static function handlerScript(): string
     {
         return <<<JAVASCRIPT
-    var childElement = document.createElement('div');
-    childElement.innerHTML = data.html;
-    childElement = childElement.firstChild;
 
     var parent = app.getComponent(data.parentId);
-    parent.childrenElement.append(childElement);
+
+    if ('string' === typeof(data.html)) {
+        var childElement = document.createElement('div');
+        childElement.innerHTML = data.html;
+        childElement = childElement.firstChild;
+        parent.childrenElement.append(childElement);
+    } else {
+        var childElement = parent.element.querySelector('#gphp-' + data.childId);
+    }
 
     var model = null;
     var str = 'model = ' + data.strModel + ';';
