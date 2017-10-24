@@ -348,10 +348,12 @@ class AbstractAppTest extends TestCase
         $component1->method('getAttr1')->willReturn(1);
         $component1->method('getAttr2')->willReturn(2);
         $component1->method('getMyAttr3')->willReturn(3);
+        $component1->method('traverse')->willReturn([]);
 
         $component2 = $this->createMock(DummyComponent2::class);
         $component2->method('getId')->willReturn('component2');
         $component2->method('getAttr4')->willReturn(4);
+        $component2->method('traverse')->willReturn([]);
 
         $app = $this->getMockBuilder(AbstractApp::class)
             ->setConstructorArgs([''])
@@ -1010,6 +1012,7 @@ class AbstractAppTest extends TestCase
         $component = $this->createMock(AbstractComponent::class);
         $component->method('getId')->willReturn('component');
         $component->method('processors')->willReturn([$processorClass]);
+        $component->method('traverse')->willReturn([]);
 
         $app = $this->getMockBuilder(AbstractApp::class)
             ->setConstructorArgs([''])
