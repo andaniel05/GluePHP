@@ -5,7 +5,7 @@ namespace Andaniel05\GluePHP\Tests\Unit;
 use PHPUnit\Framework\TestCase;
 use Andaniel05\GluePHP\{AbstractApp, AppEvents};
 use Andaniel05\GluePHP\Asset\{GluePHPScript, AppScript};
-use Andaniel05\GluePHP\Action\{AppendAction, EvalAction, RegisterAction,
+use Andaniel05\GluePHP\Action\{AppendAction, DeleteAction, EvalAction, RegisterAction,
     UpdateAction};
 use Andaniel05\GluePHP\Request\{RequestInterface, Request};
 use Andaniel05\GluePHP\Response\ResponseInterface;
@@ -868,6 +868,11 @@ class AbstractAppTest extends TestCase
     public function testAppendActionIsRegisteredByDefault()
     {
         $this->assertTrue($this->app->hasActionClass(AppendAction::class));
+    }
+
+    public function testDeleteActionIsRegisteredByDefault()
+    {
+        $this->assertTrue($this->app->hasActionClass(DeleteAction::class));
     }
 
     public function testRegisterActionActionIsRegisteredByDefault()

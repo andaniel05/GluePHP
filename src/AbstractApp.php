@@ -3,7 +3,7 @@
 namespace Andaniel05\GluePHP;
 
 use Andaniel05\GluePHP\Action\{AbstractAction, CanSendActionsTrait, EvalAction,
-    AppendAction, RegisterAction, UpdateAction};
+    AppendAction, RegisterAction, UpdateAction, DeleteAction};
 use Andaniel05\GluePHP\Asset\{GluePHPScript, AppScript};
 use Andaniel05\GluePHP\Processor\{BindEventsProcessor, BindDataProcessor};
 use Andaniel05\GluePHP\Request\RequestInterface;
@@ -15,7 +15,7 @@ use Andaniel05\GluePHP\Component\{AbstractComponent, Sidebar};
 use Andaniel05\GluePHP\Component\Model\{ModelInterface, Model};
 use Symfony\Component\EventDispatcher\{EventDispatcherInterface, EventDispatcher};
 use Andaniel05\ComposedViews\{AbstractPage, PageEvents};
-use Andaniel05\ComposedViews\Event\AfterInsertionEvent;
+use Andaniel05\ComposedViews\Event\{AfterInsertionEvent, AfterDeletionEvent};
 use Andaniel05\ComposedViews\Component\ComponentInterface as PageComponentInterface;
 
 abstract class AbstractApp extends AbstractPage
@@ -55,7 +55,12 @@ abstract class AbstractApp extends AbstractPage
             PageEvents::AFTER_INSERTION, [$this, 'onAfterInsertion']
         );
 
+        $dispatcher->addListener(
+            PageEvents::AFTER_DELETION, [$this, 'onAfterDeletion']
+        );
+
         $this->registerActionClass(AppendAction::class);
+        $this->registerActionClass(DeleteAction::class);
         $this->registerActionClass(EvalAction::class);
         $this->registerActionClass(RegisterAction::class);
         $this->registerActionClass(UpdateAction::class);
@@ -377,6 +382,15 @@ abstract class AbstractApp extends AbstractPage
         $append($parent, $child);
         foreach ($child->traverse() as $nested) {
             $append($nested->getParent(), $nested, false);
+        }
+    }
+
+    public function onAfterDeletion(AfterDeletionEvent $event)
+    {
+        if ($this->inProcess()) {
+            $this->act(new DeleteAction(
+                $this, $event->getParent(), $event->getChild()
+            ));
         }
     }
 

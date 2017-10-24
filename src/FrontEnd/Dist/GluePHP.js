@@ -186,7 +186,15 @@ ComponentContainer.prototype.existsComponent = function(id) {
 };
 
 ComponentContainer.prototype.dropComponent = function(id) {
+
+    var component = this.components[id];
     delete this.components[id];
+
+    if (component instanceof GluePHP.Component &&
+        component.element instanceof Element)
+    {
+        component.element.remove();
+    }
 };
 
 GluePHP.ComponentContainer = ComponentContainer;
