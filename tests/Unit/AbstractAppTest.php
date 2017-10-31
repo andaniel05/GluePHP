@@ -392,6 +392,68 @@ class AbstractAppTest extends TestCase
         $app->handle($request);
     }
 
+    public function testTheTriggeredContainsTheAppAsPublicProperty()
+    {
+        $eventName = uniqid('event.name');
+        $app = $this->getApp();
+
+        $app->on($eventName, function ($event) use ($app) {
+            $this->assertSame($app, $event->app);
+        });
+
+        $request = $this->createMock(RequestInterface::class);
+        $request->method('getAppToken')->willReturn($app->getToken());
+        $request->method('getEventName')->willReturn($eventName);
+
+        $app->handle($request);
+    }
+
+    public function testThePublicPropertyComponentOfTheTriggeredEventIsNullWhenComponentNotExists()
+    {
+        $executed = false;
+        $eventName = uniqid();
+        $app = $this->getApp();
+
+        $app->on($eventName, function ($event) use (&$executed) {
+            $this->assertNull($event->component);
+            $executed = true;
+        });
+
+        $request = $this->createMock(RequestInterface::class);
+        $request->method('getAppToken')->willReturn($app->getToken());
+        $request->method('getEventName')->willReturn($eventName);
+
+        $app->handle($request);
+        $this->assertTrue($executed);
+    }
+
+    public function testThePublicPropertyComponentOfTheTriggeredEventIsTheComponent()
+    {
+        $executed = false;
+        $app = $this->getApp();
+        $componentId = uniqid('comp');
+        $eventName = "{$componentId}.click";
+
+        $component = $this->createMock(AbstractComponent::class);
+        $component->method('getId')->willReturn($componentId);
+        $component->method('traverse')->willReturn([]);
+
+        $app->appendComponent('body', $component);
+
+        $app->on($eventName, function ($event) use ($component, &$executed) {
+            $this->assertEquals($component, $event->component);
+            $this->assertEquals($component, $event->getComponent());
+            $executed = true;
+        });
+
+        $request = $this->createMock(RequestInterface::class);
+        $request->method('getAppToken')->willReturn($app->getToken());
+        $request->method('getEventName')->willReturn($eventName);
+
+        $app->handle($request);
+        $this->assertTrue($executed);
+    }
+
     public function testGetRequest_ReturnNullByDefault()
     {
         $this->assertNull($this->app->getRequest());

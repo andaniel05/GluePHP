@@ -3,6 +3,7 @@
 namespace Andaniel05\GluePHP\Event;
 
 use Andaniel05\GluePHP\AbstractApp;
+use Andaniel05\GluePHP\Component\AbstractComponent;
 use Symfony\Component\EventDispatcher\Event as SymfonyEvent;
 
 class Event extends SymfonyEvent
@@ -10,6 +11,7 @@ class Event extends SymfonyEvent
     protected $app;
     protected $name;
     protected $data;
+    protected $component;
 
     public function __construct(AbstractApp $app, string $name, array $data)
     {
@@ -31,5 +33,29 @@ class Event extends SymfonyEvent
     public function getData(): array
     {
         return $this->data;
+    }
+
+    public function setComponent(?AbstractComponent $component)
+    {
+        $this->component = $component;
+    }
+
+    public function getComponent(): ?AbstractComponent
+    {
+        return $this->component;
+    }
+
+    public function __get(string $name)
+    {
+        switch ($name) {
+
+            case 'app':
+                return $this->app;
+                break;
+
+            case 'component':
+                return $this->component;
+                break;
+        }
     }
 }

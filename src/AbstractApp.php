@@ -122,8 +122,16 @@ abstract class AbstractApp extends AbstractPage
             $response->addUpdateResult($result);
         }
 
-        $event = new Event($this, $request->getEventName(), $request->getEventData());
-        $this->dispatcher->dispatch($request->getEventName(), $event);
+        $eventName = $request->getEventName();
+        $event = new Event($this, $eventName, $request->getEventData());
+
+        $eventNameParts = explode('.', $eventName);
+        if (count($eventNameParts) >= 2) {
+            $componentId = $eventNameParts[0];
+            $event->setComponent($this->getComponent($componentId));
+        }
+
+        $this->dispatcher->dispatch($eventName, $event);
 
         return $response;
     }
