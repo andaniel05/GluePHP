@@ -67,6 +67,8 @@ JAVASCRIPT;
 
     public function writeDocument(string $html)
     {
+        $html = str_replace('`', '\`', $html);
+
         $this->script("document.write(`$html`)");
     }
 
