@@ -6,10 +6,10 @@ use Andaniel05\GluePHP\AbstractApp;
 
 class TestApp extends AbstractApp
 {
-    public function __construct(string $baseUrl = '', ?EventDispatcherInterface $dispatcher = null)
+    public function __construct(string $basePath = '', ?EventDispatcherInterface $dispatcher = null)
     {
-        $baseUrl = empty($baseUrl) ? controllerUrl() : $baseUrl;
-        parent::__construct($baseUrl, $baseUrl, $dispatcher);
+        $basePath = empty($basePath) ? controllerUrl() : $basePath;
+        parent::__construct($basePath, $basePath, $dispatcher);
 
         $this->setDebug();
     }

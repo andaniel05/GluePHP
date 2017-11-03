@@ -34,7 +34,7 @@ abstract class AbstractApp extends AbstractPage
     protected $componentClasses = [];
     protected $debug = false;
 
-    public function __construct(string $controllerPath, string $baseUrl = '', ?EventDispatcherInterface $dispatcher = null)
+    public function __construct(string $controllerPath, string $basePath = '', ?EventDispatcherInterface $dispatcher = null)
     {
         $this->token = uniqid('app');
         $this->controllerPath = $controllerPath;
@@ -49,7 +49,7 @@ abstract class AbstractApp extends AbstractPage
         $this->addAsset($gluePhpScript);
         $this->addAsset($appScript);
 
-        parent::__construct($baseUrl, $dispatcher);
+        parent::__construct($basePath, $dispatcher);
 
         $dispatcher->addListener(
             PageEvents::AFTER_INSERTION, [$this, 'onAfterInsertion']

@@ -52,29 +52,29 @@ class AbstractComponentTest extends TestCase
         $this->assertSame($app, $component->getPage());
     }
 
-    public function testBaseUrl_ReturnAnEmptyStringByDefault()
+    public function testBasePath_ReturnAnEmptyStringByDefault()
     {
         $component = $this->getMockForAbstractClass(AbstractComponent::class);
 
-        $this->assertEquals('', $component->baseUrl());
+        $this->assertEquals('', $component->basePath());
     }
 
-    public function testBaseUrl_IsShortcutToBaseUrlFromApp()
+    public function testBasePath_IsShortcutToBasePathFromApp()
     {
-        $baseUrl = uniqid();
+        $basePath = uniqid();
         $app = $this->getMockBuilder(AbstractApp::class)
             ->disableOriginalConstructor()
-            ->setMethods(['baseUrl'])
+            ->setMethods(['basePath'])
             ->getMockForAbstractClass();
         $app->expects($this->once())
-            ->method('baseUrl')
+            ->method('basePath')
             ->with($this->equalTo('script.js'))
             ->willReturn('http://localhost/script.js');
 
         $component = $this->getMockForAbstractClass(AbstractComponent::class);
         $component->setApp($app);
 
-        $this->assertEquals('http://localhost/script.js', $component->baseUrl('script.js'));
+        $this->assertEquals('http://localhost/script.js', $component->basePath('script.js'));
     }
 
     public function testGetModel_ReturnTheModelFromCache()

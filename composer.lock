@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a2982105caa721c55247b20b26bff600",
+    "content-hash": "7aec4e0b0f10fa1f06ebf0a114535a0e",
     "packages": [
         {
             "name": "andaniel05/composed-views",
@@ -12,7 +12,7 @@
             "source": {
                 "type": "git",
                 "url": "D:\\Andy\\Repositorios\\Andaniel05\\ComposedViews",
-                "reference": "66532933bd99f2c9141f45f992fd7aa80cf26265"
+                "reference": "4e28bca177f9c404ac835feeb9a12faa990a42cb"
             },
             "require": {
                 "matthiasmullie/minify": "^1.3",
@@ -36,7 +36,7 @@
                     "email": "andaniel05@gmail.com"
                 }
             ],
-            "time": "2017-10-14T18:38:39+00:00"
+            "time": "2017-11-02T12:41:21+00:00"
         },
         {
             "name": "matthiasmullie/minify",
@@ -188,63 +188,6 @@
                 "object graph"
             ],
             "time": "2017-04-12T18:52:22+00:00"
-        },
-        {
-            "name": "opis/closure",
-            "version": "3.0.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/opis/closure.git",
-                "reference": "10ed3ad04547dc3c749e64b222b0f8a1f99f74b4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/opis/closure/zipball/10ed3ad04547dc3c749e64b222b0f8a1f99f74b4",
-                "reference": "10ed3ad04547dc3c749e64b222b0f8a1f99f74b4",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "jeremeamia/superclosure": "^2.0",
-                "phpunit/phpunit": "3.7.*"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Opis\\Closure\\": "src/"
-                },
-                "files": [
-                    "functions.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Marius Sarca",
-                    "email": "marius.sarca@gmail.com"
-                }
-            ],
-            "description": "A library that can be used to serialize closures (anonymous functions) and arbitrary objects.",
-            "homepage": "http://www.opis.io/closure",
-            "keywords": [
-                "anonymous functions",
-                "closure",
-                "function",
-                "serializable",
-                "serialization",
-                "serialize"
-            ],
-            "time": "2017-10-06T08:03:41+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -405,6 +348,63 @@
                 "webdriver"
             ],
             "time": "2015-06-09T17:09:16+00:00"
+        },
+        {
+            "name": "opis/closure",
+            "version": "3.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/opis/closure.git",
+                "reference": "10ed3ad04547dc3c749e64b222b0f8a1f99f74b4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/opis/closure/zipball/10ed3ad04547dc3c749e64b222b0f8a1f99f74b4",
+                "reference": "10ed3ad04547dc3c749e64b222b0f8a1f99f74b4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "jeremeamia/superclosure": "^2.0",
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Opis\\Closure\\": "src/"
+                },
+                "files": [
+                    "functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marius Sarca",
+                    "email": "marius.sarca@gmail.com"
+                }
+            ],
+            "description": "A library that can be used to serialize closures (anonymous functions) and arbitrary objects.",
+            "homepage": "http://www.opis.io/closure",
+            "keywords": [
+                "anonymous functions",
+                "closure",
+                "function",
+                "serializable",
+                "serialization",
+                "serialize"
+            ],
+            "time": "2017-10-06T08:03:41+00:00"
         },
         {
             "name": "phar-io/manifest",

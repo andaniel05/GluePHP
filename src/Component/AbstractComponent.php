@@ -59,9 +59,9 @@ abstract class AbstractComponent extends AbstractViewComponent
         $this->dispatcher = $dispatcher;
     }
 
-    public function baseUrl(string $assetUrl = ''): string
+    public function basePath(string $assetUrl = ''): string
     {
-        return $this->page ? $this->page->baseUrl($assetUrl): $assetUrl;
+        return $this->page ? $this->page->basePath($assetUrl): $assetUrl;
     }
 
     final public function getModel(): ModelInterface

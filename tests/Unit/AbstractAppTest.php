@@ -540,14 +540,14 @@ class AbstractAppTest extends TestCase
         $app->handle($request);
     }
 
-    public function testBaseUrl_ReturnBaseUrlArgument()
+    public function testBasePath_ReturnBasePathArgument()
     {
-        $baseUrl = uniqid();
+        $basePath = uniqid();
         $app = $this->getMockBuilder(AbstractApp::class)
-            ->setConstructorArgs(['', $baseUrl])
+            ->setConstructorArgs(['', $basePath])
             ->getMockForAbstractClass();
 
-        $this->assertEquals($baseUrl, $app->baseUrl());
+        $this->assertEquals($basePath, $app->basePath());
     }
 
     public function testTriggeredEventHasHisInformation()
