@@ -13,6 +13,6 @@ class TextInput extends AbstractComponent
 
     public function html(): ?string
     {
-        return "<input type=\"text\" g-bind=\"text\" value=\"{$this->text}\">";
+        return "<input type=\"text\" gphp-bind-value=\"text\" value=\"{$this->text}\">";
     }
 }

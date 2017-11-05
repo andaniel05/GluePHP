@@ -5,7 +5,7 @@ namespace Andaniel05\GluePHP\Component;
 use Andaniel05\GluePHP\AbstractApp;
 use Andaniel05\GluePHP\Action\{AbstractAction, UpdateAction};
 use Andaniel05\GluePHP\Component\Model\{ModelInterface, Model};
-use Andaniel05\GluePHP\Processor\{BindDataProcessor, BindEventsProcessor};
+use Andaniel05\GluePHP\Processor\{BindValueProcessor, BindEventsProcessor};
 use Andaniel05\ComposedViews\PageInterface;
 use Andaniel05\ComposedViews\Component\AbstractComponent as AbstractViewComponent;
 use Symfony\Component\EventDispatcher\{EventDispatcherInterface, EventDispatcher};
@@ -27,7 +27,7 @@ abstract class AbstractComponent extends AbstractViewComponent
     public function processors(): array
     {
         return [
-            BindDataProcessor::class,
+            BindValueProcessor::class,
             BindEventsProcessor::class,
         ];
     }

@@ -5,12 +5,12 @@ namespace Andaniel05\GluePHP\Tests\Functional\Processor;
 use Andaniel05\GluePHP\Component\AbstractComponent;
 use Andaniel05\GluePHP\Tests\StaticTestCase;
 
-class BindDataProcessorStaticTest extends StaticTestCase
+class BindValueProcessorStaticTest extends StaticTestCase
 {
     public function providerGBindAttribute()
     {
         return [
-            ['g-bind'], ['data-g-bind']
+            ['gphp-bind-value'], ['data-gphp-bind-value']
         ];
     }
 

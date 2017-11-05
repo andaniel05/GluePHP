@@ -2,18 +2,18 @@
 
 namespace Andaniel05\GluePHP\Processor;
 
-class BindDataProcessor extends AbstractProcessor
+class BindValueProcessor extends AbstractProcessor
 {
     public static function script(): string
     {
         return <<<JAVASCRIPT
 
     if (component.element instanceof Element) {
-        bindData('g-bind');
-        bindData('data-g-bind');
+        bindValue('gphp-bind-value');
+        bindValue('data-gphp-bind-value');
     }
 
-    function bindData(attribute) {
+    function bindValue(attribute) {
         traverseElements(function(child) {
 
             if (child.hasAttribute(attribute)) {

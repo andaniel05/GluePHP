@@ -5,7 +5,7 @@ namespace Andaniel05\GluePHP;
 use Andaniel05\GluePHP\Action\{AbstractAction, CanSendActionsTrait, EvalAction,
     AppendAction, RegisterAction, UpdateAction, DeleteAction};
 use Andaniel05\GluePHP\Asset\{GluePHPScript, AppScript};
-use Andaniel05\GluePHP\Processor\{BindEventsProcessor, BindDataProcessor};
+use Andaniel05\GluePHP\Processor\{BindEventsProcessor, BindValueProcessor};
 use Andaniel05\GluePHP\Request\RequestInterface;
 use Andaniel05\GluePHP\Response\{ResponseInterface, Response};
 use Andaniel05\GluePHP\Event\{Event, RequestEvent, ResponseEvent};
