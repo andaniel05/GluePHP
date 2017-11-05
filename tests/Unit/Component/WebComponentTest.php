@@ -22,6 +22,13 @@ class WebComponentTest extends TestCase
         $this->assertEquals($id, $component->getId());
     }
 
+    public function testTheDefaultIdStartsWithWebComponent()
+    {
+        $component = new WebComponent(null, '');
+
+        $this->assertStringStartsWith('webcomponent', $component->getId());
+    }
+
     public function testTheTagOfTheHtmlElementIsEqualToCustomElementTagArgument()
     {
         $tag = uniqid();

@@ -8,7 +8,7 @@ class WebComponent extends AbstractComponent
 {
     protected $element;
 
-    public function __construct(string $id, string $tag)
+    public function __construct(?string $id, string $tag)
     {
         parent::__construct($id);
 
