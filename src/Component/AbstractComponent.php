@@ -17,7 +17,7 @@ abstract class AbstractComponent extends AbstractViewComponent
 
     public function __construct(?string $id = null)
     {
-        if ( ! $id) $id = uniqid('comp_');
+        if ( ! $id) $id = strtolower(uniqid(basename(static::class)));
 
         parent::__construct($id);
 

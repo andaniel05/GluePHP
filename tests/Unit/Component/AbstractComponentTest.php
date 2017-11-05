@@ -20,12 +20,11 @@ class AbstractComponentTest extends TestCase
         );
     }
 
-    public function testComponentIdStartWithCompPrefix()
+    public function testComponentIdStartWithLowerBaseNameOfComponentClass()
     {
-        $component = $this->getMockBuilder(AbstractComponent::class)
-            ->getMockForAbstractClass();
+        $component = new DummyComponent1;
 
-        $this->assertStringStartsWith('comp_', $component->getId());
+        $this->assertStringStartsWith('dummycomponent1', $component->getId());
     }
 
     public function testGetApp_ReturnInsertedValueBySetApp()
