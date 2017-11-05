@@ -11,7 +11,7 @@ abstract class AbstractAction
     public function __construct($data, ?string $id = null)
     {
         $this->data = $data;
-        $this->id = $id ?? uniqid('action');
+        $this->id = $id ?? strtolower(uniqid(basename(static::class)));
     }
 
     public function getId(): string

@@ -22,11 +22,9 @@ class AbstractActionTest extends TestCase
 
     public function testIdStartWithActionWord()
     {
-        $action = $this->getMockBuilder(AbstractAction::class)
-            ->setConstructorArgs([array()])
-            ->getMockForAbstractClass();
+        $action = new DummyAction1([]);
 
-        $this->assertStringStartsWith('action', $action->getId());
+        $this->assertStringStartsWith('dummyaction1', $action->getId());
     }
 
     public function testIsSent_ReturnFalseByDefault()

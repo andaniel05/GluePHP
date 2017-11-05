@@ -220,7 +220,7 @@ abstract class AbstractApp extends AbstractPage
 
     public function registerActionClass(string $actionClass, ?string $handlerId = null): void
     {
-        $handlerId = $handlerId ?? uniqid('Action');
+        $handlerId = $handlerId ?? uniqid(basename($actionClass));
         $this->actionClasses[$actionClass] = $handlerId;
 
         if ($this->inProcess()) {
@@ -246,7 +246,7 @@ abstract class AbstractApp extends AbstractPage
 
     public function registerComponentClass(string $componentClass, ?string $frontId = null): void
     {
-        $frontId = $frontId ?? uniqid('Component');
+        $frontId = $frontId ?? uniqid(basename($componentClass));
         $this->componentClasses[$componentClass] = $frontId;
 
         if ($this->inProcess()) {
@@ -298,7 +298,7 @@ abstract class AbstractApp extends AbstractPage
 
     public function registerProcessorClass(string $processorClass, ?string $frontId = null)
     {
-        $frontId = $frontId ?? uniqid('Processor');
+        $frontId = $frontId ?? uniqid(basename($processorClass));
         $this->processorClasses[$processorClass] = $frontId;
 
         if ($this->inProcess()) {
