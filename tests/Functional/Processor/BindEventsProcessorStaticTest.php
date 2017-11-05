@@ -7,17 +7,17 @@ use Andaniel05\GluePHP\Tests\StaticTestCase;
 
 class BindEventsProcessorStaticTest extends StaticTestCase
 {
-    public function providerGEventAttribute()
+    public function providerGPhpEventAttribute()
     {
         return [
-            ['g-event'], ['data-g-event']
+            ['gphp-event'], ['data-gphp-event']
         ];
     }
 
     /**
-     * @dataProvider providerGEventAttribute
+     * @dataProvider providerGPhpEventAttribute
      */
-    public function testGEventAttribute_BindOneEventToTheComponent($attribute)
+    public function testGPhpEventAttribute_BindOneEventToTheComponent($attribute)
     {
         $secret = uniqid();
         $componentId = uniqid('component');
@@ -60,9 +60,9 @@ JAVASCRIPT;
     }
 
     /**
-     * @dataProvider providerGEventAttribute
+     * @dataProvider providerGPhpEventAttribute
      */
-    public function testGEventAttribute_BindSeveralEventsToTheComponent($attribute)
+    public function testGPhpEventAttribute_BindSeveralEventsToTheComponent($attribute)
     {
         $componentId = uniqid('component');
         $customEvent1 = uniqid('customEvent1');

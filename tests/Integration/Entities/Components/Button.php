@@ -8,6 +8,6 @@ class Button extends AbstractComponent
 {
     public function html(): ?string
     {
-        return "<button g-event=\"click\">{$this->getId()}</button>";
+        return "<button gphp-event=\"click\">{$this->getId()}</button>";
     }
 }

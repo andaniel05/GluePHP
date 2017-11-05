@@ -9,8 +9,8 @@ class BindEventsProcessor extends AbstractProcessor
         return <<<JAVASCRIPT
 
     if (component.element instanceof Element) {
-        bindEvents('g-event');
-        bindEvents('data-g-event');
+        bindEvents('gphp-event');
+        bindEvents('data-gphp-event');
     }
 
     function bindEvents(attribute) {
