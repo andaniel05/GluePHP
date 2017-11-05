@@ -39,4 +39,38 @@ class WebComponentTest extends TestCase
 
         $this->assertEquals($element, $this->component->getElement());
     }
+
+    public function testHtmlReturnResultOfHtmlElementHtmlMethod()
+    {
+        $html = uniqid();
+
+        $element = $this->createMock(HtmlElementInterface::class);
+        $element->method('html')->willReturn($html);
+
+        $this->component->setElement($element);
+
+        $this->assertEquals($html, $this->component->html());
+    }
+
+    public function testTheContentOfTheHtmlElementIsResultOfRenderizeChildren()
+    {
+        $childrenHtml = uniqid();
+        $component = $this->getMockBuilder(WebComponent::class)
+            ->setConstructorArgs(['id', 'tag'])
+            ->setMethods(['renderizeChildren'])
+            ->getMock();
+        $component->method('renderizeChildren')
+            ->willReturn($childrenHtml);
+
+        $element = $this->getMockBuilder(HtmlElement::class)
+            ->setMethods(['setContent'])
+            ->getMock();
+        $element->expects($this->once())
+            ->method('setContent')
+            ->with($this->equalTo([$childrenHtml]));
+
+        $component->setElement($element);
+
+        $component->html();
+    }
 }

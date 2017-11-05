@@ -17,6 +17,9 @@ class WebComponent extends AbstractComponent
 
     public function html(): ?string
     {
+        $this->element->setContent([$this->renderizeChildren()]);
+
+        return $this->element->html();
     }
 
     public function getElement(): HtmlElementInterface
