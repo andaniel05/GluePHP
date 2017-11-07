@@ -3,13 +3,14 @@
 namespace Andaniel05\GluePHP\Tests;
 
 use Andaniel05\GluePHP\AbstractApp;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class TestApp extends AbstractApp
 {
-    public function __construct(string $basePath = '', ?EventDispatcherInterface $dispatcher = null)
+    public function __construct(string $controllerPath = '', string $basePath = '', ?EventDispatcherInterface $dispatcher = null)
     {
-        $basePath = empty($basePath) ? controllerUrl() : $basePath;
-        parent::__construct($basePath, $basePath, $dispatcher);
+        $controllerPath = empty($controllerPath) ? controllerUrl() : $controllerPath;
+        parent::__construct($controllerPath, $basePath, $dispatcher);
 
         $this->setDebug();
     }
