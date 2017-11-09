@@ -349,4 +349,13 @@ HTML;
 
         $this->assertEquals($dispatcher, $this->component->getDispatcher());
     }
+
+    public function testConstructorScriptIsNullByDefault()
+    {
+        $component = $this->getMockForAbstractClass(
+            AbstractComponent::class, ['component']
+        );
+
+        $this->assertNull($component->constructorScript());
+    }
 }

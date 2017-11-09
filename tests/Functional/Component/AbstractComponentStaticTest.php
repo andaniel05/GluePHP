@@ -262,4 +262,36 @@ JAVASCRIPT;
 
         $this->assertEquals($method, $this->script("return component1.{$method}()"));
     }
+
+    public function testConstructorScriptCanChangeTheJavaScriptComponentInstance()
+    {
+        $attribute = uniqid('attribute');
+        $value = uniqid('value');
+
+        $component = new class('component', $attribute, $value) extends AbstractComponent {
+
+            public function __construct($id, $attribute, $value)
+            {
+                parent::__construct($id);
+
+                $this->attribute = $attribute;
+                $this->value = $value;
+            }
+
+            public function constructorScript(): ?string
+            {
+                $attribute = $this->attribute;
+                $value = Model::getValueForJavaScript($this->value);
+
+                return "component.{$attribute} = {$value};";
+            }
+        };
+
+        $this->app->appendComponent('body', $component);
+        $this->writeDocument($this->app->html());
+
+        $this->assertEquals(
+            $value, $this->script("return app.getComponent('component').{$attribute};")
+        );
+    }
 }

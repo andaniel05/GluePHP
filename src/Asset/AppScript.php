@@ -115,6 +115,8 @@ JAVASCRIPT;
     var CClass = app.componentClasses['{$componentClass}'];
     var component = new CClass('{$component->getId()}', app, model, element);
 
+    {$component->constructorScript()}
+
     app.addComponent(component);
 
     {$applyProcessors}

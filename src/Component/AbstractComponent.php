@@ -64,6 +64,11 @@ abstract class AbstractComponent extends AbstractViewComponent
         return $this->page ? $this->page->basePath($assetUrl): $assetUrl;
     }
 
+    public function constructorScript(): ?string
+    {
+        return null;
+    }
+
     final public function getModel(): ModelInterface
     {
         return Model::get(static::class);
