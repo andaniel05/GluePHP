@@ -2,6 +2,7 @@
 
 namespace Andaniel05\GluePHP\Tests\Functional\Component;
 
+use function Andaniel05\GluePHP\jsVal;
 use Andaniel05\GluePHP\Component\AbstractComponent;
 use Andaniel05\GluePHP\Component\Model\{ModelInterface, Model};
 use Andaniel05\GluePHP\Tests\StaticTestCase;
@@ -281,7 +282,7 @@ JAVASCRIPT;
             public function constructorScript(): ?string
             {
                 $attribute = $this->attribute;
-                $value = Model::getValueForJavaScript($this->value);
+                $value = jsVal($this->value);
 
                 return "component.{$attribute} = {$value};";
             }

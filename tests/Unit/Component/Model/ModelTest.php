@@ -53,7 +53,7 @@ class ModelTest extends TestCase
         $this->assertEquals(DummyComponent1::class, $model->getClass());
     }
 
-    public function testgetAttributeList_ReturnAnArrayWithTheNamesOfTheAttributes()
+    public function testGetAttributeList_ReturnAnArrayWithTheNamesOfTheAttributes()
     {
         $model = new Model(DummyComponent1::class);
 

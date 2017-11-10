@@ -3,6 +3,7 @@
 namespace Andaniel05\GluePHP\Component\Model;
 
 use Andaniel05\GluePHP\AbstractApp;
+use function Andaniel05\GluePHP\jsVal;
 use Andaniel05\GluePHP\Component\AbstractComponent;
 
 class Model implements ModelInterface
@@ -142,50 +143,6 @@ JAVASCRIPT;
         static::$cache[$class] = $model;
     }
 
-    public static function getValueForJavaScript($value)
-    {
-        $type = gettype($value);
-        $strVal = '';
-
-        switch ($type) {
-
-            case 'string':
-                $strVal = "'{$value}'";
-                break;
-
-            case 'integer':
-                $strVal = strval($value);
-                break;
-
-            case 'double':
-                $strVal = strval($value);
-                break;
-
-            case 'boolean':
-                $strVal = $value ? 'true' : 'false';
-                break;
-
-            case 'NULL':
-                $strVal = 'null';
-                break;
-
-            case 'array':
-            case 'object':
-
-                if (is_callable($value)) {
-                    throw new Exception\InvalidTypeException($type);
-                }
-
-                $strVal = json_encode($value);
-                break;
-
-            default:
-                throw new Exception\InvalidTypeException($type);
-        }
-
-        return $strVal;
-    }
-
     public static function getJavaScriptModelObject(AbstractComponent $component): string
     {
         $model = static::get(get_class($component));
@@ -193,7 +150,7 @@ JAVASCRIPT;
         $jsModel = '{';
         foreach ($model->toArray() as $attr => $def) {
             $value = call_user_func([$component, $model->getGetter($attr)]);
-            $strVal = Model::getValueForJavaScript($value);
+            $strVal = jsVal($value);
             $jsModel .= "{$attr}: {$strVal},";
         }
         $jsModel .= '}';
