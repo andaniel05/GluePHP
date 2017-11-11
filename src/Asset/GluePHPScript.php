@@ -3,9 +3,9 @@
 namespace Andaniel05\GluePHP\Asset;
 
 use Andaniel05\GluePHP\AbstractApp;
-use Andaniel05\ComposedViews\Asset\TagScriptAsset;
+use Andaniel05\ComposedViews\Asset\ContentScriptAsset;
 
-class GluePHPScript extends TagScriptAsset
+class GluePHPScript extends ContentScriptAsset
 {
     use AppAssetTrait, SleepTrait;
 

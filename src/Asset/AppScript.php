@@ -5,9 +5,9 @@ namespace Andaniel05\GluePHP\Asset;
 use Andaniel05\GluePHP\Component\Model\Model;
 use Andaniel05\GluePHP\Component\Model\Exception\InvalidTypeException;
 use Andaniel05\GluePHP\AbstractApp;
-use Andaniel05\ComposedViews\Asset\TagScriptAsset;
+use Andaniel05\ComposedViews\Asset\ContentScriptAsset;
 
-class AppScript extends TagScriptAsset
+class AppScript extends ContentScriptAsset
 {
     use AppAssetTrait, SleepTrait;
 
