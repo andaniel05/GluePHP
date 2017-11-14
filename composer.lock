@@ -4,18 +4,17 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "7aec4e0b0f10fa1f06ebf0a114535a0e",
+    "content-hash": "5388050b2838e533bfc819de25773159",
     "packages": [
         {
             "name": "andaniel05/composed-views",
-            "version": "dev-master",
+            "version": "dev-temp",
             "source": {
                 "type": "git",
                 "url": "D:\\Andy\\Repositorios\\Andaniel05\\ComposedViews",
-                "reference": "95de0c197288153847289a21a1aa7ccb30274da5"
+                "reference": "0818ac167a9ab28fceaa7ed7343326a76e04b1c3"
             },
             "require": {
-                "matthiasmullie/minify": "^1.3",
                 "myclabs/deep-copy": "^1.5",
                 "php": ">=7.1.0",
                 "symfony/event-dispatcher": "^3.2"
@@ -36,116 +35,7 @@
                     "email": "andaniel05@gmail.com"
                 }
             ],
-            "time": "2017-11-11T14:58:09+00:00"
-        },
-        {
-            "name": "matthiasmullie/minify",
-            "version": "1.3.52",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/matthiasmullie/minify.git",
-                "reference": "134b25a63d83a80ae128aedc9a99987e064b4382"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/matthiasmullie/minify/zipball/134b25a63d83a80ae128aedc9a99987e064b4382",
-                "reference": "134b25a63d83a80ae128aedc9a99987e064b4382",
-                "shasum": ""
-            },
-            "require": {
-                "ext-pcre": "*",
-                "matthiasmullie/path-converter": "~1.1",
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "~1.0",
-                "matthiasmullie/scrapbook": "~1.0",
-                "phpunit/phpunit": "~4.8"
-            },
-            "suggest": {
-                "psr/cache-implementation": "Cache implementation to use with Minify::cache"
-            },
-            "bin": [
-                "bin/minifycss",
-                "bin/minifyjs"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "MatthiasMullie\\Minify\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Matthias Mullie",
-                    "email": "minify@mullie.eu",
-                    "homepage": "http://www.mullie.eu",
-                    "role": "Developer"
-                }
-            ],
-            "description": "CSS & JS minifier",
-            "homepage": "http://www.minifier.org",
-            "keywords": [
-                "JS",
-                "css",
-                "javascript",
-                "minifier",
-                "minify"
-            ],
-            "time": "2017-09-15T13:02:11+00:00"
-        },
-        {
-            "name": "matthiasmullie/path-converter",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/matthiasmullie/path-converter.git",
-                "reference": "08551ec1b156e923c242a10ab484bd4d6ead6631"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/matthiasmullie/path-converter/zipball/08551ec1b156e923c242a10ab484bd4d6ead6631",
-                "reference": "08551ec1b156e923c242a10ab484bd4d6ead6631",
-                "shasum": ""
-            },
-            "require": {
-                "ext-pcre": "*",
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.8"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "MatthiasMullie\\PathConverter\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Matthias Mullie",
-                    "email": "pathconverter@mullie.eu",
-                    "homepage": "http://www.mullie.eu",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Relative path converter",
-            "homepage": "http://github.com/matthiasmullie/path-converter",
-            "keywords": [
-                "converter",
-                "path",
-                "paths",
-                "relative"
-            ],
-            "time": "2017-01-26T08:54:49+00:00"
+            "time": "2017-11-14T23:44:10+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -348,6 +238,115 @@
                 "webdriver"
             ],
             "time": "2015-06-09T17:09:16+00:00"
+        },
+        {
+            "name": "matthiasmullie/minify",
+            "version": "1.3.52",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/matthiasmullie/minify.git",
+                "reference": "134b25a63d83a80ae128aedc9a99987e064b4382"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/matthiasmullie/minify/zipball/134b25a63d83a80ae128aedc9a99987e064b4382",
+                "reference": "134b25a63d83a80ae128aedc9a99987e064b4382",
+                "shasum": ""
+            },
+            "require": {
+                "ext-pcre": "*",
+                "matthiasmullie/path-converter": "~1.1",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "~1.0",
+                "matthiasmullie/scrapbook": "~1.0",
+                "phpunit/phpunit": "~4.8"
+            },
+            "suggest": {
+                "psr/cache-implementation": "Cache implementation to use with Minify::cache"
+            },
+            "bin": [
+                "bin/minifycss",
+                "bin/minifyjs"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MatthiasMullie\\Minify\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matthias Mullie",
+                    "email": "minify@mullie.eu",
+                    "homepage": "http://www.mullie.eu",
+                    "role": "Developer"
+                }
+            ],
+            "description": "CSS & JS minifier",
+            "homepage": "http://www.minifier.org",
+            "keywords": [
+                "JS",
+                "css",
+                "javascript",
+                "minifier",
+                "minify"
+            ],
+            "time": "2017-09-15T13:02:11+00:00"
+        },
+        {
+            "name": "matthiasmullie/path-converter",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/matthiasmullie/path-converter.git",
+                "reference": "08551ec1b156e923c242a10ab484bd4d6ead6631"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/matthiasmullie/path-converter/zipball/08551ec1b156e923c242a10ab484bd4d6ead6631",
+                "reference": "08551ec1b156e923c242a10ab484bd4d6ead6631",
+                "shasum": ""
+            },
+            "require": {
+                "ext-pcre": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MatthiasMullie\\PathConverter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matthias Mullie",
+                    "email": "pathconverter@mullie.eu",
+                    "homepage": "http://www.mullie.eu",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Relative path converter",
+            "homepage": "http://github.com/matthiasmullie/path-converter",
+            "keywords": [
+                "converter",
+                "path",
+                "paths",
+                "relative"
+            ],
+            "time": "2017-01-26T08:54:49+00:00"
         },
         {
             "name": "opis/closure",
