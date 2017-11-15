@@ -4,7 +4,7 @@ namespace Andaniel05\GluePHP;
 
 use Andaniel05\GluePHP\Action\{AbstractAction, CanSendActionsTrait, EvalAction,
     AppendAction, RegisterAction, UpdateAction, DeleteAction};
-use Andaniel05\GluePHP\Asset\{GluePHPScript, AppScript};
+use Andaniel05\GluePHP\Asset\AppScript;
 use Andaniel05\GluePHP\Processor\{BindEventsProcessor, BindValueProcessor};
 use Andaniel05\GluePHP\Request\RequestInterface;
 use Andaniel05\GluePHP\Response\{ResponseInterface, Response};
@@ -14,6 +14,7 @@ use Andaniel05\GluePHP\Update\{UpdateInterface,
 use Andaniel05\GluePHP\Component\{AbstractComponent, Sidebar};
 use Andaniel05\GluePHP\Component\Model\{ModelInterface, Model};
 use Symfony\Component\EventDispatcher\{EventDispatcherInterface, EventDispatcher};
+use Andaniel05\ComposedViews\Asset\ContentScriptAsset;
 use Andaniel05\ComposedViews\{AbstractPage, PageEvents};
 use Andaniel05\ComposedViews\Event\{AfterInsertionEvent, AfterDeletionEvent};
 use Andaniel05\ComposedViews\Component\ComponentInterface as PageComponentInterface;
@@ -33,6 +34,7 @@ abstract class AbstractApp extends AbstractPage
     protected $processorClasses = [];
     protected $componentClasses = [];
     protected $debug = false;
+    protected $distDir;
 
     public function __construct(string $controllerPath, string $basePath = '', ?EventDispatcherInterface $dispatcher = null)
     {
@@ -43,7 +45,10 @@ abstract class AbstractApp extends AbstractPage
             $dispatcher = new EventDispatcher();
         }
 
-        $gluePhpScript = new GluePHPScript('gluephp', $this);
+        $this->distDir = __DIR__ . '/FrontEnd/Dist';
+        $gluePhpScript = new ContentScriptAsset(
+            'gluephp', file_get_contents($this->distDir . '/GluePHP.min.js')
+        );
         $appScript = new AppScript('app', $this, ['gluephp']);
 
         $this->addAsset($gluePhpScript);
@@ -336,11 +341,9 @@ abstract class AbstractApp extends AbstractPage
         $this->debug = $value;
 
         if ($value) {
-            $this->getAsset('gluephp')->setMinimized(false);
-            $this->getAsset('app')->setMinimized(false);
+            $this->getAsset('gluephp')->setContent([file_get_contents($this->distDir . '/GluePHP.js')]);
         } else {
-            $this->getAsset('gluephp')->setMinimized(true);
-            $this->getAsset('app')->setMinimized(true);
+            $this->getAsset('gluephp')->setContent([file_get_contents($this->distDir . '/GluePHP.min.js')]);
         }
     }
 

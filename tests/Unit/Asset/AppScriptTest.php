@@ -18,6 +18,7 @@ class AppScriptTest extends TestCase
             ->method('updateComponentClasses');
 
         $script = new AppScript('script', $app);
+        $script->html();
     }
 
     public function testInvokeToUpdateProcessorClassesOnApp()
@@ -30,5 +31,6 @@ class AppScriptTest extends TestCase
             ->method('updateProcessorClasses');
 
         $script = new AppScript('script', $app);
+        $script->html();
     }
 }

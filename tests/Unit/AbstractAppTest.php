@@ -652,18 +652,6 @@ class AbstractAppTest extends TestCase
         $this->assertEquals('action2', $actionClasses['ActionClass2']);
     }
 
-    public function testContainsARegisteredGluePHPScriptByDefault()
-    {
-        $this->assertInstanceOf(GluePHPScript::class, $this->app->getAsset('gluephp'));
-    }
-
-    public function testGluePHPScriptKnowTheApp()
-    {
-        $gluePhpScript = $this->app->getAsset('gluephp');
-
-        $this->assertEquals($this->app, $gluePhpScript->getApp());
-    }
-
     public function testContainsAnRegisteredAppScriptByDefault()
     {
         $this->assertInstanceOf(AppScript::class, $this->app->getAsset('app'));
@@ -1026,22 +1014,6 @@ class AbstractAppTest extends TestCase
         $this->app->setDebug(true);
 
         $this->assertTrue($this->app->isDebug());
-    }
-
-    public function testSetDebug_MinimizeTheGluePHPScript()
-    {
-        $this->app->setDebug(true);
-        $gluePhpScript = $this->app->getAsset('gluephp');
-
-        $this->assertFalse($gluePhpScript->isMinimized());
-    }
-
-    public function testSetDebug_MinimizeTheAppScript()
-    {
-        $this->app->setDebug(true);
-        $appScript = $this->app->getAsset('app');
-
-        $this->assertFalse($appScript->isMinimized());
     }
 
     public function testInProcess_ReturnFalseByDefault()

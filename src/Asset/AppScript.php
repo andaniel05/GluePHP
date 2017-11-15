@@ -9,35 +9,37 @@ use Andaniel05\ComposedViews\Asset\ContentScriptAsset;
 
 class AppScript extends ContentScriptAsset
 {
-    use AppAssetTrait, SleepTrait;
+    protected $app;
 
     public function __construct(string $id, AbstractApp $app, array $dependencies = [], array $groups = [])
     {
         $this->app = $app;
+
+        $dependencies = implode(' ', $dependencies);
+        $groups = implode(' ', $groups);
+
         parent::__construct($id, '', $dependencies, $groups);
     }
 
-    public function getContent(): ?string
+    public function getApp(): ?AbstractApp
     {
-        if ( ! $this->content) {
-            $this->initializeContent();
-        }
-
-        return parent::getContent();
+        return $this->app;
     }
 
-    public function getMinimizedContent(): ?string
+    public function setApp(?AbstractApp $app)
     {
-        if ( ! $this->content) {
-            $this->initializeContent();
-        }
-
-        return parent::getMinimizedContent();
+        $this->app = $app;
     }
 
-    public function initializeContent()
+    public function __sleep()
     {
-        $this->content = $this->getSource();
+        return ['id', 'dependencies', 'groups', 'used'];
+    }
+
+    public function html(): ?string
+    {
+        $this->content = [$this->getSource()];
+        return parent::html();
     }
 
     public function getSource(): ?string
