@@ -9,7 +9,7 @@ class TestApp extends AbstractApp
 {
     public function __construct(string $controllerPath = '', string $basePath = '', ?EventDispatcherInterface $dispatcher = null)
     {
-        $controllerPath = empty($controllerPath) ? controllerUrl() : $controllerPath;
+        $controllerPath = empty($controllerPath) ? controllerUri() : $controllerPath;
         parent::__construct($controllerPath, $basePath, $dispatcher);
 
         $this->setDebug();

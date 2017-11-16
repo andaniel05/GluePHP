@@ -32,7 +32,7 @@ class UpdatesStaticTest extends StaticTestCase
      */
     public function test($app)
     {
-        $this->driver->get(appUrl($app));
+        $this->driver->get(appUri($app));
         $this->loadComponents();
 
         for ($i = 1; $i <= 2; $i++) {

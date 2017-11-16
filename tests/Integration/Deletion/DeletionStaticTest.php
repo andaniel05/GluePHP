@@ -8,7 +8,7 @@ class DeletionStaticTest extends StaticTestCase
 {
     public function clickButton($app)
     {
-        $this->driver->get(appUrl($app));
+        $this->driver->get(appUri($app));
         $this->button1 = $this->driver->findElement(
             \WebDriverBy::cssSelector('#gphp-button1 button')
         );

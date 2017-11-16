@@ -8,7 +8,7 @@ class DynamicRegistrationStaticTest extends StaticTestCase
 {
     public function clickButton($app)
     {
-        $this->driver->get(appUrl($app));
+        $this->driver->get(appUri($app));
 
         $this->button = $this->driver->findElement(
             \WebDriverBy::cssSelector('#gphp-button button')

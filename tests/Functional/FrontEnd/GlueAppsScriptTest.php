@@ -33,7 +33,7 @@ class GluePHPScriptTest extends TestCase
     public function testAllGluePHPScriptUnitTestsAreExecutedWithoutErrors()
     {
         $app = __DIR__ . '/TestApp.php';
-        $this->driver->get(appUrl($app, [], false));
+        $this->driver->get(appUri($app, [], false));
 
         $this->verify();
     }
@@ -41,7 +41,7 @@ class GluePHPScriptTest extends TestCase
     public function testAllGluePHPScriptUnitTestsOfMinimizedVersionAreExecutedWithoutErrors()
     {
         $app = __DIR__ . '/TestApp.php';
-        $this->driver->get(appUrl($app, ['compress' => true], false));
+        $this->driver->get(appUri($app, ['compress' => true], false));
 
         $this->verify();
     }

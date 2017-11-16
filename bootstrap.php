@@ -6,7 +6,7 @@ require_once ROOT_DIR . '/vendor/autoload.php';
 
 use Andaniel05\GluePHP\Component\AbstractComponent;
 
-function appUrl(string $appFileName, array $args = [], $saveInSession = true): string
+function appUri(string $appFileName, array $args = [], $saveInSession = true): string
 {
     $query_data = array_merge([
         'app'           => $appFileName,
@@ -18,7 +18,7 @@ function appUrl(string $appFileName, array $args = [], $saveInSession = true): s
     return $GLOBALS['test_server'] . "tests/load.php?$query";
 }
 
-function controllerUrl(): string
+function controllerUri(): string
 {
     $testServer = $GLOBALS['test_server'] ?? 'http://localhost:8085/';
 
