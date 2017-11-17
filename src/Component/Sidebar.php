@@ -2,7 +2,9 @@
 
 namespace Andaniel05\GluePHP\Component;
 
-class Sidebar extends AbstractComponent
+use Andaniel05\ComposedViews\Component\SidebarInterface;
+
+class Sidebar extends AbstractComponent implements SidebarInterface
 {
     public function processors(): array
     {

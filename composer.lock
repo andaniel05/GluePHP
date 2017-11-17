@@ -12,7 +12,7 @@
             "source": {
                 "type": "git",
                 "url": "D:\\Andy\\Repositorios\\Andaniel05\\ComposedViews",
-                "reference": "25c6b8d8a56587e684017c83f2c41617d742684e"
+                "reference": "bad883e6884c332edacecd6ddeda8e2cbede4905"
             },
             "require": {
                 "myclabs/deep-copy": "^1.5",
@@ -38,7 +38,7 @@
                     "email": "andaniel05@gmail.com"
                 }
             ],
-            "time": "2017-11-17T15:19:26+00:00"
+            "time": "2017-11-17T18:30:56+00:00"
         },
         {
             "name": "myclabs/deep-copy",
