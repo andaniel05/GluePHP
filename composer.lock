@@ -12,7 +12,7 @@
             "source": {
                 "type": "git",
                 "url": "D:\\Andy\\Repositorios\\Andaniel05\\ComposedViews",
-                "reference": "0818ac167a9ab28fceaa7ed7343326a76e04b1c3"
+                "reference": "25c6b8d8a56587e684017c83f2c41617d742684e"
             },
             "require": {
                 "myclabs/deep-copy": "^1.5",
@@ -29,13 +29,16 @@
                     "Andaniel05\\ComposedViews\\Tests\\": "tests/"
                 }
             },
+            "license": [
+                "MIT"
+            ],
             "authors": [
                 {
                     "name": "Andy D. Navarro Taño",
                     "email": "andaniel05@gmail.com"
                 }
             ],
-            "time": "2017-11-14T23:44:10+00:00"
+            "time": "2017-11-17T15:19:26+00:00"
         },
         {
             "name": "myclabs/deep-copy",
