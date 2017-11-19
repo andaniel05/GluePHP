@@ -8,14 +8,16 @@ class DefaultProcessor extends AbstractProcessor
     {
         return <<<JAVASCRIPT
 
+    if ( ! component.element instanceof Element) {
+        return;
+    }
+
     ////////////////
     // Bind Value //
     ////////////////
 
-    if (component.element instanceof Element) {
-        bindValue('gphp-bind-value');
-        bindValue('data-gphp-bind-value');
-    }
+    bindValue('gphp-bind-value');
+    bindValue('data-gphp-bind-value');
 
     function bindValue(attribute) {
         traverseElements(function(child) {
@@ -44,10 +46,8 @@ class DefaultProcessor extends AbstractProcessor
     // Bind Events //
     /////////////////
 
-    if (component.element instanceof Element) {
-        bindEvents('gphp-event');
-        bindEvents('data-gphp-event');
-    }
+    bindEvents('gphp-event');
+    bindEvents('data-gphp-event');
 
     function bindEvents(attribute) {
         traverseElements(function(child) {
@@ -66,10 +66,8 @@ class DefaultProcessor extends AbstractProcessor
     // Bind Attributes //
     /////////////////////
 
-    if (component.element instanceof Element) {
-        bindAttributes('gphp-bind-attr-');
-        bindAttributes('data-gphp-bind-attr-');
-    }
+    bindAttributes('gphp-bind-attr-');
+    bindAttributes('data-gphp-bind-attr-');
 
     function bindAttributes(gphpAttr) {
         traverseElements(function(child) {
@@ -92,28 +90,54 @@ class DefaultProcessor extends AbstractProcessor
                         child.setAttribute(htmlAttr, value);
                     }
 
-                    var observer = new MutationObserver(function(mutations) {
-                        mutations.forEach(function(mutation) {
-                            if ('attributes' === mutation.type &&
-                                htmlAttr == mutation.attributeName)
-                            {
-                                var newVal = child.getAttribute(htmlAttr);
-                                component[setterName](newVal);
-                            }
-                        });
-                    });
+                    // var observer = new MutationObserver(function(mutations) {
+                    //     mutations.forEach(function(mutation) {
+                    //         if ('attributes' === mutation.type &&
+                    //             htmlAttr == mutation.attributeName)
+                    //         {
+                    //             var newVal = child.getAttribute(htmlAttr);
+                    //             component[setterName](newVal);
+                    //         }
+                    //     });
+                    // });
 
-                    var config = {
-                        attributes: true,
-                        // attributeOldValue: true,
-                        attributeFilter: [htmlAttr]
-                    };
+                    // var config = {
+                    //     attributes: true,
+                    //     // attributeOldValue: true,
+                    //     attributeFilter: [htmlAttr]
+                    // };
 
-                    observer.observe(child, config);
+                    // observer.observe(child, config);
                 }
 
             });
 
+        });
+    };
+
+    ///////////////////////
+    // Bind Text Content //
+    ///////////////////////
+
+    bindTextContent('gphp-bind-html');
+    bindTextContent('data-gphp-bind-html');
+
+    function bindTextContent(attribute) {
+        traverseElements(function(child) {
+            if (child.hasAttribute(attribute)) {
+
+                var gAttr = child.getAttribute(attribute);
+                child.innerHTML = component.model[gAttr];
+
+                var setterName = GluePHP.Helpers.getSetter(gAttr);
+                var oldSetter = component[setterName];
+
+                component[setterName] = function(value, registerUpdate = true) {
+                    oldSetter.call(this, value, registerUpdate);
+                    child.innerHTML = value;
+                }
+
+            }
         });
     };
 
