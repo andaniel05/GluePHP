@@ -8,7 +8,7 @@ use Andaniel05\GluePHP\Action\{AbstractAction, UpdateAction};
 use Andaniel05\GluePHP\Component\AbstractComponent;
 use Andaniel05\GluePHP\Component\Model\{Model, ModelInterface};
 use Andaniel05\GluePHP\Response\Response;
-use Andaniel05\GluePHP\Processor\{BindValueProcessor, BindEventsProcessor};
+use Andaniel05\GluePHP\Processor\DefaultProcessor;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class AbstractComponentTest extends TestCase
@@ -322,14 +322,7 @@ HTML;
     public function testProcessors_ContainsBindValueProcessorByDefault()
     {
         $this->assertContains(
-            BindValueProcessor::class, $this->component->processors()
-        );
-    }
-
-    public function testProcessors_ContainsBindEventsProcessorByDefault()
-    {
-        $this->assertContains(
-            BindEventsProcessor::class, $this->component->processors()
+            DefaultProcessor::class, $this->component->processors()
         );
     }
 
