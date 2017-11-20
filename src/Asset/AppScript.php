@@ -6,6 +6,7 @@ use Andaniel05\GluePHP\Component\Model\Model;
 use Andaniel05\GluePHP\Component\Model\Exception\InvalidTypeException;
 use Andaniel05\GluePHP\AbstractApp;
 use Andaniel05\ComposedViews\Asset\ContentScriptAsset;
+use MatthiasMullie\Minify;
 
 class AppScript extends ContentScriptAsset
 {
@@ -134,7 +135,7 @@ JAVASCRIPT;
             $setDebug = "window.{$appId}.debug = true;";
         }
 
-        return <<<JAVASCRIPT
+        $source = <<<JAVASCRIPT
 window.{$appId} = new GluePHP.App(
     '{$this->app->getControllerPath()}',
     '{$this->app->getToken()}'
@@ -162,5 +163,11 @@ window.{$appId} = new GluePHP.App(
 {$createComponents}
 
 JAVASCRIPT;
+
+        if ($this->app->isDebug()) {
+            $source = (new Minify\JS($source))->minify();
+        }
+
+        return $source;
     }
 }

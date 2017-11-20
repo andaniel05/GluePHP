@@ -12,7 +12,7 @@ class TestApp extends AbstractApp
         $controllerPath = empty($controllerPath) ? controllerUri() : $controllerPath;
         parent::__construct($controllerPath, $basePath, $dispatcher);
 
-        $this->setDebug();
+        // $this->setDebug();
     }
 
     public function getTitle(): string
