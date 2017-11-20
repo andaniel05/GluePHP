@@ -4,6 +4,11 @@ namespace Andaniel05\GluePHP\Processor;
 
 abstract class AbstractProcessor
 {
+    public static function assets(): array
+    {
+        return [];
+    }
+
     final public static function scriptWrapper(): string
     {
         $script = static::script();

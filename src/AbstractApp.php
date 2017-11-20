@@ -439,4 +439,15 @@ abstract class AbstractApp extends AbstractPage
             }
         }
     }
+
+    public function getAllAssets(): array
+    {
+        $assets = parent::getAllAssets();
+
+        foreach ($this->processorClasses as $class => $frontId) {
+            $assets = array_merge($assets, $class::assets());
+        }
+
+        return $assets;
+    }
 }

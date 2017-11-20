@@ -3,6 +3,7 @@
 namespace Andaniel05\GluePHP\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
+use Andaniel05\ComposedViews\Asset\ScriptAsset;
 use Andaniel05\GluePHP\{AbstractApp, AppEvents};
 use Andaniel05\GluePHP\Asset\{GluePHPScript, AppScript};
 use Andaniel05\GluePHP\Action\{AppendAction, DeleteAction, EvalAction, RegisterAction,
@@ -11,6 +12,7 @@ use Andaniel05\GluePHP\Request\{RequestInterface, Request};
 use Andaniel05\GluePHP\Response\ResponseInterface;
 use Andaniel05\GluePHP\Update\{Update, UpdateInterface, UpdateResultInterface};
 use Andaniel05\GluePHP\Component\{AbstractComponent, Sidebar};
+use Andaniel05\GluePHP\Processor\AbstractProcessor;
 use Andaniel05\GluePHP\Component\Model\{ModelInterface, Model};
 use Andaniel05\GluePHP\Event\Event;
 use Andaniel05\GluePHP\Tests\Unit\Component\{DummyComponent1, DummyComponent2};
@@ -1096,5 +1098,41 @@ class AbstractAppTest extends TestCase
         $this->app->getDispatcher()->dispatch("{$componentId}.{$eventName}");
 
         $this->assertTrue($executed);
+    }
+
+    public function testLoadAssetsFromProcessors()
+    {
+        $scriptId = uniqid();
+        $uri = uniqid();
+
+        $processor = new class($scriptId, $uri) extends AbstractProcessor {
+
+            public static $scriptId;
+            public static $uri;
+
+            public function __construct($scriptId, $uri)
+            {
+                self::$scriptId = $scriptId;
+                self::$uri = $uri;
+            }
+
+            public static function assets(): array
+            {
+                return [
+                    new ScriptAsset(self::$scriptId, self::$uri)
+                ];
+            }
+
+            public static function script(): string
+            {
+                return '';
+            }
+        };
+
+        $this->app->registerProcessorClass(get_class($processor));
+        $script = $this->app->getAssets()[$scriptId];
+
+        $this->assertInstanceOf(ScriptAsset::class, $script);
+        $this->assertEquals($uri, $script->getUri());
     }
 }
