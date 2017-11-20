@@ -325,45 +325,45 @@ JAVASCRIPT;
         );
     }
 
-    /**
-     * @dataProvider providerGPhpBindAttr
-     */
-    public function testAttributeBindingFromTheViewToTheComponentModel($gphpBindAttr)
-    {
-        $htmlAttrToBind = uniqid('attr');
+    // /**
+    //  * @dataProvider providerGPhpBindAttr
+    //  */
+    // public function testAttributeBindingFromTheViewToTheComponentModel($gphpBindAttr)
+    // {
+    //     $htmlAttrToBind = uniqid('attr');
 
-        $component1 = new class($gphpBindAttr, $htmlAttrToBind) extends AbstractComponent {
+    //     $component1 = new class($gphpBindAttr, $htmlAttrToBind) extends AbstractComponent {
 
-            /**
-             * @Glue
-             */
-            protected $gAttr;
+    //         /**
+    //          * @Glue
+    //          */
+    //         protected $gAttr;
 
-            protected $attribute;
+    //         protected $attribute;
 
-            public function __construct($gphpBindAttr, $htmlAttrToBind)
-            {
-                parent::__construct('component1');
+    //         public function __construct($gphpBindAttr, $htmlAttrToBind)
+    //         {
+    //             parent::__construct('component1');
 
-                $this->attribute = $gphpBindAttr.'-'.$htmlAttrToBind;
-            }
+    //             $this->attribute = $gphpBindAttr.'-'.$htmlAttrToBind;
+    //         }
 
-            public function html(): ?string
-            {
-                return "<div id=\"div\" {$this->attribute}=\"gAttr\"></div>";
-            }
-        };
+    //         public function html(): ?string
+    //         {
+    //             return "<div id=\"div\" {$this->attribute}=\"gAttr\"></div>";
+    //         }
+    //     };
 
-        $this->body->addChild($component1);
-        $this->writeDocument($this->app->html());
+    //     $this->body->addChild($component1);
+    //     $this->writeDocument($this->app->html());
 
-        $secret = uniqid();
-        $this->script("document.getElementById('div').setAttribute('{$htmlAttrToBind}', '{$secret}');");
+    //     $secret = uniqid();
+    //     $this->script("document.getElementById('div').setAttribute('{$htmlAttrToBind}', '{$secret}');");
 
-        $this->assertEquals(
-            $secret, $this->script("return app.getComponent('component1').model.gAttr;")
-        );
-    }
+    //     $this->assertEquals(
+    //         $secret, $this->script("return app.getComponent('component1').model.gAttr;")
+    //     );
+    // }
 
     public function providerGPhpBindHtml()
     {
@@ -448,41 +448,41 @@ JAVASCRIPT;
         );
     }
 
-    /**
-     * @dataProvider providerGPhpBindHtml
-     */
-    public function testHtmlBindingFromTheViewToTheComponentModel($attribute)
-    {
-        $component1 = new class($attribute) extends AbstractComponent {
+    // /**
+    //  * @dataProvider providerGPhpBindHtml
+    //  */
+    // public function testHtmlBindingFromTheViewToTheComponentModel($attribute)
+    // {
+    //     $component1 = new class($attribute) extends AbstractComponent {
 
-            /**
-             * @Glue
-             */
-            protected $gAttr;
+    //         /**
+    //          * @Glue
+    //          */
+    //         protected $gAttr;
 
-            protected $attribute;
+    //         protected $attribute;
 
-            public function __construct($attribute)
-            {
-                parent::__construct('component1');
+    //         public function __construct($attribute)
+    //         {
+    //             parent::__construct('component1');
 
-                $this->attribute = $attribute;
-            }
+    //             $this->attribute = $attribute;
+    //         }
 
-            public function html(): ?string
-            {
-                return "<div id=\"div\" {$this->attribute}=\"gAttr\"></div>";
-            }
-        };
+    //         public function html(): ?string
+    //         {
+    //             return "<div id=\"div\" {$this->attribute}=\"gAttr\"></div>";
+    //         }
+    //     };
 
-        $this->body->addChild($component1);
-        $this->writeDocument($this->app->html());
+    //     $this->body->addChild($component1);
+    //     $this->writeDocument($this->app->html());
 
-        $secret = uniqid();
-        $this->script("document.getElementById('div').innerHTML = '{$secret}'");
+    //     $secret = uniqid();
+    //     $this->script("document.getElementById('div').innerHTML = '{$secret}'");
 
-        $this->assertEquals(
-            $secret, $this->script("return app.getComponent('component1').model.gAttr;")
-        );
-    }
+    //     $this->assertEquals(
+    //         $secret, $this->script("return app.getComponent('component1').model.gAttr;")
+    //     );
+    // }
 }

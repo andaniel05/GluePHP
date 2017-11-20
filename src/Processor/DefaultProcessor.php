@@ -92,24 +92,24 @@ class DefaultProcessor extends AbstractProcessor
                         }
                     }
 
-                    var observer = new MutationObserver(function(mutations) {
-                        mutations.forEach(function(mutation) {
-                            if ('attributes' === mutation.type &&
-                                htmlAttr == mutation.attributeName)
-                            {
-                                var newVal = child.getAttribute(htmlAttr);
-                                component[setterName](newVal);
-                            }
-                        });
-                    });
+                    // var observer = new MutationObserver(function(mutations) {
+                    //     mutations.forEach(function(mutation) {
+                    //         if ('attributes' === mutation.type &&
+                    //             htmlAttr == mutation.attributeName)
+                    //         {
+                    //             var newVal = child.getAttribute(htmlAttr);
+                    //             component[setterName](newVal);
+                    //         }
+                    //     });
+                    // });
 
-                    var config = {
-                        attributes: true,
-                        // attributeOldValue: true,
-                        attributeFilter: [htmlAttr]
-                    };
+                    // var config = {
+                    //     attributes: true,
+                    //     // attributeOldValue: true,
+                    //     attributeFilter: [htmlAttr]
+                    // };
 
-                    observer.observe(child, config);
+                    // observer.observe(child, config);
                 }
 
             });
@@ -139,21 +139,21 @@ class DefaultProcessor extends AbstractProcessor
                     child.innerHTML = value;
                 }
 
-                var observer = new MutationObserver(function(mutations) {
-                    mutations.forEach(function(mutation) {
-                        if ('childList' === mutation.type &&
-                            component.model.gAttr != child.innerHTML)
-                        {
-                            component[setterName](child.innerHTML);
-                        }
-                    });
-                });
+                // var observer = new MutationObserver(function(mutations) {
+                //     mutations.forEach(function(mutation) {
+                //         if ('childList' === mutation.type &&
+                //             component.model.gAttr != child.innerHTML)
+                //         {
+                //             component[setterName](child.innerHTML);
+                //         }
+                //     });
+                // });
 
-                var config = {
-                    childList: true,
-                };
+                // var config = {
+                //     childList: true,
+                // };
 
-                observer.observe(child, config);
+                // observer.observe(child, config);
 
             }
         });
