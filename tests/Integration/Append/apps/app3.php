@@ -3,7 +3,7 @@
 require_once 'base.php';
 
 use Andaniel05\GluePHP\Tests\Integration\Entities\Components\Button;
-use Andaniel05\GluePHP\Tests\Integration\Entities\Actions\AlertAction;
+use Andaniel05\GluePHP\Action\AlertAction;
 
 $button1->on('click', function ($event1) {
 

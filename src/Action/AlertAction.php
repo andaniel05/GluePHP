@@ -1,6 +1,6 @@
 <?php
 
-namespace Andaniel05\GluePHP\Tests\Integration\Entities\Actions;
+namespace Andaniel05\GluePHP\Action;
 
 use Andaniel05\GluePHP\Action\AbstractAction;
 
