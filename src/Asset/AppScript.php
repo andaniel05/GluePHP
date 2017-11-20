@@ -164,7 +164,7 @@ window.{$appId} = new GluePHP.App(
 
 JAVASCRIPT;
 
-        if ($this->app->isDebug()) {
+        if ( ! $this->app->isDebug()) {
             $source = (new Minify\JS($source))->minify();
         }
 
