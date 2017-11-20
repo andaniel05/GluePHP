@@ -447,4 +447,42 @@ JAVASCRIPT;
             $secret, $this->script("return document.getElementById('div').innerHTML;")
         );
     }
+
+    /**
+     * @dataProvider providerGPhpBindHtml
+     */
+    public function testHtmlBindingFromTheViewToTheComponentModel($attribute)
+    {
+        $component1 = new class($attribute) extends AbstractComponent {
+
+            /**
+             * @Glue
+             */
+            protected $gAttr;
+
+            protected $attribute;
+
+            public function __construct($attribute)
+            {
+                parent::__construct('component1');
+
+                $this->attribute = $attribute;
+            }
+
+            public function html(): ?string
+            {
+                return "<div id=\"div\" {$this->attribute}=\"gAttr\"></div>";
+            }
+        };
+
+        $this->body->addChild($component1);
+        $this->writeDocument($this->app->html());
+
+        $secret = uniqid();
+        $this->script("document.getElementById('div').innerHTML = '{$secret}'");
+
+        $this->assertEquals(
+            $secret, $this->script("return app.getComponent('component1').model.gAttr;")
+        );
+    }
 }

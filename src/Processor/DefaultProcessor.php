@@ -87,27 +87,29 @@ class DefaultProcessor extends AbstractProcessor
 
                     component[setterName] = function(value, registerUpdate = true) {
                         oldSetter.call(this, value, registerUpdate);
-                        child.setAttribute(htmlAttr, value);
+                        if (value != child.getAttribute(htmlAttr)) {
+                            child.setAttribute(htmlAttr, value);
+                        }
                     }
 
-                    // var observer = new MutationObserver(function(mutations) {
-                    //     mutations.forEach(function(mutation) {
-                    //         if ('attributes' === mutation.type &&
-                    //             htmlAttr == mutation.attributeName)
-                    //         {
-                    //             var newVal = child.getAttribute(htmlAttr);
-                    //             component[setterName](newVal);
-                    //         }
-                    //     });
-                    // });
+                    var observer = new MutationObserver(function(mutations) {
+                        mutations.forEach(function(mutation) {
+                            if ('attributes' === mutation.type &&
+                                htmlAttr == mutation.attributeName)
+                            {
+                                var newVal = child.getAttribute(htmlAttr);
+                                component[setterName](newVal);
+                            }
+                        });
+                    });
 
-                    // var config = {
-                    //     attributes: true,
-                    //     // attributeOldValue: true,
-                    //     attributeFilter: [htmlAttr]
-                    // };
+                    var config = {
+                        attributes: true,
+                        // attributeOldValue: true,
+                        attributeFilter: [htmlAttr]
+                    };
 
-                    // observer.observe(child, config);
+                    observer.observe(child, config);
                 }
 
             });
@@ -115,9 +117,9 @@ class DefaultProcessor extends AbstractProcessor
         });
     };
 
-    ///////////////////////
-    // Bind Text Content //
-    ///////////////////////
+    ////////////////////
+    // Bind InnerHTML //
+    ////////////////////
 
     bindTextContent('gphp-bind-html');
     bindTextContent('data-gphp-bind-html');
@@ -136,6 +138,22 @@ class DefaultProcessor extends AbstractProcessor
                     oldSetter.call(this, value, registerUpdate);
                     child.innerHTML = value;
                 }
+
+                var observer = new MutationObserver(function(mutations) {
+                    mutations.forEach(function(mutation) {
+                        if ('childList' === mutation.type &&
+                            component.model.gAttr != child.innerHTML)
+                        {
+                            component[setterName](child.innerHTML);
+                        }
+                    });
+                });
+
+                var config = {
+                    childList: true,
+                };
+
+                observer.observe(child, config);
 
             }
         });
