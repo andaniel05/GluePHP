@@ -28,7 +28,6 @@ abstract class AbstractComponent extends AbstractViewComponent
     {
         return [
             DefaultProcessor::class,
-            VueProcessor::class,
         ];
     }
 

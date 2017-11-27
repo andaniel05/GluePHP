@@ -326,13 +326,6 @@ HTML;
         );
     }
 
-    public function testDependsOfVueProcessor()
-    {
-        $this->assertContains(
-            VueProcessor::class, $this->component->processors()
-        );
-    }
-
     public function testGetDispatcher_ReturnInstanceOfSymfonyEventDispatcher()
     {
         $this->assertInstanceOf(
