@@ -43,4 +43,15 @@ class VueStaticTest extends StaticTestCase
 
         $this->assertEquals($this->text, $this->script("return document.querySelector('button').textContent;"));
     }
+
+    public function test1()
+    {
+        $this->loadApp1();
+
+        $text = uniqid('changed');
+        $this->script("button1.setText('{$text}')");
+
+        $this->assertEquals($text, $this->script("return button1.model.text"));
+        $this->assertEquals($text, $this->script("return document.querySelector('button').textContent;"));
+    }
 }
