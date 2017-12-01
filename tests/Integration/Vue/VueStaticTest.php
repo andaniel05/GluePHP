@@ -12,6 +12,8 @@ class VueStaticTest extends StaticTestCase
         $this->driver->get(
             appUri(__DIR__ . '/apps/app1.php', ['text' => $this->text])
         );
+
+        $this->script("button1 = app.getComponent('button1');");
     }
 
     public function testVueJsAssetIsRegistered()
@@ -25,24 +27,14 @@ class VueStaticTest extends StaticTestCase
     {
         $this->loadApp1();
 
-        $script = "
-            button1 = app.getComponent('button1');
-            return button1.element.getAttribute('id') === button1.vueInstance.\$el.getAttribute('id');
-        ";
-
-        $this->assertTrue($this->script($script));
+        $this->assertTrue($this->script("return button1.element.getAttribute('id') === button1.vueInstance.\$el.getAttribute('id');"));
     }
 
     public function testVueInstanceHasDataEqualToComponentModel()
     {
         $this->loadApp1();
 
-        $script = "
-            button1 = app.getComponent('button1');
-            return button1.model == button1.vueInstance.\$data;
-        ";
-
-        $this->assertTrue($this->script($script));
+        $this->assertTrue($this->script("return button1.model == button1.vueInstance.\$data;"));
     }
 
     public function testDataBindigIsInitialized()
