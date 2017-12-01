@@ -69,7 +69,7 @@ JAVASCRIPT;
     {
         $html = str_replace('`', '\`', $html);
 
-        $this->script("document.write(`$html`)");
+        $this->driver->executeScript("document.write(`$html`); document.close();");
     }
 
     public function script(string $script)
