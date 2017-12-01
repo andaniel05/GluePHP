@@ -442,6 +442,8 @@ abstract class AbstractApp extends AbstractPage
 
     public function getAllAssets(): array
     {
+        $this->updateProcessorClasses();
+
         $assets = parent::getAllAssets();
 
         foreach ($this->processorClasses as $class => $frontId) {

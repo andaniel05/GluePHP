@@ -11,7 +11,7 @@ use Andaniel05\GluePHP\Action\{AppendAction, DeleteAction, EvalAction, RegisterA
 use Andaniel05\GluePHP\Request\{RequestInterface, Request};
 use Andaniel05\GluePHP\Response\ResponseInterface;
 use Andaniel05\GluePHP\Update\{Update, UpdateInterface, UpdateResultInterface};
-use Andaniel05\GluePHP\Component\{AbstractComponent, Sidebar};
+use Andaniel05\GluePHP\Component\{AbstractComponent, Sidebar, VueComponent};
 use Andaniel05\GluePHP\Processor\AbstractProcessor;
 use Andaniel05\GluePHP\Component\Model\{ModelInterface, Model};
 use Andaniel05\GluePHP\Event\Event;
@@ -1134,5 +1134,14 @@ class AbstractAppTest extends TestCase
 
         $this->assertInstanceOf(ScriptAsset::class, $script);
         $this->assertEquals($uri, $script->getUri());
+    }
+
+    public function testHasVueAssetWhenExistsOneComponentTypeVueComponent()
+    {
+        $component = new class('component') extends VueComponent {};
+        $this->app->appendComponent('body', $component);
+
+        $vuejs = $this->app->getAsset('vuejs');
+        $this->assertInstanceOf(ScriptAsset::class, $vuejs);
     }
 }

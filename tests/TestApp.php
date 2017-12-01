@@ -3,6 +3,7 @@
 namespace Andaniel05\GluePHP\Tests;
 
 use Andaniel05\GluePHP\AbstractApp;
+use Andaniel05\ComposedViews\PageEvents;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class TestApp extends AbstractApp
@@ -13,6 +14,14 @@ class TestApp extends AbstractApp
         parent::__construct($controllerPath, $basePath, $dispatcher);
 
         // $this->setDebug();
+
+        $this->dispatcher->addListener(PageEvents::FILTER_ASSETS, function ($event) {
+            $assets = $event->getAssets();
+            $vuejs = $assets['vuejs'] ?? null;
+            if ($vuejs) {
+                $vuejs->setUri('/node_modules/vue/dist/vue.min.js');
+            }
+        });
     }
 
     public function getTitle(): string

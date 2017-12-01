@@ -15,6 +15,11 @@ class VueProcessor extends AbstractProcessor
 
     public static function script(): string
     {
-        return '';
+        return <<<JAVASCRIPT
+    component.vueInstance = new Vue({
+        el: component.element,
+        data: component.model
+    });
+JAVASCRIPT;
     }
 }

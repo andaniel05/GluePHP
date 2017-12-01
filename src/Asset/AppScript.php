@@ -136,31 +136,42 @@ JAVASCRIPT;
         }
 
         $source = <<<JAVASCRIPT
-window.{$appId} = new GluePHP.App(
-    '{$this->app->getControllerPath()}',
-    '{$this->app->getToken()}'
-);
-{$setDebug}
 
-// Define los manejadores de las acciones.
-//
+function documentReady() {
 
-{$registerActionClasses}
+    window.{$appId} = new GluePHP.App(
+        '{$this->app->getControllerPath()}',
+        '{$this->app->getToken()}'
+    );
+    {$setDebug}
 
-// Define los procesadores.
-//
+    // Define los manejadores de las acciones.
+    //
 
-{$registerProcessors}
+    {$registerActionClasses}
 
-// Define las clases de los componentes.
-//
+    // Define los procesadores.
+    //
 
-{$registerComponentClasses}
+    {$registerProcessors}
 
-// Crea, inicializa y procesa los componentes.
-//
+    // Define las clases de los componentes.
+    //
 
-{$createComponents}
+    {$registerComponentClasses}
+
+    // Crea, inicializa y procesa los componentes.
+    //
+
+    {$createComponents}
+};
+
+if (document.readyState != 'loading') {
+    documentReady();
+}
+else {
+    document.addEventListener('DOMContentLoaded', documentReady)
+}
 
 JAVASCRIPT;
 
