@@ -43,48 +43,34 @@ class VueStaticTest extends StaticTestCase
         $this->assertStringStartsWith('2.', $this->script("return Vue.version"));
     }
 
-    // public function testVueInstanceHasElementEquivalentToTheComponentElement()
-    // {
-    //     $this->loadApp1();
+    public function testDataBindigIsInitialized()
+    {
+        $this->loadApp1();
 
-    //     $this->assertTrue($this->script("return button.element.getAttribute('id') === button.vueInstance.\$el.getAttribute('id');"));
-    // }
+        $this->assertEquals($this->text, $this->script("return document.querySelector('button').textContent;"));
+    }
 
-    // public function testVueInstanceHasDataEqualToComponentModel()
-    // {
-    //     $this->loadApp1();
+    public function testBindingFromModelToViewAcrossSetter()
+    {
+        $this->loadApp1();
 
-    //     $this->assertTrue($this->script("return button.model == button.vueInstance.\$data;"));
-    // }
+        $text = uniqid('changed');
+        $this->script("button.setText('{$text}')");
 
-    // public function testDataBindigIsInitialized()
-    // {
-    //     $this->loadApp1();
+        $this->assertEquals($text, $this->script("return button.model.text"));
+        $this->assertEquals($text, $this->script("return document.querySelector('button').textContent;"));
+    }
 
-    //     $this->assertEquals($this->text, $this->script("return document.querySelector('button').textContent;"));
-    // }
+    public function testBindingFromModelToViewAcrossProperty()
+    {
+        $this->loadApp1();
 
-    // public function testBindingFromModelToViewAcrossSetter()
-    // {
-    //     $this->loadApp1();
+        $text = uniqid('changed');
+        $this->script("button.model.text = '{$text}';");
 
-    //     $text = uniqid('changed');
-    //     $this->script("button.setText('{$text}')");
-
-    //     $this->assertEquals($text, $this->script("return button.model.text"));
-    //     $this->assertEquals($text, $this->script("return document.querySelector('button').textContent;"));
-    // }
-
-    // public function testBindingFromModelToViewAcrossProperty()
-    // {
-    //     $this->loadApp1();
-
-    //     $text = uniqid('changed');
-    //     $this->script("button.model.text = '{$text}';");
-
-    //     $this->assertEquals($text, $this->script("return button.model.text"));
-    //     $this->assertEquals($text, $this->script("return document.querySelector('button').textContent;"));
-    // }
+        $this->assertEquals($text, $this->script("return button.model.text"));
+        $this->assertEquals($text, $this->script("return document.querySelector('button').textContent;"));
+    }
 
     public function testInitializedDataBindigOnNestedComponents()
     {
