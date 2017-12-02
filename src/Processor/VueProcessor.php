@@ -23,9 +23,19 @@ class VueProcessor extends AbstractProcessor
         newModel[prop] = component.model[prop];
     }
 
-    component.vueInstance = new Vue({
-        el: component.element,
-        data: newModel
+    // component.vueInstance = new Vue({
+    //     el: component.element,
+    //     data: newModel
+    // });
+
+    // component.model = newModel;
+
+    ///////////////
+    // Con Hijos //
+    ///////////////
+
+    traverseElements(function(element) {
+        new Vue({el: element, data: newModel});
     });
 
     component.model = newModel;

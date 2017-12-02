@@ -13,7 +13,27 @@ class VueStaticTest extends StaticTestCase
             appUri(__DIR__ . '/apps/app1.php', ['text' => $this->text])
         );
 
-        $this->script("button1 = app.getComponent('button1');");
+        $this->script("button = app.getComponent('button');");
+    }
+
+    public function loadApp2()
+    {
+        $this->buttonText = uniqid();
+        $this->groupText = uniqid();
+
+        $this->driver->get(
+            appUri(__DIR__ . '/apps/app2.php', [
+                'buttonText' => $this->buttonText,
+                'groupText'  => $this->groupText,
+            ])
+        );
+
+        $script = "
+            button = app.getComponent('button');
+            group = app.getComponent('group');
+        ";
+
+        $this->script($script);
     }
 
     public function testVueJsAssetIsRegistered()
@@ -23,46 +43,90 @@ class VueStaticTest extends StaticTestCase
         $this->assertStringStartsWith('2.', $this->script("return Vue.version"));
     }
 
-    public function testVueInstanceHasElementEquivalentToTheComponentElement()
-    {
-        $this->loadApp1();
+    // public function testVueInstanceHasElementEquivalentToTheComponentElement()
+    // {
+    //     $this->loadApp1();
 
-        $this->assertTrue($this->script("return button1.element.getAttribute('id') === button1.vueInstance.\$el.getAttribute('id');"));
+    //     $this->assertTrue($this->script("return button.element.getAttribute('id') === button.vueInstance.\$el.getAttribute('id');"));
+    // }
+
+    // public function testVueInstanceHasDataEqualToComponentModel()
+    // {
+    //     $this->loadApp1();
+
+    //     $this->assertTrue($this->script("return button.model == button.vueInstance.\$data;"));
+    // }
+
+    // public function testDataBindigIsInitialized()
+    // {
+    //     $this->loadApp1();
+
+    //     $this->assertEquals($this->text, $this->script("return document.querySelector('button').textContent;"));
+    // }
+
+    // public function testBindingFromModelToViewAcrossSetter()
+    // {
+    //     $this->loadApp1();
+
+    //     $text = uniqid('changed');
+    //     $this->script("button.setText('{$text}')");
+
+    //     $this->assertEquals($text, $this->script("return button.model.text"));
+    //     $this->assertEquals($text, $this->script("return document.querySelector('button').textContent;"));
+    // }
+
+    // public function testBindingFromModelToViewAcrossProperty()
+    // {
+    //     $this->loadApp1();
+
+    //     $text = uniqid('changed');
+    //     $this->script("button.model.text = '{$text}';");
+
+    //     $this->assertEquals($text, $this->script("return button.model.text"));
+    //     $this->assertEquals($text, $this->script("return document.querySelector('button').textContent;"));
+    // }
+
+    public function testInitializedDataBindigOnNestedComponents()
+    {
+        $this->loadApp2();
+
+        $this->assertEquals(
+            $this->groupText, $this->script("return document.querySelector('label').textContent;")
+        );
+        $this->assertEquals(
+            $this->buttonText, $this->script("return document.querySelector('button').textContent;")
+        );
     }
 
-    public function testVueInstanceHasDataEqualToComponentModel()
+    public function testBindingFromModelToViewAcrossSetterOnNestedComponents()
     {
-        $this->loadApp1();
+        $this->loadApp2();
 
-        $this->assertTrue($this->script("return button1.model == button1.vueInstance.\$data;"));
+        $buttonText = uniqid('changed');
+        $this->script("button.setText('{$buttonText}')");
+
+        $groupText = uniqid('changed');
+        $this->script("group.setText('{$groupText}')");
+
+        $this->assertEquals($groupText, $this->script("return group.model.text"));
+        $this->assertEquals($groupText, $this->script("return document.querySelector('label').textContent;"));
+        $this->assertEquals($buttonText, $this->script("return button.model.text"));
+        $this->assertEquals($buttonText, $this->script("return document.querySelector('button').textContent;"));
     }
 
-    public function testDataBindigIsInitialized()
+    public function testBindingFromModelToViewAcrossPropertyOnNestedComponents()
     {
-        $this->loadApp1();
+        $this->loadApp2();
 
-        $this->assertEquals($this->text, $this->script("return document.querySelector('button').textContent;"));
-    }
+        $buttonText = uniqid('changed');
+        $this->script("button.model.text = '{$buttonText}';");
 
-    public function testBindingFromModelToViewAcrossSetter()
-    {
-        $this->loadApp1();
+        $groupText = uniqid('changed');
+        $this->script("group.model.text = '{$groupText}';");
 
-        $text = uniqid('changed');
-        $this->script("button1.setText('{$text}')");
-
-        $this->assertEquals($text, $this->script("return button1.model.text"));
-        $this->assertEquals($text, $this->script("return document.querySelector('button').textContent;"));
-    }
-
-    public function testBindingFromModelToViewAcrossProperty()
-    {
-        $this->loadApp1();
-
-        $text = uniqid('changed');
-        $this->script("button1.model.text = '{$text}';");
-
-        $this->assertEquals($text, $this->script("return button1.model.text"));
-        $this->assertEquals($text, $this->script("return document.querySelector('button').textContent;"));
+        $this->assertEquals($groupText, $this->script("return group.model.text"));
+        $this->assertEquals($groupText, $this->script("return document.querySelector('label').textContent;"));
+        $this->assertEquals($buttonText, $this->script("return button.model.text"));
+        $this->assertEquals($buttonText, $this->script("return document.querySelector('button').textContent;"));
     }
 }
