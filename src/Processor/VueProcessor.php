@@ -17,25 +17,17 @@ class VueProcessor extends AbstractProcessor
     {
         return <<<JAVASCRIPT
 
+    component.vueInstances = [];
+
     // Se tiene que clonar el modelo para que funcione el binding.
     var newModel = {};
     for (var prop in component.model) {
         newModel[prop] = component.model[prop];
     }
 
-    // component.vueInstance = new Vue({
-    //     el: component.element,
-    //     data: newModel
-    // });
-
-    // component.model = newModel;
-
-    ///////////////
-    // Con Hijos //
-    ///////////////
-
     traverseElements(function(element) {
-        new Vue({el: element, data: newModel});
+        var vueInstance = new Vue({el: element, data: newModel});
+        component.vueInstances.push(vueInstance);
     });
 
     component.model = newModel;
