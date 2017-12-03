@@ -4,7 +4,7 @@ namespace Andaniel05\GluePHP\Tests\Unit\Component;
 
 use PHPUnit\Framework\TestCase;
 use Andaniel05\GluePHP\Component\VueComponent;
-use Andaniel05\GluePHP\Processor\VueProcessor;
+use Andaniel05\GluePHP\Processor\{VueProcessor, ShortEventsProcessor};
 
 class VueComponentTest extends TestCase
 {
@@ -17,6 +17,13 @@ class VueComponentTest extends TestCase
     {
         $this->assertContains(
             VueProcessor::class, $this->component->processors()
+        );
+    }
+
+    public function testDependsOfShortEventsProcessor()
+    {
+        $this->assertContains(
+            ShortEventsProcessor::class, $this->component->processors()
         );
     }
 }

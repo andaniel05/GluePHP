@@ -9,7 +9,7 @@ use Andaniel05\GluePHP\Component\AbstractComponent;
 use Andaniel05\GluePHP\Component\Model\{Model, ModelInterface};
 use Andaniel05\GluePHP\Response\Response;
 use Andaniel05\GluePHP\Processor\{BindValueProcessor, BindEventsProcessor,
-    BindAttributesProcessor, BindHtmlProcessor};
+    BindAttributesProcessor, BindHtmlProcessor, ShortEventsProcessor};
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class AbstractComponentTest extends TestCase
@@ -345,6 +345,13 @@ HTML;
     {
         $this->assertContains(
             BindHtmlProcessor::class, $this->component->processors()
+        );
+    }
+
+    public function testDependsOfShortEventsProcessor()
+    {
+        $this->assertContains(
+            ShortEventsProcessor::class, $this->component->processors()
         );
     }
 

@@ -2,7 +2,7 @@
 
 namespace Andaniel05\GluePHP\Component;
 
-use Andaniel05\GluePHP\Processor\VueProcessor;
+use Andaniel05\GluePHP\Processor\{VueProcessor, ShortEventsProcessor};
 
 class VueComponent extends AbstractComponent
 {
@@ -10,6 +10,7 @@ class VueComponent extends AbstractComponent
     {
         return [
             VueProcessor::class,
+            ShortEventsProcessor::class,
         ];
     }
 
