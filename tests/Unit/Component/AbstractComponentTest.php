@@ -8,7 +8,8 @@ use Andaniel05\GluePHP\Action\{AbstractAction, UpdateAction};
 use Andaniel05\GluePHP\Component\AbstractComponent;
 use Andaniel05\GluePHP\Component\Model\{Model, ModelInterface};
 use Andaniel05\GluePHP\Response\Response;
-use Andaniel05\GluePHP\Processor\{DefaultProcessor, VueProcessor};
+use Andaniel05\GluePHP\Processor\{BindValueProcessor, BindEventsProcessor,
+    BindAttributesProcessor, BindHtmlProcessor};
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class AbstractComponentTest extends TestCase
@@ -319,10 +320,31 @@ HTML;
         );
     }
 
-    public function testDependsOfDefaultProcessor()
+    public function testDependsOfBindValueProcessor()
     {
         $this->assertContains(
-            DefaultProcessor::class, $this->component->processors()
+            BindValueProcessor::class, $this->component->processors()
+        );
+    }
+
+    public function testDependsOfBindEventsProcessor()
+    {
+        $this->assertContains(
+            BindEventsProcessor::class, $this->component->processors()
+        );
+    }
+
+    public function testDependsOfBindAttributesProcessor()
+    {
+        $this->assertContains(
+            BindAttributesProcessor::class, $this->component->processors()
+        );
+    }
+
+    public function testDependsOfBindHtmlProcessor()
+    {
+        $this->assertContains(
+            BindHtmlProcessor::class, $this->component->processors()
         );
     }
 
