@@ -2,7 +2,7 @@
 
 namespace Andaniel05\GluePHP\Tests\Integration\Entities\Components;
 
-use Andaniel05\GluePHP\Component\VueComponent;
+use Andaniel05\GluePHP\Extend\VueJS\VueComponent;
 
 class VueButton extends VueComponent
 {

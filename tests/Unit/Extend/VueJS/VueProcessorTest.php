@@ -1,9 +1,9 @@
 <?php
 
-namespace Andaniel05\GluePHP\Tests\Unit\Processor;
+namespace Andaniel05\GluePHP\Tests\Unit\Extend\VueJS;
 
 use PHPUnit\Framework\TestCase;
-use Andaniel05\GluePHP\Processor\VueProcessor;
+use Andaniel05\GluePHP\Extend\VueJS\VueProcessor;
 use Andaniel05\ComposedViews\Asset\ScriptAsset;
 
 class VueProcessorTest extends TestCase

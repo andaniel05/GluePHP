@@ -1,10 +1,10 @@
 <?php
 
-namespace Andaniel05\GluePHP\Tests\Unit\Component;
+namespace Andaniel05\GluePHP\Tests\Unit\Extend\VueJS;
 
 use PHPUnit\Framework\TestCase;
-use Andaniel05\GluePHP\Component\VueComponent;
-use Andaniel05\GluePHP\Processor\{VueProcessor, ShortEventsProcessor};
+use Andaniel05\GluePHP\Extend\VueJS\{VueComponent, VueProcessor};
+use Andaniel05\GluePHP\Processor\ShortEventsProcessor;
 
 class VueComponentTest extends TestCase
 {

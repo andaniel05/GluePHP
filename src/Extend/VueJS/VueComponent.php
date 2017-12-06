@@ -1,8 +1,9 @@
 <?php
 
-namespace Andaniel05\GluePHP\Component;
+namespace Andaniel05\GluePHP\Extend\VueJS;
 
-use Andaniel05\GluePHP\Processor\{VueProcessor, ShortEventsProcessor};
+use Andaniel05\GluePHP\Processor\ShortEventsProcessor;
+use Andaniel05\GluePHP\Component\AbstractComponent;
 
 class VueComponent extends AbstractComponent
 {

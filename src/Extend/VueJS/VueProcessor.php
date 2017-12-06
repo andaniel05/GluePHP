@@ -1,8 +1,9 @@
 <?php
 
-namespace Andaniel05\GluePHP\Processor;
+namespace Andaniel05\GluePHP\Extend\VueJS;
 
 use Andaniel05\ComposedViews\Asset\ScriptAsset;
+use Andaniel05\GluePHP\Processor\AbstractProcessor;
 
 class VueProcessor extends AbstractProcessor
 {
