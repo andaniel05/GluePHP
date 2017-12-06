@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use Andaniel05\GluePHP\Component\Model\Model;
 use Andaniel05\GluePHP\Tests\Unit\Component\DummyComponent1;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class ModelTest extends TestCase
 {
     /**

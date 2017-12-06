@@ -4,6 +4,9 @@ namespace Andaniel05\GluePHP\Tests\Integration\Updates;
 
 use Andaniel05\GluePHP\Tests\StaticTestCase;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class UpdatesStaticTest extends StaticTestCase
 {
     public function loadComponents()
@@ -36,7 +39,6 @@ class UpdatesStaticTest extends StaticTestCase
         $this->loadComponents();
 
         for ($i = 1; $i <= 2; $i++) {
-
             $value = uniqid();
             $this->input1->clear();
             $this->input1->sendKeys($value);

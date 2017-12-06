@@ -4,6 +4,9 @@ namespace Andaniel05\GluePHP\Tests\Integration\Append;
 
 use Andaniel05\GluePHP\Tests\StaticTestCase;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class NestedChildrenStaticTest extends StaticTestCase
 {
     use ClickButtonTrait;
@@ -27,10 +30,12 @@ class NestedChildrenStaticTest extends StaticTestCase
         $this->waitForResponse();
 
         $this->assertEquals(
-            1, $this->script('return document.querySelectorAll("#gphp-sidebar").length')
+            1,
+            $this->script('return document.querySelectorAll("#gphp-sidebar").length')
         );
         $this->assertEquals(
-            1, $this->script('return document.querySelectorAll("#gphp-button2").length')
+            1,
+            $this->script('return document.querySelectorAll("#gphp-button2").length')
         );
     }
 
@@ -102,7 +107,8 @@ JAVASCRIPT;
         );
 
         $this->assertEquals(
-            'button2.click', $this->driver->switchTo()->alert()->getText()
+            'button2.click',
+            $this->driver->switchTo()->alert()->getText()
         );
         $this->driver->switchTo()->alert()->accept();
     }

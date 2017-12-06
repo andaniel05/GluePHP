@@ -4,22 +4,38 @@ namespace Andaniel05\GluePHP\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 use Andaniel05\ComposedViews\Asset\ScriptAsset;
-use Andaniel05\GluePHP\{AbstractApp, AppEvents};
-use Andaniel05\GluePHP\Asset\{GluePHPScript, AppScript};
-use Andaniel05\GluePHP\Action\{AppendAction, DeleteAction, EvalAction, RegisterAction,
-    UpdateAction};
-use Andaniel05\GluePHP\Request\{RequestInterface, Request};
+use Andaniel05\GluePHP\AbstractApp;
+use Andaniel05\GluePHP\AppEvents;
+use Andaniel05\GluePHP\Asset\GluePHPScript;
+use Andaniel05\GluePHP\Asset\AppScript;
+use Andaniel05\GluePHP\Action\AppendAction;
+use Andaniel05\GluePHP\Action\DeleteAction;
+use Andaniel05\GluePHP\Action\EvalAction;
+use Andaniel05\GluePHP\Action\RegisterAction;
+use Andaniel05\GluePHP\Action\UpdateAction;
+use Andaniel05\GluePHP\Request\RequestInterface;
+use Andaniel05\GluePHP\Request\Request;
 use Andaniel05\GluePHP\Response\ResponseInterface;
-use Andaniel05\GluePHP\Update\{Update, UpdateInterface, UpdateResultInterface};
-use Andaniel05\GluePHP\Component\{AbstractComponent, Sidebar};
+use Andaniel05\GluePHP\Update\Update;
+use Andaniel05\GluePHP\Update\UpdateInterface;
+use Andaniel05\GluePHP\Update\UpdateResultInterface;
+use Andaniel05\GluePHP\Component\AbstractComponent;
+use Andaniel05\GluePHP\Component\Sidebar;
 use Andaniel05\GluePHP\Extend\VueJS\VueComponent;
 use Andaniel05\GluePHP\Processor\AbstractProcessor;
-use Andaniel05\GluePHP\Component\Model\{ModelInterface, Model};
+use Andaniel05\GluePHP\Component\Model\ModelInterface;
+use Andaniel05\GluePHP\Component\Model\Model;
 use Andaniel05\GluePHP\Event\Event;
-use Andaniel05\GluePHP\Tests\Unit\Component\{DummyComponent1, DummyComponent2};
-use Symfony\Component\EventDispatcher\{EventDispatcherInterface, EventDispatcher};
-use function Opis\Closure\{serialize as s, unserialize as u};
+use Andaniel05\GluePHP\Tests\Unit\Component\DummyComponent1;
+use Andaniel05\GluePHP\Tests\Unit\Component\DummyComponent2;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use function Opis\Closure\serialize as s;
+use function Opis\Closure\unserialize as u;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class AbstractAppTest extends TestCase
 {
     public function getApp($token = 'token1')
@@ -75,7 +91,8 @@ class AbstractAppTest extends TestCase
     public function testOn_IsShortcutToAddListenerOnDispatcher()
     {
         $eventName = 'app.request';
-        $callback = function () {};
+        $callback = function () {
+        };
 
         $dispatcher = $this->getMockBuilder(EventDispatcherInterface::class)
             ->setMethods(['addListener'])
@@ -151,7 +168,8 @@ class AbstractAppTest extends TestCase
         $result2 = $results['result_update2'];
 
         $this->assertContainsOnlyInstancesOf(
-            UpdateResultInterface::class, $results
+            UpdateResultInterface::class,
+            $results
         );
         $this->assertSame($update1, $result1->getUpdate());
         $this->assertSame($update2, $result2->getUpdate());
@@ -229,7 +247,8 @@ class AbstractAppTest extends TestCase
                 [$this->equalTo('attr2')]
             )
             ->will($this->onConsecutiveCalls(
-                'setAttribute1', 'setAttribute2'
+                'setAttribute1',
+                'setAttribute2'
             ));
 
         Model::set(get_class($component1), $model);
@@ -560,8 +579,7 @@ class AbstractAppTest extends TestCase
         $executed  = false;
 
         $app = $this->getApp();
-        $app->on($eventName, function (Event $event) use ($eventName, $eventData, &$executed)
-        {
+        $app->on($eventName, function (Event $event) use ($eventName, $eventData, &$executed) {
             $this->assertEquals($eventName, $event->getName());
             $this->assertEquals($eventData, $event->getData());
 
@@ -760,7 +778,6 @@ class AbstractAppTest extends TestCase
     public function testUpdateComponentClasses_RegisterAllTheComponentClassesInTheFrontEndMap()
     {
         $component1 = new class('component1') extends AbstractComponent {
-
             public function html(): ?string
             {
             }
@@ -779,7 +796,7 @@ class AbstractAppTest extends TestCase
     public function testEventListenersCanBeSerialized()
     {
         $secret = uniqid();
-        $closure = function($event) use ($secret) {
+        $closure = function ($event) use ($secret) {
             $event->secret = $secret;
         };
 
@@ -814,8 +831,7 @@ class AbstractAppTest extends TestCase
             'update'   => $update,
         ];
 
-        $component = new class($id, $testData) extends AbstractComponent
-        {
+        $component = new class($id, $testData) extends AbstractComponent {
             protected $testData;
 
             /**
@@ -874,8 +890,7 @@ class AbstractAppTest extends TestCase
             'update'   => $update,
         ];
 
-        $component = new class($id, $testData) extends AbstractComponent
-        {
+        $component = new class($id, $testData) extends AbstractComponent {
             protected $testData;
 
             /**
@@ -1075,7 +1090,8 @@ class AbstractAppTest extends TestCase
     public function testTheAppSidebarsAreInstancesOfGluePHPSidebars()
     {
         $this->assertContainsOnlyInstancesOf(
-            Sidebar::class, $this->app->getAllSidebars()
+            Sidebar::class,
+            $this->app->getAllSidebars()
         );
     }
 
@@ -1090,7 +1106,8 @@ class AbstractAppTest extends TestCase
         };
 
         $component = $this->getMockForAbstractClass(
-            AbstractComponent::class, [$componentId]
+            AbstractComponent::class,
+            [$componentId]
         );
         $component->on($eventName, $listener);
 
@@ -1107,7 +1124,6 @@ class AbstractAppTest extends TestCase
         $uri = uniqid();
 
         $processor = new class($scriptId, $uri) extends AbstractProcessor {
-
             public static $scriptId;
             public static $uri;
 
@@ -1139,7 +1155,8 @@ class AbstractAppTest extends TestCase
 
     public function testHasVueAssetWhenExistsOneComponentTypeVueComponent()
     {
-        $component = new class('component') extends VueComponent {};
+        $component = new class('component') extends VueComponent {
+        };
         $this->app->appendComponent('body', $component);
 
         $vuejs = $this->app->getAsset('vuejs');

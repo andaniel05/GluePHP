@@ -4,6 +4,9 @@ namespace Andaniel05\GluePHP;
 
 use Andaniel05\GluePHP\Component\Model\Exception\InvalidTypeException;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 function jsVal($value)
 {
     $type = gettype($value);

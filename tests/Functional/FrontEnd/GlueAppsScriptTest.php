@@ -12,6 +12,8 @@ use PHPUnit\Framework\TestCase;
  * Si el test pasa la ventana del navegador se cerrará automáticamente mientras que
  * en caso contrario se mantendrá abierta donde se podrá ver el informe sobre los
  * tests que han fallado.
+ *
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
  */
 class GluePHPScriptTest extends TestCase
 {
@@ -25,7 +27,7 @@ class GluePHPScriptTest extends TestCase
 
     public function tearDown()
     {
-        if ( ! $this->hasFailed() && $this->total > 0 && $this->failures == 0) {
+        if (! $this->hasFailed() && $this->total > 0 && $this->failures == 0) {
             $this->driver->close();
         }
     }

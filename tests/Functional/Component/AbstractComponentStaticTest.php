@@ -4,9 +4,13 @@ namespace Andaniel05\GluePHP\Tests\Functional\Component;
 
 use function Andaniel05\GluePHP\jsVal;
 use Andaniel05\GluePHP\Component\AbstractComponent;
-use Andaniel05\GluePHP\Component\Model\{ModelInterface, Model};
+use Andaniel05\GluePHP\Component\Model\ModelInterface;
+use Andaniel05\GluePHP\Component\Model\Model;
 use Andaniel05\GluePHP\Tests\StaticTestCase;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class AbstractComponentStaticTest extends StaticTestCase
 {
     public function testTheComponentsAreCreated()
@@ -61,7 +65,10 @@ class AbstractComponentStaticTest extends StaticTestCase
              */
             public $attr1;
 
-            public function html(): ?string {return null;}
+            public function html(): ?string
+            {
+                return null;
+            }
         };
 
         $component1->attr1 = $value;
@@ -70,14 +77,16 @@ class AbstractComponentStaticTest extends StaticTestCase
         $this->script('window.component1 = app.getComponent("component1")');
 
         $this->assertSame(
-            $value, $this->script('return component1.model["attr1"]')
+            $value,
+            $this->script('return component1.model["attr1"]')
         );
     }
 
     public function providerThrowInvalidTypeExceptionWhenAttributeTypeIsNotAllowed()
     {
         return [
-            [function () {}],
+            [function () {
+            }],
         ];
     }
 
@@ -94,7 +103,10 @@ class AbstractComponentStaticTest extends StaticTestCase
              */
             public $attr1;
 
-            public function html(): ?string {return null;}
+            public function html(): ?string
+            {
+                return null;
+            }
         };
 
         $component1->attr1 = $value;
@@ -112,7 +124,10 @@ class AbstractComponentStaticTest extends StaticTestCase
              */
             public $attr1;
 
-            public function html(): ?string {return null;}
+            public function html(): ?string
+            {
+                return null;
+            }
         };
 
         $value = uniqid();
@@ -123,10 +138,12 @@ class AbstractComponentStaticTest extends StaticTestCase
         $this->script("component.setAttr1('$value')");
 
         $this->assertEquals(
-            $value, $this->script('return component.model["attr1"]')
+            $value,
+            $this->script('return component.model["attr1"]')
         );
         $this->assertEquals(
-            $value, $this->script("return app.buffer['{$componentId}']['attr1']")
+            $value,
+            $this->script("return app.buffer['{$componentId}']['attr1']")
         );
     }
 
@@ -140,7 +157,10 @@ class AbstractComponentStaticTest extends StaticTestCase
              */
             public $attr1;
 
-            public function html(): ?string {return null;}
+            public function html(): ?string
+            {
+                return null;
+            }
         };
 
         $value = uniqid();
@@ -151,7 +171,8 @@ class AbstractComponentStaticTest extends StaticTestCase
         $this->script("component.setAttr1('$value', false)");
 
         $this->assertEquals(
-            'undefined', $this->script("return typeof(app.buffer['{$componentId}'])")
+            'undefined',
+            $this->script("return typeof(app.buffer['{$componentId}'])")
         );
     }
 
@@ -164,7 +185,10 @@ class AbstractComponentStaticTest extends StaticTestCase
              */
             public $attr1;
 
-            public function html(): ?string {return null;}
+            public function html(): ?string
+            {
+                return null;
+            }
         };
 
         $array = range(0, rand(0, 10));
@@ -186,7 +210,10 @@ class AbstractComponentStaticTest extends StaticTestCase
              */
             public $attr1;
 
-            public function html(): ?string {return null;}
+            public function html(): ?string
+            {
+                return null;
+            }
         };
 
         $attribute = uniqid('attribute');
@@ -206,7 +233,6 @@ class AbstractComponentStaticTest extends StaticTestCase
     {
         $secret = uniqid();
         $component1 = new class('component1', $secret) extends AbstractComponent {
-
             protected $secret;
 
             public function __construct(string $id, string $secret)
@@ -232,7 +258,6 @@ class AbstractComponentStaticTest extends StaticTestCase
     public function testTheStaticMethodExtendClassScriptFromComponentClassCanExtendTheJavaScriptClass()
     {
         $component1 = new class('component1') extends AbstractComponent {
-
             public static $method;
 
             public function html(): ?string
@@ -270,7 +295,6 @@ JAVASCRIPT;
         $value = uniqid('value');
 
         $component = new class('component', $attribute, $value) extends AbstractComponent {
-
             public function __construct($id, $attribute, $value)
             {
                 parent::__construct($id);
@@ -292,7 +316,8 @@ JAVASCRIPT;
         $this->writeDocument($this->app->html());
 
         $this->assertEquals(
-            $value, $this->script("return app.getComponent('component').{$attribute};")
+            $value,
+            $this->script("return app.getComponent('component').{$attribute};")
         );
     }
 }

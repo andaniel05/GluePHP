@@ -2,6 +2,9 @@
 
 namespace Andaniel05\GluePHP\Action;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 trait CanSendActionsTrait
 {
     protected $sendActions = true;

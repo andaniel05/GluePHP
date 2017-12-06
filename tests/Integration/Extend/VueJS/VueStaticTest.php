@@ -4,6 +4,9 @@ namespace Andaniel05\GluePHP\Tests\Integration\Extend\VueJS;
 
 use Andaniel05\GluePHP\Tests\StaticTestCase;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class VueStaticTest extends StaticTestCase
 {
     public function loadApp1()
@@ -77,10 +80,12 @@ class VueStaticTest extends StaticTestCase
         $this->loadApp2();
 
         $this->assertEquals(
-            $this->groupText, $this->script("return document.querySelector('label').textContent;")
+            $this->groupText,
+            $this->script("return document.querySelector('label').textContent;")
         );
         $this->assertEquals(
-            $this->buttonText, $this->script("return document.querySelector('button').textContent;")
+            $this->buttonText,
+            $this->script("return document.querySelector('button').textContent;")
         );
     }
 

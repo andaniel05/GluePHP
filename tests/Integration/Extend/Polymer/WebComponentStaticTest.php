@@ -5,13 +5,17 @@ namespace Andaniel05\GluePHP\Tests\Integration\Extend\Polymer;
 use Andaniel05\PolyGlue\Component\WebComponent;
 use Andaniel05\GluePHP\Tests\StaticTestCase;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class WebComponentStaticTest extends StaticTestCase
 {
     public function testTheElementContainsBindingEvents()
     {
         $eventName = uniqid();
         $this->driver->get(appUri(
-            __DIR__ . '/apps/app1.php', ['eventName' => $eventName]
+            __DIR__ . '/apps/app1.php',
+            ['eventName' => $eventName]
         ));
 
         $script = <<<JAVASCRIPT
@@ -28,7 +32,8 @@ JAVASCRIPT;
         );
 
         $this->assertEquals(
-            $eventName, $this->driver->switchTo()->alert()->getText()
+            $eventName,
+            $this->driver->switchTo()->alert()->getText()
         );
         $this->driver->switchTo()->alert()->accept();
     }
@@ -38,7 +43,8 @@ JAVASCRIPT;
         $secret = uniqid();
 
         $this->driver->get(appUri(
-            __DIR__ . '/apps/app2.php', ['secret' => $secret]
+            __DIR__ . '/apps/app2.php',
+            ['secret' => $secret]
         ));
 
         $this->assertEquals($secret, $this->script("return document.querySelector('custom-element').textContent"));

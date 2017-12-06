@@ -4,6 +4,9 @@ namespace Andaniel05\GluePHP\Tests\Integration\Entities\Components;
 
 use Andaniel05\GluePHP\Extend\Polymer\WebComponent;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class CustomElement extends WebComponent
 {
     /**
@@ -14,7 +17,9 @@ class CustomElement extends WebComponent
     public function __construct(?string $id = null)
     {
         parent::__construct(
-            $id, 'custom-element', importUri('/Entities/custom-element.html')
+            $id,
+            'custom-element',
+            importUri('/Entities/custom-element.html')
         );
     }
 

@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use Andaniel05\GluePHP\Extend\VueJS\VueProcessor;
 use Andaniel05\ComposedViews\Asset\ScriptAsset;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class VueProcessorTest extends TestCase
 {
     public function testDependsOfVueScript()

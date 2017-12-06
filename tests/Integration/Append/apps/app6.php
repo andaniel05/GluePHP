@@ -1,4 +1,7 @@
 <?php
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 
 require_once 'base.php';
 
@@ -7,7 +10,6 @@ use Andaniel05\GluePHP\Action\AlertAction;
 use Andaniel05\GluePHP\Component\Sidebar;
 
 $button1->on('click', function ($event1) {
-
     $button2 = new Button('button2');
     $button2->on('click', function ($event2) {
         $action = new AlertAction('button2.click');

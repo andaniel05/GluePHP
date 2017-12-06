@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use Andaniel05\GluePHP\Component\Sidebar;
 use Andaniel05\ComposedViews\Component\SidebarInterface;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class SidebarTest extends TestCase
 {
     public function setUp()

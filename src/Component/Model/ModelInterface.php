@@ -4,6 +4,9 @@ namespace Andaniel05\GluePHP\Component\Model;
 
 use Andaniel05\GluePHP\AbstractApp;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 interface ModelInterface
 {
     public function toArray(): array;

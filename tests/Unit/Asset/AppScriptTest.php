@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use Andaniel05\GluePHP\AbstractApp;
 use Andaniel05\GluePHP\Asset\AppScript;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class AppScriptTest extends TestCase
 {
     public function testInvokeToUpdateComponentClassesOnApp()

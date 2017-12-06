@@ -8,6 +8,9 @@ use Andaniel05\GluePHP\AbstractApp;
 use Andaniel05\ComposedViews\Asset\ContentScriptAsset;
 use MatthiasMullie\Minify;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class AppScript extends ContentScriptAsset
 {
     protected $app;

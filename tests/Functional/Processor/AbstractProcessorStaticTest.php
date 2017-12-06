@@ -6,6 +6,9 @@ use Andaniel05\GluePHP\Tests\StaticTestCase;
 use Andaniel05\GluePHP\Component\AbstractComponent;
 use Andaniel05\GluePHP\Processor\AbstractProcessor;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class AbstractProcessorStaticTest extends StaticTestCase
 {
     public function provider()
@@ -76,7 +79,6 @@ class AbstractProcessorStaticTest extends StaticTestCase
     public function testTraverseElements($attr, $html, $includeChildren, $expected)
     {
         $processor = new class extends AbstractProcessor {
-
             public static $attr;
             public static $includeChildren;
 
@@ -99,7 +101,6 @@ JAVASCRIPT;
         $processorClass::$includeChildren = $includeChildren;
 
         $component = new class('component', $processorClass, $html) extends AbstractComponent {
-
             public function __construct($id, $processorClass, $html)
             {
                 parent::__construct($id);

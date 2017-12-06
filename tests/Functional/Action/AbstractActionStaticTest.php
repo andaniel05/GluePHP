@@ -5,6 +5,9 @@ namespace Andaniel05\GluePHP\Tests\Functional;
 use Andaniel05\GluePHP\Tests\StaticTestCase;
 use Andaniel05\GluePHP\Action\AbstractAction;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class AbstractActionStaticTest extends StaticTestCase
 {
     public function testHandlerScriptKnowHisAppInstance()
@@ -13,7 +16,6 @@ class AbstractActionStaticTest extends StaticTestCase
         $this->app->setId($appId);
 
         $action1 = new class([]) extends AbstractAction {
-
             public static function handlerScript(): string
             {
                 return "return app;";
@@ -32,7 +34,6 @@ class AbstractActionStaticTest extends StaticTestCase
     public function testHandlerScriptKnowTheActionData()
     {
         $action1 = new class([]) extends AbstractAction {
-
             public static function handlerScript(): string
             {
                 return "return data;";

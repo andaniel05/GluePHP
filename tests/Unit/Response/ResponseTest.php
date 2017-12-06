@@ -5,11 +5,16 @@ namespace Andaniel05\GluePHP\Tests\Unit\Response;
 use PHPUnit\Framework\TestCase;
 use Andaniel05\GluePHP\AbstractApp;
 use Andaniel05\GluePHP\Action\AbstractAction;
-use Andaniel05\GluePHP\Action\{EvalAction, RegisterAction};
+use Andaniel05\GluePHP\Action\EvalAction;
+use Andaniel05\GluePHP\Action\RegisterAction;
 use Andaniel05\GluePHP\Request\RequestInterface;
 use Andaniel05\GluePHP\Response\Response;
-use Andaniel05\GluePHP\Update\{UpdateResultInterface, UpdateInterface};
+use Andaniel05\GluePHP\Update\UpdateResultInterface;
+use Andaniel05\GluePHP\Update\UpdateInterface;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class ResponseTest extends TestCase
 {
     public function getApp()
@@ -186,7 +191,6 @@ class ResponseTest extends TestCase
     {
         $response = $this->getResponse();
         $action = new class([]) extends AbstractAction {
-
             public static function handlerScript(): string
             {
                 return '';

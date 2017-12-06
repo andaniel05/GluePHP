@@ -6,6 +6,9 @@ use Andaniel05\GluePHP\AbstractApp;
 use Andaniel05\GluePHP\Action\AbstractAction;
 use Andaniel05\GluePHP\Component\AbstractComponent;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class DeleteAction extends AbstractAction
 {
     public function __construct(AbstractApp $app, AbstractComponent $parent, AbstractComponent $child, bool $render = true)

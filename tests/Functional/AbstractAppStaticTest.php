@@ -8,6 +8,9 @@ use Andaniel05\GluePHP\Action\AbstractAction;
 use Andaniel05\GluePHP\Component\AbstractComponent;
 use Andaniel05\GluePHP\Processor\AbstractProcessor;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class AbstractAppStaticTest extends StaticTestCase
 {
     public function testAnAppInstanceWithVarNameEqualToTheIdIsBuilding()
@@ -66,7 +69,6 @@ class AbstractAppStaticTest extends StaticTestCase
     public function testTheFrontEndActionHandlersAreCreated()
     {
         $action1 = new class([]) extends AbstractAction {
-
             public static $secret;
 
             public static function handlerScript(): string
@@ -106,7 +108,6 @@ class AbstractAppStaticTest extends StaticTestCase
     {
         $value = uniqid();
         $processor = new class($value) extends AbstractProcessor {
-
             public static $value;
 
             public function __construct($value)
@@ -123,7 +124,6 @@ class AbstractAppStaticTest extends StaticTestCase
 
         $processorClass = get_class($processor);
         $component = new class('component', $processorClass) extends AbstractComponent {
-
             public function __construct($id, $processorClass)
             {
                 parent::__construct($id);
@@ -141,7 +141,8 @@ class AbstractAppStaticTest extends StaticTestCase
         $this->writeDocument($this->app->html());
 
         $this->assertEquals(
-            $value, $this->script("return app.getComponent('component').secret")
+            $value,
+            $this->script("return app.getComponent('component').secret")
         );
     }
 }

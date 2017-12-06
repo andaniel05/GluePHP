@@ -5,6 +5,9 @@ namespace Andaniel05\GluePHP\Request;
 use Andaniel05\GluePHP\Update\UpdateInterface;
 use Andaniel05\GluePHP\Update\Update;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class Request implements RequestInterface
 {
     protected $appToken;

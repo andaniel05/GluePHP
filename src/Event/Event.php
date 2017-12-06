@@ -6,6 +6,9 @@ use Andaniel05\GluePHP\AbstractApp;
 use Andaniel05\GluePHP\Component\AbstractComponent;
 use Symfony\Component\EventDispatcher\Event as SymfonyEvent;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class Event extends SymfonyEvent
 {
     protected $app;

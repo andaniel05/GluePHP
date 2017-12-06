@@ -1,3 +1,6 @@
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 
 /////////////
 // GluePHP //
@@ -78,6 +81,9 @@ GluePHP.Helpers = {
 
 })(window.GluePHP = window.GluePHP || {});
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 
 /////////////////////////////
 // GluePHP.EventDispatcher //
@@ -116,6 +122,9 @@ GluePHP.EventDispatcher = EventDispatcher;
 
 })(window.GluePHP = window.GluePHP || {});
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 
 ////////////////////////////////
 // GluePHP.ComponentContainer //
@@ -201,6 +210,9 @@ GluePHP.ComponentContainer = ComponentContainer;
 
 })(window.GluePHP = window.GluePHP || {});
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 
 /////////////////////////
 // GluePHP.BaseEntity  //
@@ -231,6 +243,9 @@ GluePHP.BaseEntity = BaseEntity;
 
 })(window.GluePHP = window.GluePHP || {});
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 
 /////////////////
 // GluePHP.App //
@@ -469,6 +484,9 @@ GluePHP.App = App;
 
 })(window.GluePHP = window.GluePHP || {});
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 
 ///////////////////////
 // GluePHP.Component //

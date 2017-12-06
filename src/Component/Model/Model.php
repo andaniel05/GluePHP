@@ -6,6 +6,9 @@ use Andaniel05\GluePHP\AbstractApp;
 use function Andaniel05\GluePHP\jsVal;
 use Andaniel05\GluePHP\Component\AbstractComponent;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class Model implements ModelInterface
 {
     protected $class;

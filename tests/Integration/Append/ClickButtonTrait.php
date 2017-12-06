@@ -2,6 +2,9 @@
 
 namespace Andaniel05\GluePHP\Tests\Integration\Append;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 trait ClickButtonTrait
 {
     public function clickButton($app)

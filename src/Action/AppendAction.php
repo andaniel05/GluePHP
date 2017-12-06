@@ -8,6 +8,9 @@ use Andaniel05\GluePHP\Component\AbstractComponent;
 use Andaniel05\GluePHP\Component\Sidebar;
 use Andaniel05\GluePHP\Component\Model\Model;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class AppendAction extends AbstractAction
 {
     public function __construct(AbstractApp $app, AbstractComponent $parent, AbstractComponent $child, bool $render = true)

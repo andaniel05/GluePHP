@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use Andaniel05\GluePHP\AbstractApp;
 use Andaniel05\GluePHP\Event\Event;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class EventTest extends TestCase
 {
     public function testArgumentGetters()

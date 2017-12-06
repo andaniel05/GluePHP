@@ -4,6 +4,9 @@ namespace Andaniel05\GluePHP\Tests;
 
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class SeleniumTestCase extends PHPUnitTestCase
 {
     protected static $globalDriver;
@@ -14,7 +17,8 @@ class SeleniumTestCase extends PHPUnitTestCase
     {
         static::$fails = false;
         static::$globalDriver = \RemoteWebDriver::create(
-            $GLOBALS['selenium_server'], \DesiredCapabilities::chrome()
+            $GLOBALS['selenium_server'],
+            \DesiredCapabilities::chrome()
         );
     }
 
@@ -60,7 +64,7 @@ JAVASCRIPT;
 
     public static function tearDownAfterClass()
     {
-        if ( ! static::$fails) {
+        if (! static::$fails) {
             static::$globalDriver->close();
         }
     }

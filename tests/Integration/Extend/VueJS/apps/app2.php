@@ -1,7 +1,11 @@
 <?php
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 
 use Andaniel05\GluePHP\Tests\TestApp;
-use Andaniel05\GluePHP\Tests\Integration\Entities\Components\{VueButton, VueGroup};
+use Andaniel05\GluePHP\Tests\Integration\Entities\Components\VueButton;
+use Andaniel05\GluePHP\Tests\Integration\Entities\Components\VueGroup;
 
 $buttonText = $_GET['buttonText'];
 $button = new VueButton('button');

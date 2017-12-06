@@ -4,6 +4,9 @@ namespace Andaniel05\GluePHP\Tests\Unit\Component;
 
 use Andaniel05\GluePHP\Component\AbstractComponent;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class DummyComponent2 extends AbstractComponent
 {
     /**

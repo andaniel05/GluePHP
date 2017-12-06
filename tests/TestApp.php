@@ -6,6 +6,9 @@ use Andaniel05\GluePHP\AbstractApp;
 use Andaniel05\ComposedViews\PageEvents;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class TestApp extends AbstractApp
 {
     public function __construct(string $controllerPath = '', string $basePath = '', ?EventDispatcherInterface $dispatcher = null)

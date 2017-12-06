@@ -7,6 +7,9 @@ use Andaniel05\GluePHP\Action\AbstractAction;
 use Andaniel05\GluePHP\Update\UpdateResultInterface;
 use Andaniel05\GluePHP\Update\UpdateInterface;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 interface ResponseInterface
 {
     public function getApp(): AbstractApp;

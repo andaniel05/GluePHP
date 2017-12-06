@@ -4,20 +4,29 @@ namespace Andaniel05\GluePHP\Tests\Unit\Component;
 
 use PHPUnit\Framework\TestCase;
 use Andaniel05\GluePHP\AbstractApp;
-use Andaniel05\GluePHP\Action\{AbstractAction, UpdateAction};
+use Andaniel05\GluePHP\Action\AbstractAction;
+use Andaniel05\GluePHP\Action\UpdateAction;
 use Andaniel05\GluePHP\Component\AbstractComponent;
-use Andaniel05\GluePHP\Component\Model\{Model, ModelInterface};
+use Andaniel05\GluePHP\Component\Model\Model;
+use Andaniel05\GluePHP\Component\Model\ModelInterface;
 use Andaniel05\GluePHP\Response\Response;
-use Andaniel05\GluePHP\Processor\{BindValueProcessor, BindEventsProcessor,
-    BindAttributesProcessor, BindHtmlProcessor, ShortEventsProcessor};
+use Andaniel05\GluePHP\Processor\BindValueProcessor;
+use Andaniel05\GluePHP\Processor\BindEventsProcessor;
+use Andaniel05\GluePHP\Processor\BindAttributesProcessor;
+use Andaniel05\GluePHP\Processor\BindHtmlProcessor;
+use Andaniel05\GluePHP\Processor\ShortEventsProcessor;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class AbstractComponentTest extends TestCase
 {
     public function setUp()
     {
         $this->component = $this->getMockForAbstractClass(
-            AbstractComponent::class, ['component']
+            AbstractComponent::class,
+            ['component']
         );
     }
 
@@ -32,7 +41,8 @@ class AbstractComponentTest extends TestCase
     {
         $app = $this->getMockForAbstractClass(AbstractApp::class, ['']);
         $component = $this->getMockForAbstractClass(
-            AbstractComponent::class, ['component']
+            AbstractComponent::class,
+            ['component']
         );
 
         $component->setApp($app);
@@ -44,7 +54,8 @@ class AbstractComponentTest extends TestCase
     {
         $app = $this->getMockForAbstractClass(AbstractApp::class, ['']);
         $component = $this->getMockForAbstractClass(
-            AbstractComponent::class, ['component']
+            AbstractComponent::class,
+            ['component']
         );
 
         $component->setApp($app);
@@ -115,7 +126,6 @@ class AbstractComponentTest extends TestCase
     public function testThrowAnInvalidCallException_WhenMethodNameIsNotRecognizable()
     {
         $component = new class extends AbstractComponent {
-
             public function html(): ?string
             {
             }
@@ -205,7 +215,8 @@ class AbstractComponentTest extends TestCase
     {
         $componentId = uniqid('component');
         $eventName = uniqid('eventName');
-        $closure = function () {};
+        $closure = function () {
+        };
 
         $app = $this->getMockBuilder(AbstractApp::class)
             ->disableOriginalConstructor()
@@ -219,7 +230,8 @@ class AbstractComponentTest extends TestCase
             );
 
         $component = $this->getMockForAbstractClass(
-            AbstractComponent::class, [$componentId]
+            AbstractComponent::class,
+            [$componentId]
         );
         $component->setApp($app);
 
@@ -284,7 +296,8 @@ class AbstractComponentTest extends TestCase
     {
         $page = $this->createMock(AbstractApp::class);
         $component = $this->getMockForAbstractClass(
-            AbstractComponent::class, ['component']
+            AbstractComponent::class,
+            ['component']
         );
 
         $component->setPage($page);
@@ -297,7 +310,8 @@ class AbstractComponentTest extends TestCase
     {
         $parentId = uniqid('parent');
         $parent = $this->getMockForAbstractClass(
-            AbstractComponent::class, [$parentId]
+            AbstractComponent::class,
+            [$parentId]
         );
 
         $html = uniqid();
@@ -316,42 +330,48 @@ class AbstractComponentTest extends TestCase
 HTML;
 
         $this->assertXmlStringEqualsXmlString(
-            $expected, $parent->renderizeChildren()
+            $expected,
+            $parent->renderizeChildren()
         );
     }
 
     public function testDependsOfBindValueProcessor()
     {
         $this->assertContains(
-            BindValueProcessor::class, $this->component->processors()
+            BindValueProcessor::class,
+            $this->component->processors()
         );
     }
 
     public function testDependsOfBindEventsProcessor()
     {
         $this->assertContains(
-            BindEventsProcessor::class, $this->component->processors()
+            BindEventsProcessor::class,
+            $this->component->processors()
         );
     }
 
     public function testDependsOfBindAttributesProcessor()
     {
         $this->assertContains(
-            BindAttributesProcessor::class, $this->component->processors()
+            BindAttributesProcessor::class,
+            $this->component->processors()
         );
     }
 
     public function testDependsOfBindHtmlProcessor()
     {
         $this->assertContains(
-            BindHtmlProcessor::class, $this->component->processors()
+            BindHtmlProcessor::class,
+            $this->component->processors()
         );
     }
 
     public function testDependsOfShortEventsProcessor()
     {
         $this->assertContains(
-            ShortEventsProcessor::class, $this->component->processors()
+            ShortEventsProcessor::class,
+            $this->component->processors()
         );
     }
 
@@ -375,7 +395,8 @@ HTML;
     public function testConstructorScriptIsNullByDefault()
     {
         $component = $this->getMockForAbstractClass(
-            AbstractComponent::class, ['component']
+            AbstractComponent::class,
+            ['component']
         );
 
         $this->assertNull($component->constructorScript());

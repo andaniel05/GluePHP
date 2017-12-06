@@ -9,6 +9,9 @@ use Andaniel05\GluePHP\Action\RegisterAction;
 use Andaniel05\GluePHP\Update\UpdateResultInterface;
 use Andaniel05\GluePHP\Update\UpdateInterface;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class Response implements ResponseInterface
 {
     use CanSendActionsTrait;

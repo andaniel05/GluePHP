@@ -5,6 +5,9 @@ namespace Andaniel05\GluePHP\Tests\Functional\Processor;
 use Andaniel05\GluePHP\Component\AbstractComponent;
 use Andaniel05\GluePHP\Tests\StaticTestCase;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class BindEventsProcessorStaticTest extends StaticTestCase
 {
     public function providerGPhpEvent()
@@ -22,7 +25,6 @@ class BindEventsProcessorStaticTest extends StaticTestCase
         $secret = uniqid();
         $componentId = uniqid('component');
         $component = new class($componentId, $attribute) extends AbstractComponent {
-
             protected $attribute;
 
             public function __construct($componentId, $attribute)
@@ -54,7 +56,8 @@ JAVASCRIPT;
         $this->driver->findElement(\WebDriverBy::id('button'))->click();
 
         $this->assertEquals(
-            $secret, $this->driver->switchTo()->alert()->getText()
+            $secret,
+            $this->driver->switchTo()->alert()->getText()
         );
         $this->driver->switchTo()->alert()->accept();
     }
@@ -69,7 +72,6 @@ JAVASCRIPT;
         $customEvent2 = uniqid('customEvent2');
 
         $component = new class($componentId, $attribute, $customEvent1, $customEvent2) extends AbstractComponent {
-
             protected $attribute;
             protected $customEvent1;
             protected $customEvent2;
@@ -120,7 +122,8 @@ JAVASCRIPT;
 
         $this->script($script);
         $this->assertEquals(
-            $secret, $this->driver->switchTo()->alert()->getText()
+            $secret,
+            $this->driver->switchTo()->alert()->getText()
         );
         $this->driver->switchTo()->alert()->accept();
 
@@ -134,7 +137,8 @@ JAVASCRIPT;
 
         $this->script($script);
         $this->assertEquals(
-            $secret, $this->driver->switchTo()->alert()->getText()
+            $secret,
+            $this->driver->switchTo()->alert()->getText()
         );
         $this->driver->switchTo()->alert()->accept();
     }

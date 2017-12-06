@@ -4,6 +4,9 @@ namespace Andaniel05\GluePHP\Request;
 
 use Andaniel05\GluePHP\Update\UpdateInterface;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 interface RequestInterface
 {
     public function getAppToken(): string;

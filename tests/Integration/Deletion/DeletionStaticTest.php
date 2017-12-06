@@ -4,6 +4,9 @@ namespace Andaniel05\GluePHP\Tests\Integration\Deletion;
 
 use Andaniel05\GluePHP\Tests\StaticTestCase;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class DeletionStaticTest extends StaticTestCase
 {
     public function clickButton($app)

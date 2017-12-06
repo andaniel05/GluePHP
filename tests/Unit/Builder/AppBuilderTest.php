@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use Andaniel05\GluePHP\Builder\AppBuilder;
 use Andaniel05\ComposedViews\Builder\PageBuilder;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class AppBuilderTest extends TestCase
 {
     public function setUp()

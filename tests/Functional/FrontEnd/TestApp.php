@@ -1,13 +1,16 @@
 <?php
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 
 use Andaniel05\GluePHP\AbstractApp;
 
-return new class('') extends AbstractApp
-{
+return new class('') extends AbstractApp {
     public function html(): ?string
     {
         $di = new RecursiveDirectoryIterator(
-            ROOT_DIR . '/tests/Unit/FrontEnd/GluePHP/', RecursiveDirectoryIterator::SKIP_DOTS
+            ROOT_DIR . '/tests/Unit/FrontEnd/GluePHP/',
+            RecursiveDirectoryIterator::SKIP_DOTS
         );
         $it = new RecursiveIteratorIterator($di);
 
@@ -18,7 +21,7 @@ return new class('') extends AbstractApp
             }
         }
 
-        if ( ! (isset($_GET['compress']) && $_GET['compress'] == true)) {
+        if (! (isset($_GET['compress']) && $_GET['compress'] == true)) {
             $this->setDebug(true);
         }
 

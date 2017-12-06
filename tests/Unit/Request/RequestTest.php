@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use Andaniel05\GluePHP\Request\Request;
 use Andaniel05\GluePHP\Update\UpdateInterface;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class RequestTest extends TestCase
 {
     public function testArgumentGetters()

@@ -5,6 +5,9 @@ namespace Andaniel05\GluePHP\Tests\Unit\Update;
 use PHPUnit\Framework\TestCase;
 use Andaniel05\GluePHP\Update\Update;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class UpdateTest extends TestCase
 {
     public function testArgumentGetters()

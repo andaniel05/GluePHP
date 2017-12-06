@@ -4,6 +4,9 @@ namespace Andaniel05\GluePHP\Extend\Polymer;
 
 use Andaniel05\GluePHP\Processor\AbstractProcessor;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class WebComponentProcessor extends AbstractProcessor
 {
     public static function script(): string

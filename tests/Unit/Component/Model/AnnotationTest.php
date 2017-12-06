@@ -5,6 +5,9 @@ namespace Andaniel05\GluePHP\Tests\Unit\Component\Model;
 use PHPUnit\Framework\TestCase;
 use Andaniel05\GluePHP\Component\Model\Annotation;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class AnnotationTest extends TestCase
 {
     public function testArgumentGetters()

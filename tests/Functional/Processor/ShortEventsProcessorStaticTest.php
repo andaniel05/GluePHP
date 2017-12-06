@@ -5,6 +5,9 @@ namespace Andaniel05\GluePHP\Tests\Functional\Processor;
 use Andaniel05\GluePHP\Component\AbstractComponent;
 use Andaniel05\GluePHP\Tests\StaticTestCase;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class ShortEventsProcessorStaticTest extends StaticTestCase
 {
     public function testBindEventWithToken()
@@ -13,7 +16,6 @@ class ShortEventsProcessorStaticTest extends StaticTestCase
         $eventName = uniqid('event');
 
         $component = new class('component', $eventName) extends AbstractComponent {
-
             protected $eventName;
 
             public function __construct($componentId, $eventName)
@@ -51,7 +53,8 @@ JAVASCRIPT;
         $this->script($script);
 
         $this->assertEquals(
-            $secret, $this->driver->switchTo()->alert()->getText()
+            $secret,
+            $this->driver->switchTo()->alert()->getText()
         );
         $this->driver->switchTo()->alert()->accept();
     }

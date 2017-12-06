@@ -5,6 +5,9 @@ namespace Andaniel05\GluePHP\Tests\Unit\Action;
 use PHPUnit\Framework\TestCase;
 use Andaniel05\GluePHP\Action\AbstractAction;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class AbstractActionTest extends TestCase
 {
     public function testArgumentGetters()

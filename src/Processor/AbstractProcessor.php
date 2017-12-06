@@ -2,6 +2,9 @@
 
 namespace Andaniel05\GluePHP\Processor;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 abstract class AbstractProcessor
 {
     public static function assets(): array

@@ -3,8 +3,12 @@
 namespace Andaniel05\GluePHP\Tests\Unit\Update;
 
 use PHPUnit\Framework\TestCase;
-use Andaniel05\GluePHP\Update\{UpdateResult, UpdateInterface};
+use Andaniel05\GluePHP\Update\UpdateResult;
+use Andaniel05\GluePHP\Update\UpdateInterface;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class UpdateResultTest extends TestCase
 {
     public function getUpdateResult(string $id = 'result1')

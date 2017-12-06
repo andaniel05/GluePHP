@@ -3,8 +3,12 @@
 namespace Andaniel05\GluePHP\Tests\Unit\Extend\Polymer;
 
 use Andaniel05\GluePHP\Tests\TestApp as GluePHPTestApp;
-use Andaniel05\ComposedViews\Asset\{ScriptAsset, ImportAsset};
+use Andaniel05\ComposedViews\Asset\ScriptAsset;
+use Andaniel05\ComposedViews\Asset\ImportAsset;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class TestApp extends GluePHPTestApp
 {
     public function __construct(string $controllerPath = '')
@@ -16,10 +20,13 @@ class TestApp extends GluePHPTestApp
     {
         return [
             'webcomponents-loader' => new ScriptAsset(
-                'webcomponents-loader', 'webcomponentsjs/webcomponents-loader.js'
+                'webcomponents-loader',
+                'webcomponentsjs/webcomponents-loader.js'
             ),
             'polymer' => new ImportAsset(
-                'polymer', 'polymer/polymer-element.html', 'webcomponents-loader'
+                'polymer',
+                'polymer/polymer-element.html',
+                'webcomponents-loader'
             ),
         ];
     }

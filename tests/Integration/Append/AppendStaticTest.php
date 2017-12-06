@@ -4,6 +4,9 @@ namespace Andaniel05\GluePHP\Tests\Integration\Append;
 
 use Andaniel05\GluePHP\Tests\StaticTestCase;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class AppendStaticTest extends StaticTestCase
 {
     use ClickButtonTrait;
@@ -88,7 +91,8 @@ JAVASCRIPT;
         );
 
         $this->assertEquals(
-            'button2.click', $this->driver->switchTo()->alert()->getText()
+            'button2.click',
+            $this->driver->switchTo()->alert()->getText()
         );
         $this->driver->switchTo()->alert()->accept();
     }

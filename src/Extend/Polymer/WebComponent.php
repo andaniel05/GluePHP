@@ -9,6 +9,9 @@ use Andaniel05\ComposedViews\HtmlElement\HtmlElement;
 use function Andaniel05\GluePHP\jsVal;
 use Andaniel05\GluePHP\Component\AbstractComponent;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class WebComponent extends AbstractComponent
 {
     protected $element;

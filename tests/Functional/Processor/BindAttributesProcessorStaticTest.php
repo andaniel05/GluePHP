@@ -5,6 +5,9 @@ namespace Andaniel05\GluePHP\Tests\Functional\Processor;
 use Andaniel05\GluePHP\Component\AbstractComponent;
 use Andaniel05\GluePHP\Tests\StaticTestCase;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class BindAttributesProcessorStaticTest extends StaticTestCase
 {
     public function providerGPhpBindAttr()
@@ -50,7 +53,8 @@ class BindAttributesProcessorStaticTest extends StaticTestCase
         $this->writeDocument($this->app->html());
 
         $this->assertEquals(
-            $secret, $this->script("return document.getElementById('div').getAttribute('{$htmlAttrToBind}');")
+            $secret,
+            $this->script("return document.getElementById('div').getAttribute('{$htmlAttrToBind}');")
         );
     }
 
@@ -90,7 +94,8 @@ class BindAttributesProcessorStaticTest extends StaticTestCase
         $this->script("app.getComponent('component1').setGAttr('{$secret}')");
 
         $this->assertEquals(
-            $secret, $this->script("return document.getElementById('div').getAttribute('{$htmlAttrToBind}');")
+            $secret,
+            $this->script("return document.getElementById('div').getAttribute('{$htmlAttrToBind}');")
         );
     }
 

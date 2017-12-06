@@ -5,6 +5,9 @@ namespace Andaniel05\GluePHP\Extend\VueJS;
 use Andaniel05\ComposedViews\Asset\ScriptAsset;
 use Andaniel05\GluePHP\Processor\AbstractProcessor;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class VueProcessor extends AbstractProcessor
 {
     public static function assets(): array

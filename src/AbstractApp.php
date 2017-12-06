@@ -35,6 +35,9 @@ use Andaniel05\ComposedViews\Event\AfterInsertionEvent;
 use Andaniel05\ComposedViews\Event\AfterDeletionEvent;
 use Andaniel05\ComposedViews\Component\ComponentInterface as PageComponentInterface;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 abstract class AbstractApp extends AbstractPage
 {
     use CanSendActionsTrait;

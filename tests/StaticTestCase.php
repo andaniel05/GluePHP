@@ -2,6 +2,9 @@
 
 namespace Andaniel05\GluePHP\Tests;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class StaticTestCase extends SeleniumTestCase
 {
     public function setUp()
@@ -14,7 +17,9 @@ class StaticTestCase extends SeleniumTestCase
 
     public function waitForResponse()
     {
-        if ( ! $this->driver) return;
+        if (! $this->driver) {
+            return;
+        }
 
         do {
             $httpRequestsLen = $this->script('return app.httpRequests.length');

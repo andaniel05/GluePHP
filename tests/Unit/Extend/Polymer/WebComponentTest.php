@@ -3,10 +3,16 @@
 namespace Andaniel05\GluePHP\Tests\Unit\Extend\Polymer;
 
 use PHPUnit\Framework\TestCase;
-use Andaniel05\GluePHP\Extend\Polymer\{WebComponent, WebComponentProcessor};
-use Andaniel05\ComposedViews\Asset\{ScriptAsset, ImportAsset};
-use Andaniel05\ComposedViews\HtmlElement\{HtmlElementInterface, HtmlElement};
+use Andaniel05\GluePHP\Extend\Polymer\WebComponent;
+use Andaniel05\GluePHP\Extend\Polymer\WebComponentProcessor;
+use Andaniel05\ComposedViews\Asset\ScriptAsset;
+use Andaniel05\ComposedViews\Asset\ImportAsset;
+use Andaniel05\ComposedViews\HtmlElement\HtmlElementInterface;
+use Andaniel05\ComposedViews\HtmlElement\HtmlElement;
 
+/**
+ * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
+ */
 class WebComponentTest extends TestCase
 {
     public function setUp()
@@ -89,7 +95,7 @@ class WebComponentTest extends TestCase
         $polymer = $assets['polymer'];
 
         $this->assertInstanceOf(ImportAsset::class, $polymer);
-        $this->assertStringEndsWith('polymer/polymer-element.html',$polymer->getUri());
+        $this->assertStringEndsWith('polymer/polymer-element.html', $polymer->getUri());
     }
 
     public function testPolymerAssetDependsOfWebComponentsLoader()
@@ -169,7 +175,6 @@ class WebComponentTest extends TestCase
     public function provider1()
     {
         $component1 = new class('component1', 'my-tag', '') extends WebComponent {
-
             public function bindProperties(): array
             {
                 $local = uniqid();
@@ -180,7 +185,6 @@ class WebComponentTest extends TestCase
         };
 
         $component2 = new class('component2', 'my-tag', '') extends WebComponent {
-
             public function bindProperties(): array
             {
                 $local = uniqid();
