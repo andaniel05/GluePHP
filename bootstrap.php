@@ -25,6 +25,13 @@ function controllerUri(): string
     return "$testServer/tests/controller.php";
 }
 
+function importUri(string $file): string
+{
+    $testServer = $GLOBALS['test_server'] ?? 'http://localhost:8085/';
+
+    return "{$testServer}tests/{$file}";
+}
+
 function getDummyComponent(string $id): AbstractComponent
 {
     return new class($id) extends AbstractComponent {};
@@ -33,4 +40,13 @@ function getDummyComponent(string $id): AbstractComponent
 function frand($min = 0, $max = 10)
 {
     return ($min + lcg_value() * (abs($max - $min)));
+}
+
+function setAttr($value, $attribute, $object)
+{
+    $closure = function () use ($value, $attribute) {
+        $this->{$attribute} = $value;
+    };
+
+    $closure->call($object);
 }

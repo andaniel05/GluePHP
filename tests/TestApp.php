@@ -33,13 +33,13 @@ class TestApp extends AbstractApp
     {
         return <<<HTML
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{$this->var('lang')}">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="{$this->var('charset')}">
     <title>{$this->getTitle()}</title>
 </head>
 <body>
-    {$this->getSidebar('body')->html()}
+    {$this->renderSidebar('body')}
 
     {$this->renderAssets('scripts')}
 </body>
