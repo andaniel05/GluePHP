@@ -23,7 +23,7 @@ class AppBuilder extends PageBuilder
         $element = $event->getXMLElement();
         $app = $event->getEntity();
 
-        if ( ! $app instanceof AbstractApp) {
+        if (! $app instanceof AbstractApp) {
             throw new Exception\InvalidAppClassException;
         }
 

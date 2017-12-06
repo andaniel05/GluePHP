@@ -2,8 +2,10 @@
 
 namespace Andaniel05\GluePHP\Extend\Polymer;
 
-use Andaniel05\ComposedViews\Asset\{ScriptAsset, ImportAsset};
-use Andaniel05\ComposedViews\HtmlElement\{HtmlElementInterface, HtmlElement};
+use Andaniel05\ComposedViews\Asset\ScriptAsset;
+use Andaniel05\ComposedViews\Asset\ImportAsset;
+use Andaniel05\ComposedViews\HtmlElement\HtmlElementInterface;
+use Andaniel05\ComposedViews\HtmlElement\HtmlElement;
 use function Andaniel05\GluePHP\jsVal;
 use Andaniel05\GluePHP\Component\AbstractComponent;
 
@@ -25,18 +27,23 @@ class WebComponent extends AbstractComponent
     public function assets(): array
     {
         $webComponentsLoader = new ScriptAsset(
-            'webcomponents-loader', 'webcomponentsjs/webcomponents-loader.js'
+            'webcomponents-loader',
+            'webcomponentsjs/webcomponents-loader.js'
         );
 
         $polymer = new ImportAsset(
-            'polymer', 'polymer/polymer-element.html', 'webcomponents-loader'
+            'polymer',
+            'polymer/polymer-element.html',
+            'webcomponents-loader'
         );
 
         $assets = [$webComponentsLoader, $polymer];
 
         if (is_string($this->importUri) && ! empty($this->importUri)) {
             $import = new ImportAsset(
-                'import', $this->importUri, 'polymer'
+                'import',
+                $this->importUri,
+                'polymer'
             );
             $assets[] = $import;
         }
@@ -83,15 +90,14 @@ class WebComponent extends AbstractComponent
 
         $bindPropertiesArray = [];
         foreach ($this->bindProperties() as $local => $remote) {
-
             $attr = $local;
             $property = $remote;
 
-            if ( ! is_string($attr) && is_string($property)) {
+            if (! is_string($attr) && is_string($property)) {
                 $attr = $property;
             }
 
-            if ( ! isset($modelArray[$attr])) {
+            if (! isset($modelArray[$attr])) {
                 throw new Exception\UndefinedGlueAttributeException($attr);
             }
 

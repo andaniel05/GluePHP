@@ -2,7 +2,8 @@
 
 namespace Andaniel05\GluePHP\Request;
 
-use Andaniel05\GluePHP\Update\{UpdateInterface, Update};
+use Andaniel05\GluePHP\Update\UpdateInterface;
+use Andaniel05\GluePHP\Update\Update;
 
 class Request implements RequestInterface
 {
@@ -50,17 +51,19 @@ class Request implements RequestInterface
         return $this->eventData;
     }
 
-    static public function createFromJSON(string $json): ?Request
+    public static function createFromJSON(string $json): ?Request
     {
         $data = json_decode($json, true);
 
-        if ( ! is_array($data)) {
+        if (! is_array($data)) {
             return null;
         }
 
         $request = new Request(
-            $data['appToken'], $data['status'],
-            $data['eventName'], $data['eventData']
+            $data['appToken'],
+            $data['status'],
+            $data['eventName'],
+            $data['eventData']
         );
 
         if (is_array($data['serverUpdates'])) {

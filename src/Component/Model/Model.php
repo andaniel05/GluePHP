@@ -14,20 +14,18 @@ class Model implements ModelInterface
 
     public function __construct(string $class)
     {
-        if ( ! class_exists($class)) {
+        if (! class_exists($class)) {
             throw new Exception\ClassNotFoundException($class);
         }
 
         $reflection = new \ReflectionClass($class);
 
-        if ( ! $reflection->isSubclassOf(AbstractComponent::class) &&
-            $class != AbstractComponent::class)
-        {
+        if (! $reflection->isSubclassOf(AbstractComponent::class) &&
+            $class != AbstractComponent::class) {
             throw new Exception\InvalidComponentClassException($class);
         }
 
         foreach ($reflection->getProperties() as $property) {
-
             $doc = $property->getDocComment();
             $annotation = null;
             foreach (Annotation::parseString($doc) as $a) {
@@ -37,7 +35,9 @@ class Model implements ModelInterface
                 }
             }
 
-            if ( ! $annotation) continue;
+            if (! $annotation) {
+                continue;
+            }
 
             $attr   = $property->getName();
             $getter = $annotation->getAttribute('getter') ?? 'get'.ucfirst($attr);
@@ -89,7 +89,6 @@ class Model implements ModelInterface
 
         $jsModelSetters = '';
         foreach ($this->toArray() as $attr => $def) {
-
             $setter = $this->getSetter($attr);
 
             $jsModelSetters .= <<<JAVASCRIPT
@@ -131,7 +130,7 @@ JAVASCRIPT;
 
     public static function get(string $class): ?ModelInterface
     {
-        if ( ! isset(static::$cache[$class])) {
+        if (! isset(static::$cache[$class])) {
             static::$cache[$class] = new Model($class);
         }
 

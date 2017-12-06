@@ -4,7 +4,8 @@ namespace Andaniel05\GluePHP\Action;
 
 use Andaniel05\GluePHP\AbstractApp;
 use Andaniel05\GluePHP\Action\AbstractAction;
-use Andaniel05\GluePHP\Component\{AbstractComponent, Sidebar};
+use Andaniel05\GluePHP\Component\AbstractComponent;
+use Andaniel05\GluePHP\Component\Sidebar;
 use Andaniel05\GluePHP\Component\Model\Model;
 
 class AppendAction extends AbstractAction
@@ -13,23 +14,25 @@ class AppendAction extends AbstractAction
     {
         $html = $render ?
             AbstractComponent::containerView(
-                $child->getId(), $child->html()) : null;
+                $child->getId(),
+                $child->html()
+            ) : null;
 
         $html = null;
         if ($render) {
-            if ($child instanceOf Sidebar) {
+            if ($child instanceof Sidebar) {
                 $html = $child->html();
             } else {
                 $html = AbstractComponent::containerView(
-                    $child->getId(), $child->html()
+                    $child->getId(),
+                    $child->html()
                 );
             }
         }
 
         $frontProcessors = [];
         foreach ($child->processors() as $class) {
-
-            if ( ! $app->hasProcessorClass($class)) {
+            if (! $app->hasProcessorClass($class)) {
                 $app->registerProcessorClass($class);
             }
 

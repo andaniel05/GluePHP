@@ -14,7 +14,8 @@ class Sidebar extends AbstractComponent implements SidebarInterface
     public function html(): ?string
     {
         return AbstractComponent::containerView(
-            $this->id, $this->renderizeChildren()
+            $this->id,
+            $this->renderizeChildren()
         );
     }
 }

@@ -3,13 +3,19 @@
 namespace Andaniel05\GluePHP\Component;
 
 use Andaniel05\GluePHP\AbstractApp;
-use Andaniel05\GluePHP\Action\{AbstractAction, UpdateAction};
-use Andaniel05\GluePHP\Component\Model\{ModelInterface, Model};
-use Andaniel05\GluePHP\Processor\{BindValueProcessor, BindEventsProcessor,
-    BindAttributesProcessor, BindHtmlProcessor, ShortEventsProcessor};
+use Andaniel05\GluePHP\Action\AbstractAction;
+use Andaniel05\GluePHP\Action\UpdateAction;
+use Andaniel05\GluePHP\Component\Model\ModelInterface;
+use Andaniel05\GluePHP\Component\Model\Model;
+use Andaniel05\GluePHP\Processor\BindValueProcessor;
+use Andaniel05\GluePHP\Processor\BindEventsProcessor;
+use Andaniel05\GluePHP\Processor\BindAttributesProcessor;
+use Andaniel05\GluePHP\Processor\BindHtmlProcessor;
+use Andaniel05\GluePHP\Processor\ShortEventsProcessor;
 use Andaniel05\ComposedViews\PageInterface;
 use Andaniel05\ComposedViews\Component\AbstractComponent as AbstractViewComponent;
-use Symfony\Component\EventDispatcher\{EventDispatcherInterface, EventDispatcher};
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
 abstract class AbstractComponent extends AbstractViewComponent
 {
@@ -18,7 +24,9 @@ abstract class AbstractComponent extends AbstractViewComponent
 
     public function __construct(?string $id = null)
     {
-        if ( ! $id) $id = strtolower(uniqid(basename(static::class)));
+        if (! $id) {
+            $id = strtolower(uniqid(basename(static::class)));
+        }
 
         parent::__construct($id);
 
@@ -90,16 +98,16 @@ abstract class AbstractComponent extends AbstractViewComponent
 
         if ($existsAttribute) {
             if ($operation === 'set') {
-
                 $this->{$attribute} = $arguments[0];
 
                 $sendUpdateAction = isset($arguments[1]) ?
                     (bool) $arguments[1] : true;
 
                 if ($sendUpdateAction && $this->app) {
-
                     $updateAction = new UpdateAction(
-                        $this->getId(), $attribute, $arguments[0]
+                        $this->getId(),
+                        $attribute,
+                        $arguments[0]
                     );
 
                     if ($response = $this->app->getResponse()) {
@@ -108,7 +116,6 @@ abstract class AbstractComponent extends AbstractViewComponent
                 }
 
                 return $this;
-
             } elseif ($operation === 'get') {
                 return $this->{$attribute};
             }
@@ -147,13 +154,13 @@ abstract class AbstractComponent extends AbstractViewComponent
     {
         $result = '';
         foreach ($this->getChildren() as $component) {
-
             $id = $component->getId();
             $html = $component->html();
 
             if (is_string($id) && is_string($html)) {
                 $result .= static::containerView(
-                    $component->getId(), $component->html()
+                    $component->getId(),
+                    $component->html()
                 );
             }
         }

@@ -28,7 +28,7 @@ class Annotation implements AnnotationInterface
         return $this->attributes[$attribute] ?? null;
     }
 
-    static public function parseString(string $subject): array
+    public static function parseString(string $subject): array
     {
         $result = [];
 
@@ -36,7 +36,6 @@ class Annotation implements AnnotationInterface
         $annResults = [];
         preg_match_all($annPattern, $subject, $annResults, PREG_SET_ORDER);
         foreach ($annResults as $annResult) {
-
             $name = $annResult[1];
             $atts = [];
 

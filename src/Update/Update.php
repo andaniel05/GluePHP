@@ -10,7 +10,9 @@ class Update implements UpdateInterface
 
     public function __construct(string $componentId, array $data, ?string $id = null)
     {
-        if ( ! $id) $id = uniqid('up_');
+        if (! $id) {
+            $id = uniqid('up_');
+        }
 
         $this->componentId = $componentId;
         $this->data = $data;

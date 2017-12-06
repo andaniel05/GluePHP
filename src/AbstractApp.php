@@ -2,21 +2,37 @@
 
 namespace Andaniel05\GluePHP;
 
-use Andaniel05\GluePHP\Action\{AbstractAction, CanSendActionsTrait, EvalAction,
-    AppendAction, RegisterAction, UpdateAction, DeleteAction};
+use Andaniel05\GluePHP\Action\AbstractAction;
+use Andaniel05\GluePHP\Action\CanSendActionsTrait;
+use Andaniel05\GluePHP\Action\EvalAction;
+use Andaniel05\GluePHP\Action\AppendAction;
+use Andaniel05\GluePHP\Action\RegisterAction;
+use Andaniel05\GluePHP\Action\UpdateAction;
+use Andaniel05\GluePHP\Action\DeleteAction;
 use Andaniel05\GluePHP\Asset\AppScript;
-use Andaniel05\GluePHP\Processor\{BindEventsProcessor, BindValueProcessor};
+use Andaniel05\GluePHP\Processor\BindEventsProcessor;
+use Andaniel05\GluePHP\Processor\BindValueProcessor;
 use Andaniel05\GluePHP\Request\RequestInterface;
-use Andaniel05\GluePHP\Response\{ResponseInterface, Response};
-use Andaniel05\GluePHP\Event\{Event, RequestEvent, ResponseEvent};
-use Andaniel05\GluePHP\Update\{UpdateInterface,
-    UpdateResultInterface, UpdateResult, Update};
-use Andaniel05\GluePHP\Component\{AbstractComponent, Sidebar};
-use Andaniel05\GluePHP\Component\Model\{ModelInterface, Model};
-use Symfony\Component\EventDispatcher\{EventDispatcherInterface, EventDispatcher};
+use Andaniel05\GluePHP\Response\ResponseInterface;
+use Andaniel05\GluePHP\Response\Response;
+use Andaniel05\GluePHP\Event\Event;
+use Andaniel05\GluePHP\Event\RequestEvent;
+use Andaniel05\GluePHP\Event\ResponseEvent;
+use Andaniel05\GluePHP\Update\UpdateInterface;
+use Andaniel05\GluePHP\Update\UpdateResultInterface;
+use Andaniel05\GluePHP\Update\UpdateResult;
+use Andaniel05\GluePHP\Update\Update;
+use Andaniel05\GluePHP\Component\AbstractComponent;
+use Andaniel05\GluePHP\Component\Sidebar;
+use Andaniel05\GluePHP\Component\Model\ModelInterface;
+use Andaniel05\GluePHP\Component\Model\Model;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use Andaniel05\ComposedViews\Asset\ContentScriptAsset;
-use Andaniel05\ComposedViews\{AbstractPage, PageEvents};
-use Andaniel05\ComposedViews\Event\{AfterInsertionEvent, AfterDeletionEvent};
+use Andaniel05\ComposedViews\AbstractPage;
+use Andaniel05\ComposedViews\PageEvents;
+use Andaniel05\ComposedViews\Event\AfterInsertionEvent;
+use Andaniel05\ComposedViews\Event\AfterDeletionEvent;
 use Andaniel05\ComposedViews\Component\ComponentInterface as PageComponentInterface;
 
 abstract class AbstractApp extends AbstractPage
@@ -41,13 +57,14 @@ abstract class AbstractApp extends AbstractPage
         $this->token = uniqid('app');
         $this->controllerPath = $controllerPath;
 
-        if ( ! $dispatcher) {
+        if (! $dispatcher) {
             $dispatcher = new EventDispatcher();
         }
 
         $this->distDir = __DIR__ . '/FrontEnd/Dist';
         $gluePhpScript = new ContentScriptAsset(
-            'gluephp', file_get_contents($this->distDir . '/GluePHP.min.js')
+            'gluephp',
+            file_get_contents($this->distDir . '/GluePHP.min.js')
         );
         $appScript = new AppScript('app', $this, ['gluephp']);
 
@@ -57,11 +74,13 @@ abstract class AbstractApp extends AbstractPage
         parent::__construct($basePath, $dispatcher);
 
         $dispatcher->addListener(
-            PageEvents::AFTER_INSERTION, [$this, 'onAfterInsertion']
+            PageEvents::AFTER_INSERTION,
+            [$this, 'onAfterInsertion']
         );
 
         $dispatcher->addListener(
-            PageEvents::AFTER_DELETION, [$this, 'onAfterDeletion']
+            PageEvents::AFTER_DELETION,
+            [$this, 'onAfterDeletion']
         );
 
         $this->registerActionClass(AppendAction::class);
@@ -146,7 +165,7 @@ abstract class AbstractApp extends AbstractPage
         $result = new UpdateResult($update, "result_{$update->getId()}");
 
         $component = $this->getComponent($update->getComponentId());
-        if ( ! $component) {
+        if (! $component) {
             $result->addError('component-not-found', $update->getComponentId());
             return $result;
         }
@@ -285,7 +304,7 @@ abstract class AbstractApp extends AbstractPage
     {
         foreach ($this->components() as $component) {
             $class = get_class($component);
-            if ( ! $this->hasComponentClass($class)) {
+            if (! $this->hasComponentClass($class)) {
                 $this->registerComponentClass($class);
             }
         }
@@ -307,7 +326,6 @@ abstract class AbstractApp extends AbstractPage
         $this->processorClasses[$processorClass] = $frontId;
 
         if ($this->inProcess()) {
-
             $scriptWrapper = $processorClass::scriptWrapper();
 
             $evalScript = "{$this->id}.processors.{$frontId} = {$scriptWrapper};";
@@ -367,15 +385,15 @@ abstract class AbstractApp extends AbstractPage
 
     public function onAfterInsertion(AfterInsertionEvent $event)
     {
-        $append = function ($parent, $child, $render = true)
-        {
+        $append = function ($parent, $child, $render = true) {
             $childListeners = $child->getDispatcher()->getListeners();
 
             if (is_iterable($childListeners)) {
                 foreach ($childListeners as $eventName => $sorted) {
                     foreach ($sorted as $listener) {
                         $this->dispatcher->addListener(
-                            "{$child->getId()}.{$eventName}", $listener
+                            "{$child->getId()}.{$eventName}",
+                            $listener
                         );
                     }
                 }
@@ -400,7 +418,9 @@ abstract class AbstractApp extends AbstractPage
     {
         if ($this->inProcess()) {
             $this->act(new DeleteAction(
-                $this, $event->getParent(), $event->getChild()
+                $this,
+                $event->getParent(),
+                $event->getChild()
             ));
         }
     }
@@ -408,20 +428,17 @@ abstract class AbstractApp extends AbstractPage
     protected function initializeSidebars(): void
     {
         foreach ($this->sidebars() as $key => $value) {
-
             $sidebar = null;
 
             if (is_integer($key) && is_string($value)) {
                 $sidebar = new Sidebar($value);
             } elseif (is_string($key) && is_array($value)) {
-
                 $sidebar = new Sidebar($key);
                 foreach ($value as $component) {
-                    if ($component instanceOf ComponentInterface) {
+                    if ($component instanceof ComponentInterface) {
                         $sidebar->addChild($component);
                     }
                 }
-
             }
 
             if ($sidebar) {

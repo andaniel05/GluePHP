@@ -4,7 +4,8 @@ namespace Andaniel05\GluePHP\Response;
 
 use Andaniel05\GluePHP\AbstractApp;
 use Andaniel05\GluePHP\Action\AbstractAction;
-use Andaniel05\GluePHP\Update\{UpdateResultInterface, UpdateInterface};
+use Andaniel05\GluePHP\Update\UpdateResultInterface;
+use Andaniel05\GluePHP\Update\UpdateInterface;
 
 interface ResponseInterface
 {

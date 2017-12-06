@@ -98,7 +98,6 @@ JAVASCRIPT;
 
         $createComponents = '';
         foreach ($this->app->components() as $component) {
-
             $componentClass = $this->app->getFrontComponentClass(get_class($component));
             $model = $component->getModel();
             $jsModel = Model::getJavaScriptModelObject($component);
@@ -127,7 +126,6 @@ JAVASCRIPT;
 })({$appId});
 
 JAVASCRIPT;
-
         }
 
         $setDebug = '';
@@ -175,7 +173,7 @@ else {
 
 JAVASCRIPT;
 
-        if ( ! $this->app->isDebug()) {
+        if (! $this->app->isDebug()) {
             $source = (new Minify\JS($source))->minify();
         }
 

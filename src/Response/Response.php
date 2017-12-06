@@ -3,8 +3,11 @@
 namespace Andaniel05\GluePHP\Response;
 
 use Andaniel05\GluePHP\AbstractApp;
-use Andaniel05\GluePHP\Action\{AbstractAction, CanSendActionsTrait, RegisterAction};
-use Andaniel05\GluePHP\Update\{UpdateResultInterface, UpdateInterface};
+use Andaniel05\GluePHP\Action\AbstractAction;
+use Andaniel05\GluePHP\Action\CanSendActionsTrait;
+use Andaniel05\GluePHP\Action\RegisterAction;
+use Andaniel05\GluePHP\Update\UpdateResultInterface;
+use Andaniel05\GluePHP\Update\UpdateInterface;
 
 class Response implements ResponseInterface
 {
@@ -50,12 +53,11 @@ class Response implements ResponseInterface
     public function addAction(AbstractAction $action): void
     {
         $actionClass = get_class($action);
-        if ( ! $this->app->hasActionClass($actionClass)) {
+        if (! $this->app->hasActionClass($actionClass)) {
             $this->app->registerActionClass($actionClass);
         }
 
         if ($this->sendActions) {
-
             echo json_encode([
                 'id'      => $action->getId(),
                 'data'    => $action->getData(),
@@ -66,7 +68,6 @@ class Response implements ResponseInterface
             flush();
 
             $action->send();
-
         } else {
             $this->actions[$action->getId()] = $action;
         }
