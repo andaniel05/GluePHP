@@ -12,7 +12,7 @@
             "source": {
                 "type": "git",
                 "url": "D:\\Andy\\Repositorios\\Andaniel05\\ComposedViews",
-                "reference": "d1c70e98e66688e2edecc552aa6acac54bcb5caa"
+                "reference": "5d218ef626222f6f5e642ebaba97b16e0d9ba49d"
             },
             "require": {
                 "myclabs/deep-copy": "^1.5",
@@ -38,7 +38,7 @@
                     "email": "andaniel05@gmail.com"
                 }
             ],
-            "time": "2017-11-29T12:30:44+00:00"
+            "time": "2017-12-08T12:05:07+00:00"
         },
         {
             "name": "matthiasmullie/minify",

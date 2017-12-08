@@ -36,4 +36,15 @@ class AppBuilder extends PageBuilder
         $app->setControllerPath($controllerPath);
         $app->setBasePath($basePath);
     }
+
+    public function buildApp(string $xml)
+    {
+        $app = $this->build($xml);
+
+        if (! $app instanceof AbstractApp) {
+            throw new Exception\InvalidAppException;
+        }
+
+        return $app;
+    }
 }

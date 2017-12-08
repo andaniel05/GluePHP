@@ -3,6 +3,7 @@
 namespace Andaniel05\GluePHP\Tests\Unit\Builder;
 
 use PHPUnit\Framework\TestCase;
+use Andaniel05\GluePHP\AbstractApp;
 use Andaniel05\GluePHP\Builder\AppBuilder;
 use Andaniel05\ComposedViews\Builder\PageBuilder;
 
@@ -135,5 +136,30 @@ XML;
         $this->assertEquals($app->sidebar2, $app->component4->getParent());
         $this->assertEquals($app->component4, $app->component5->getParent());
         $this->assertEquals($app->component5, $app->component6->getParent());
+    }
+
+    public function testBuildAppReturnResultOfBuildMethod()
+    {
+        $app = $this->createMock(AbstractApp::class);
+        $xml = uniqid();
+
+        $builder = $this->getMockBuilder(AppBuilder::class)
+            ->setMethods(['build'])
+            ->getMock();
+        $builder->expects($this->once())
+            ->method('build')
+            ->with($this->equalTo($xml))
+            ->willReturn($app);
+
+        $this->assertEquals($app, $builder->buildApp($xml));
+    }
+
+    /**
+     * @expectedException Andaniel05\GluePHP\Builder\Exception\InvalidAppException
+     */
+    public function testBuildAppThrowInvalidAppExceptionIfBuiltResultIsNotAnInstanceOfApp()
+    {
+        $xml = '<component></component>';
+        $this->builder->buildApp($xml);
     }
 }
