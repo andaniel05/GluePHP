@@ -14,17 +14,31 @@ class CustomElement extends WebComponent
      */
     protected $text;
 
+    /**
+     * @Glue
+     */
+    protected $simpleProperty;
+
+    /**
+     * @Glue
+     */
+    protected $declaredProperty;
+
     public function __construct(?string $id = null)
     {
         parent::__construct(
             $id,
             'custom-element',
-            importUri('/Entities/custom-element.html')
+            importUri('Integration/Entities/Components/custom-element.html')
         );
     }
 
     public function bindProperties(): array
     {
-        return ['text' => 'textContent'];
+        return [
+            'text' => 'textContent',
+            'simpleProperty',
+            'declaredProperty',
+        ];
     }
 }

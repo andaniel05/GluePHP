@@ -13,7 +13,7 @@ class WebComponentProcessor extends AbstractProcessor
     {
         return <<<JAVASCRIPT
 
-    var customElement = component.customElement = component.element.children[0];
+    let customElement = component.customElement = component.element.children[0];
 
     component._bindEvents.forEach(function(eventName) {
         component.element.addEventListener(eventName, function(event) {
@@ -21,13 +21,13 @@ class WebComponentProcessor extends AbstractProcessor
         });
     });
 
-    for (var gAttr in component._bindProperties) {
-        var prop = component._bindProperties[gAttr];
+    for (let gAttr in component._bindProperties) {
+        let prop = component._bindProperties[gAttr];
 
         customElement[prop] = component.model[gAttr];
 
-        var setterName = GluePHP.Helpers.getSetter(gAttr);
-        var oldSetter = component[setterName];
+        let setterName = GluePHP.Helpers.getSetter(gAttr);
+        let oldSetter = component[setterName];
         component[setterName] = function(value, registerUpdate = true, assignToCustomElement = true) {
             oldSetter.call(this, value, registerUpdate);
             if (assignToCustomElement === true) {
@@ -35,8 +35,8 @@ class WebComponentProcessor extends AbstractProcessor
             }
         };
 
-        var oldPropSetter = customElement.__lookupSetter__(prop);
-        var propGetter = customElement.__lookupGetter__(prop);
+        let oldPropSetter = customElement.__lookupSetter__(prop);
+        let propGetter = customElement.__lookupGetter__(prop);
         Object.defineProperty(customElement, prop, {
             set: function(newVal) {
                 component[setterName](newVal, true, false);
