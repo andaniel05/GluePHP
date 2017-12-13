@@ -438,6 +438,38 @@ suite('GluePHP.App', function() {
             assert.deepEqual(request.eventData, {});
         });
 
+        test('dispatch the filter event data', function() {
+            var eventName = 'event1';
+            var event = new Event(eventName);
+            var listenerSpy = sinon.spy();
+
+            this.app.addListener('app.filter_event_data', listenerSpy);
+            this.app.buildRequest(eventName, event); // Act
+
+            sinon.assert.calledOnce(listenerSpy);
+            sinon.assert.calledWithMatch(listenerSpy,
+                sinon.match.instanceOf(Event)
+                    .and(sinon.match.has('eventName', sinon.match(eventName)))
+                    .and(sinon.match.has('event', sinon.match(event)))
+                    .and(sinon.match.has('data', sinon.match({})))
+            );
+        });
+
+        test('the event data result is filtered by the event "app.filter_event_data"', function() {
+            var eventName = 'event1';
+            var event = new Event(eventName);
+            var expectedData = {};
+
+            var listener = function(event) {
+                event.data = expectedData;
+            };
+
+            this.app.addListener('app.filter_event_data', listener);
+            var request = this.app.buildRequest(eventName, event); // Act
+
+            assert.equal(request.eventData, expectedData);
+        });
+
         test('serverUpdates contains all updates in the buffer', function() {
 
             var data1 = {

@@ -50,6 +50,14 @@ GluePHP.Factory = {
             event.response = response;
             return event;
         },
+
+        createFilterEventDataEvent: function(eventName, event) {
+            var result = new CustomEvent('app.filter_event_data');
+            result.eventName = eventName;
+            result.event = event;
+            result.data = {};
+            return result;
+        },
     },
 
     Component: {

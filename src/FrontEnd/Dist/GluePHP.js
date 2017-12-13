@@ -50,6 +50,14 @@ GluePHP.Factory = {
             event.response = response;
             return event;
         },
+
+        createFilterEventDataEvent: function(eventName, event) {
+            var result = new CustomEvent('app.filter_event_data');
+            result.eventName = eventName;
+            result.event = event;
+            result.data = {};
+            return result;
+        },
     },
 
     Component: {
@@ -405,11 +413,14 @@ App.prototype.buildRequest = function(name, event) {
         updates.push(update);
     }
 
+    var filterEventData = GluePHP.Factory.App.createFilterEventDataEvent(name, event);
+    this.dispatchInLocal('app.filter_event_data', filterEventData);
+
     return {
         appToken: this.token,
         status: this.getStatus(),
         eventName: name,
-        eventData: {},
+        eventData: filterEventData.data,
         serverUpdates: updates,
     };
 };
