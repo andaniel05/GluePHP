@@ -1,10 +1,10 @@
 <?php
 
-namespace Andaniel05\GluePHP\Tests\Unit\Extend\Polymer;
+namespace Andaniel05\GluePHP\Tests\Unit\Extended\Polymer;
 
 use PHPUnit\Framework\TestCase;
-use Andaniel05\GluePHP\Extend\Polymer\WebComponent;
-use Andaniel05\GluePHP\Extend\Polymer\WebComponentProcessor;
+use Andaniel05\GluePHP\Extended\Polymer\WebComponent;
+use Andaniel05\GluePHP\Extended\Polymer\WebComponentProcessor;
 use Andaniel05\ComposedViews\Asset\ScriptAsset;
 use Andaniel05\ComposedViews\Asset\ImportAsset;
 use Andaniel05\ComposedViews\HtmlElement\HtmlElementInterface;
@@ -201,7 +201,7 @@ class WebComponentTest extends TestCase
 
     /**
      * @dataProvider provider1
-     * @expectedException Andaniel05\GluePHP\Extend\Polymer\Exception\UndefinedGlueAttributeException
+     * @expectedException Andaniel05\GluePHP\Extended\Polymer\Exception\UndefinedGlueAttributeException
      */
     public function testThrowUndefinedGlueAttributeExceptionWhenBindPropertiesContainsAnUndefinedAttributeName($component)
     {

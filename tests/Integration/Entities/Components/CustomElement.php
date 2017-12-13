@@ -2,7 +2,7 @@
 
 namespace Andaniel05\GluePHP\Tests\Integration\Entities\Components;
 
-use Andaniel05\GluePHP\Extend\Polymer\WebComponent;
+use Andaniel05\GluePHP\Extended\Polymer\WebComponent;
 
 /**
  * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>

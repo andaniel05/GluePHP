@@ -1,6 +1,6 @@
 <?php
 
-namespace Andaniel05\GluePHP\Extend\VueJS;
+namespace Andaniel05\GluePHP\Extended\VueJS;
 
 use Andaniel05\ComposedViews\Asset\ScriptAsset;
 use Andaniel05\GluePHP\Processor\AbstractProcessor;

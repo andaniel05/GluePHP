@@ -1,6 +1,6 @@
 <?php
 
-namespace Andaniel05\GluePHP\Tests\Integration\Extend\VueJS;
+namespace Andaniel05\GluePHP\Tests\Integration\Extended\VueJS;
 
 use Andaniel05\GluePHP\Tests\StaticTestCase;
 

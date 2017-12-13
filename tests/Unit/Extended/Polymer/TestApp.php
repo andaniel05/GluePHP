@@ -1,6 +1,6 @@
 <?php
 
-namespace Andaniel05\GluePHP\Tests\Unit\Extend\Polymer;
+namespace Andaniel05\GluePHP\Tests\Unit\Extended\Polymer;
 
 use Andaniel05\GluePHP\Tests\TestApp as GluePHPTestApp;
 use Andaniel05\ComposedViews\Asset\ScriptAsset;

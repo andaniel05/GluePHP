@@ -21,7 +21,7 @@ use Andaniel05\GluePHP\Update\UpdateInterface;
 use Andaniel05\GluePHP\Update\UpdateResultInterface;
 use Andaniel05\GluePHP\Component\AbstractComponent;
 use Andaniel05\GluePHP\Component\Sidebar;
-use Andaniel05\GluePHP\Extend\VueJS\VueComponent;
+use Andaniel05\GluePHP\Extended\VueJS\VueComponent;
 use Andaniel05\GluePHP\Processor\AbstractProcessor;
 use Andaniel05\GluePHP\Component\Model\ModelInterface;
 use Andaniel05\GluePHP\Component\Model\Model;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Andaniel05\GluePHP\Extend\VueJS;
+namespace Andaniel05\GluePHP\Extended\VueJS;
 
 use Andaniel05\GluePHP\Processor\ShortEventsProcessor;
 use Andaniel05\GluePHP\Component\AbstractComponent;

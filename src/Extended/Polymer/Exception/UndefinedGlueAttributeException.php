@@ -1,6 +1,6 @@
 <?php
 
-namespace Andaniel05\GluePHP\Extend\Polymer\Exception;
+namespace Andaniel05\GluePHP\Extended\Polymer\Exception;
 
 /**
  * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>

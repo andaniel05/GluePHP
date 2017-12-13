@@ -1,6 +1,6 @@
 <?php
 
-namespace Andaniel05\GluePHP\Tests\Integration\Extend\Polymer;
+namespace Andaniel05\GluePHP\Tests\Integration\Extended\Polymer;
 
 use Andaniel05\PolyGlue\Component\WebComponent;
 use Andaniel05\GluePHP\Tests\StaticTestCase;

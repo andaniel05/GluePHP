@@ -2,7 +2,7 @@
 
 namespace Andaniel05\GluePHP\Tests\Integration\Entities\Components;
 
-use Andaniel05\GluePHP\Extend\VueJS\VueComponent;
+use Andaniel05\GluePHP\Extended\VueJS\VueComponent;
 
 /**
  * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>

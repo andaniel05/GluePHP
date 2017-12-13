@@ -1,10 +1,10 @@
 <?php
 
-namespace Andaniel05\GluePHP\Tests\Unit\Extend\VueJS;
+namespace Andaniel05\GluePHP\Tests\Unit\Extended\VueJS;
 
 use PHPUnit\Framework\TestCase;
-use Andaniel05\GluePHP\Extend\VueJS\VueComponent;
-use Andaniel05\GluePHP\Extend\VueJS\VueProcessor;
+use Andaniel05\GluePHP\Extended\VueJS\VueComponent;
+use Andaniel05\GluePHP\Extended\VueJS\VueProcessor;
 use Andaniel05\GluePHP\Processor\ShortEventsProcessor;
 
 /**

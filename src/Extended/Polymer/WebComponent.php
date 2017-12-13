@@ -1,6 +1,6 @@
 <?php
 
-namespace Andaniel05\GluePHP\Extend\Polymer;
+namespace Andaniel05\GluePHP\Extended\Polymer;
 
 use Andaniel05\ComposedViews\Asset\ScriptAsset;
 use Andaniel05\ComposedViews\Asset\ImportAsset;
