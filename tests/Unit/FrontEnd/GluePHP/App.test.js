@@ -432,10 +432,10 @@ suite('GluePHP.App', function() {
             });
         });
 
-        test('the request eventData is the event argument', function() {
+        test('the request eventData is an empty object by default', function() {
             var event = new Event('event1');
             var request = this.app.buildRequest('event1', event);
-            assert.equal(request.eventData, event);
+            assert.deepEqual(request.eventData, {});
         });
 
         test('serverUpdates contains all updates in the buffer', function() {

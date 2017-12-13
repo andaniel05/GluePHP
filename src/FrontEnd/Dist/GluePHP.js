@@ -409,7 +409,7 @@ App.prototype.buildRequest = function(name, event) {
         appToken: this.token,
         status: this.getStatus(),
         eventName: name,
-        eventData: event,
+        eventData: {},
         serverUpdates: updates,
     };
 };
