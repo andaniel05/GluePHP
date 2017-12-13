@@ -34,7 +34,7 @@ Component.prototype.dispatch = function(eventName, event) {
 
     this.dispatchInLocal(eventName, event);
 
-    if ( ! event.propagationStopped) {
+    if (! event.propagationStopped) {
         this.dispatchInApp(eventName, event);
     }
 };

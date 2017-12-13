@@ -35,7 +35,7 @@ App.prototype.getStatus = function() {
 App.prototype.dispatchInRemote = function(name, event) {
 
     var app = this;
-    if ( ! app.url) return;
+    if (! app.url) return;
 
     var request = this.buildRequest(name, event);
     var requestEvent = GluePHP.Factory.App.createRequestEvent(request);
@@ -49,7 +49,7 @@ App.prototype.dispatchInRemote = function(name, event) {
 
     xhr.onprogress = function(event) {
 
-        if ( ! event.currentTarget) return;
+        if (! event.currentTarget) return;
         xhr.streaming = true;
 
         var currentResponse = null;
@@ -116,7 +116,7 @@ App.prototype.dispatchInRemote = function(name, event) {
             var line = lines[id];
             try {
 
-                if ( ! line.length) {
+                if (! line.length) {
                     continue;
                 }
 
@@ -144,7 +144,7 @@ App.prototype.dispatch = function(name, event) {
 
     this.dispatchInLocal(name, event);
 
-    if ( ! event.propagationStopped) {
+    if (! event.propagationStopped) {
         this.dispatchInRemote(name, event);
     }
 };
@@ -173,15 +173,15 @@ App.prototype.registerUpdate = function(componentId, attribute, value) {
 
     var component = this.getComponent(componentId);
 
-    if ( ! (component instanceof GluePHP.Component)) {
+    if (! (component instanceof GluePHP.Component)) {
         return;
     }
 
-    if ( ! (component.model.hasOwnProperty(attribute))) {
+    if (! (component.model.hasOwnProperty(attribute))) {
         return;
     }
 
-    if ( ! (this.buffer.hasOwnProperty(componentId))) {
+    if (! (this.buffer.hasOwnProperty(componentId))) {
         this.buffer[componentId] = {};
     }
 

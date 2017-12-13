@@ -15,7 +15,7 @@ function EventDispatcher() {
 
 EventDispatcher.prototype.addListener = function(name, listener) {
 
-    if ( ! this.events.hasOwnProperty(name)) {
+    if (! this.events.hasOwnProperty(name)) {
         this.events[name] = [];
     }
 
@@ -26,7 +26,7 @@ EventDispatcher.prototype.dispatch = function(name, event) {
 
     if (this.events.hasOwnProperty(name) && Array.isArray(this.events[name])) {
         for (var listener of this.events[name]) {
-            if ( ! event.isPropagationStopped()) {
+            if (! event.isPropagationStopped()) {
                 listener(event);
             } else {
                 break;

@@ -2,9 +2,9 @@
  * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
  */
 
-/////////////////////////
-// GluePHP.BaseEntity  //
-/////////////////////////
+////////////////////////
+// GluePHP.BaseEntity //
+////////////////////////
 
 (function(GluePHP) {
 'use strict';

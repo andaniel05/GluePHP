@@ -98,7 +98,7 @@ function EventDispatcher() {
 
 EventDispatcher.prototype.addListener = function(name, listener) {
 
-    if ( ! this.events.hasOwnProperty(name)) {
+    if (! this.events.hasOwnProperty(name)) {
         this.events[name] = [];
     }
 
@@ -109,7 +109,7 @@ EventDispatcher.prototype.dispatch = function(name, event) {
 
     if (this.events.hasOwnProperty(name) && Array.isArray(this.events[name])) {
         for (var listener of this.events[name]) {
-            if ( ! event.isPropagationStopped()) {
+            if (! event.isPropagationStopped()) {
                 listener(event);
             } else {
                 break;
@@ -214,9 +214,9 @@ GluePHP.ComponentContainer = ComponentContainer;
  * @author Andy Daniel Navarro Taño <andaniel05@gmail.com>
  */
 
-/////////////////////////
-// GluePHP.BaseEntity  //
-/////////////////////////
+////////////////////////
+// GluePHP.BaseEntity //
+////////////////////////
 
 (function(GluePHP) {
 'use strict';
@@ -280,7 +280,7 @@ App.prototype.getStatus = function() {
 App.prototype.dispatchInRemote = function(name, event) {
 
     var app = this;
-    if ( ! app.url) return;
+    if (! app.url) return;
 
     var request = this.buildRequest(name, event);
     var requestEvent = GluePHP.Factory.App.createRequestEvent(request);
@@ -294,7 +294,7 @@ App.prototype.dispatchInRemote = function(name, event) {
 
     xhr.onprogress = function(event) {
 
-        if ( ! event.currentTarget) return;
+        if (! event.currentTarget) return;
         xhr.streaming = true;
 
         var currentResponse = null;
@@ -361,7 +361,7 @@ App.prototype.dispatchInRemote = function(name, event) {
             var line = lines[id];
             try {
 
-                if ( ! line.length) {
+                if (! line.length) {
                     continue;
                 }
 
@@ -389,7 +389,7 @@ App.prototype.dispatch = function(name, event) {
 
     this.dispatchInLocal(name, event);
 
-    if ( ! event.propagationStopped) {
+    if (! event.propagationStopped) {
         this.dispatchInRemote(name, event);
     }
 };
@@ -418,15 +418,15 @@ App.prototype.registerUpdate = function(componentId, attribute, value) {
 
     var component = this.getComponent(componentId);
 
-    if ( ! (component instanceof GluePHP.Component)) {
+    if (! (component instanceof GluePHP.Component)) {
         return;
     }
 
-    if ( ! (component.model.hasOwnProperty(attribute))) {
+    if (! (component.model.hasOwnProperty(attribute))) {
         return;
     }
 
-    if ( ! (this.buffer.hasOwnProperty(componentId))) {
+    if (! (this.buffer.hasOwnProperty(componentId))) {
         this.buffer[componentId] = {};
     }
 
@@ -520,7 +520,7 @@ Component.prototype.dispatch = function(eventName, event) {
 
     this.dispatchInLocal(eventName, event);
 
-    if ( ! event.propagationStopped) {
+    if (! event.propagationStopped) {
         this.dispatchInApp(eventName, event);
     }
 };
