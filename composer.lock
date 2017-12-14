@@ -4,15 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "498e6b8b0e958985f8fa5d90f2d5f9bc",
+    "content-hash": "adc3e4c593a5f446af4851b704357d4c",
     "packages": [
         {
             "name": "andaniel05/composed-views",
-            "version": "dev-master",
+            "version": "dev-0.1a",
             "source": {
                 "type": "git",
-                "url": "D:\\Andy\\Repositorios\\Andaniel05\\ComposedViews",
+                "url": "https://github.com/andaniel05/ComposedViews.git",
                 "reference": "83c48b2bd5e069e2fb250e5ff5b0841a6cebcdd1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/andaniel05/ComposedViews/zipball/83c48b2bd5e069e2fb250e5ff5b0841a6cebcdd1",
+                "reference": "83c48b2bd5e069e2fb250e5ff5b0841a6cebcdd1",
+                "shasum": ""
             },
             "require": {
                 "myclabs/deep-copy": "^1.5",
@@ -29,6 +35,7 @@
                     "Andaniel05\\ComposedViews\\Tests\\": "tests/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
