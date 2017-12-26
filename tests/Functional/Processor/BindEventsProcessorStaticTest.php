@@ -10,15 +10,15 @@ use Andaniel05\GluePHP\Tests\StaticTestCase;
  */
 class BindEventsProcessorStaticTest extends StaticTestCase
 {
-    public function providerGPhpEvent()
+    public function providerAttribute()
     {
         return [
-            ['gphp-event'], ['data-gphp-event']
+            ['gphp-bind-events'], ['data-gphp-bind-events']
         ];
     }
 
     /**
-     * @dataProvider providerGPhpEvent
+     * @dataProvider providerAttribute
      */
     public function testGPhpEventAttribute_BindOneEventToTheComponent($attribute)
     {
@@ -63,7 +63,7 @@ JAVASCRIPT;
     }
 
     /**
-     * @dataProvider providerGPhpEvent
+     * @dataProvider providerAttribute
      */
     public function testGPhpEventAttribute_BindSeveralEventsToTheComponent($attribute)
     {

@@ -19,8 +19,8 @@ class BindEventsProcessor extends AbstractProcessor
     // Bind Events //
     /////////////////
 
-    bindEvents('gphp-event');
-    bindEvents('data-gphp-event');
+    bindEvents('gphp-bind-events');
+    bindEvents('data-gphp-bind-events');
 
     function bindEvents(attribute) {
         traverseElements(function(child) {
