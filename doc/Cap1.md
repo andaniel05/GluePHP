@@ -38,9 +38,11 @@ Seguidamente ejecute el comando:
 
 Una vez que halla finalizado la instalación cree un archivo de nombre *bootstrap.php* con el siguiente contenido:
 
-	<?php
-	
-	require_once 'vendor/autoload.php';
+```php
+<?php
+
+require_once 'vendor/autoload.php';
+```
 
 En este archivo vamos a definir las clases y funciones de la aplicación a medida que avancemos en el capítulo.
 
@@ -58,23 +60,25 @@ La lógica de estos controladores es definida por el usuario, no obstante, es ob
 
 Cree un archivo con nombre *index.php* con el siguiente contenido:
 
-	<?php
-	
-	require_once 'bootstrap.php';
-	
-	// Se instancia la app con sus componentes y eventos.
-	$app = require_once 'app.php';
-	
-	// Antes de persistir la app es necesario esta sentencia.
-	$app->setBooted(true);
-	
-	// Se persiste la instancia de la app donde en este caso la persistencia se hace
-	// mediante la sesión.
-	session_start();
-	$_SESSION['app'] = $app;
-	
-	// Se imprime en el navegador el código HTML de la página.
-	$app->print();
+```php
+<?php
+
+require_once 'bootstrap.php';
+
+// Se instancia la app con sus componentes y eventos.
+$app = require_once 'app.php';
+
+// Antes de persistir la app es necesario esta sentencia.
+$app->setBooted(true);
+
+// Se persiste la instancia de la app donde en este caso la persistencia se hace
+// mediante la sesión.
+session_start();
+$_SESSION['app'] = $app;
+
+// Se imprime en el navegador el código HTML de la página.
+$app->print();
+```
 
 Los comentarios del código muestran las respectivas funcionalidades. Como puede ver la instancia de la app se obtiene del archivo *app.php*. Es en este archivo donde estará definida toda la app.
 
@@ -82,27 +86,29 @@ Los comentarios del código muestran las respectivas funcionalidades. Como puede
 
 Cree un archivo de nombre *process.php* con el siguiente contenido:
 
-	<?php
-	
-	require_once 'bootstrap.php';
-	
-	use Andaniel05\GluePHP\Request\Request;
-	
-	// Obtiene la instancia de la app persistida por el controlador de carga o por
-	// el procesamiento anterior.
-	session_start();
-	$app = $_SESSION['app'];
-	
-	// La app procesa la solicitud y devuelve una respuesta.
-	$request = Request::createFromJSON($_REQUEST['glue_request']);
-	$response = $app->handle($request);
-	
-	// Vuelve a persistir la app.
-	$_SESSION['app'] = $app;
-	
-	// Envía al navegador la respuesta en formato JSON.
-	echo $response->toJSON();
-	die();
+```php
+<?php
+
+require_once 'bootstrap.php';
+
+use Andaniel05\GluePHP\Request\Request;
+
+// Obtiene la instancia de la app persistida por el controlador de carga o por
+// el procesamiento anterior.
+session_start();
+$app = $_SESSION['app'];
+
+// La app procesa la solicitud y devuelve una respuesta.
+$request = Request::createFromJSON($_REQUEST['glue_request']);
+$response = $app->handle($request);
+
+// Vuelve a persistir la app.
+$_SESSION['app'] = $app;
+
+// Envía al navegador la respuesta en formato JSON.
+echo $response->toJSON();
+die();
+```
 
 Como puede ver el código también está comentado.
 
@@ -114,34 +120,36 @@ Como puede ver en *index.php* la variable $app espera un resultado del archivo *
 
 Cree un archivo de nombre *app.php* con el siguiente contenido:
 
-	<?php
+```php
+<?php
 
-	/////////////////
-	// Composición //
-	/////////////////
-	
-	// Instancia la app. El primer argumento especifica la ruta del controlador
-	// de procesamiento.
-	$app = new App('process.php');
+/////////////////
+// Composición //
+/////////////////
 
-	// Instancia los componentes. El primer argumento especifica el identificador del componente.
-	$input = new Input('input');
-	$label = new Label('label');
-	$button = new Button('button');
-	
-	// Inserta los componentes en la sección 'body' de la app.
-	$app->appendComponent('body', $input);
-	$app->appendComponent('body', $label);
-	$app->appendComponent('body', $button);
-	
-	////////////////////////////
-	// Declaración de eventos //
-	////////////////////////////
-	
-	// Declara que el evento 'click' del botón será manejado por la función 'clickButton'.
-	$button->on('click', 'clickButton');
-	
-	return $app;
+// Instancia la app. El primer argumento especifica la ruta del controlador
+// de procesamiento.
+$app = new App('process.php');
+
+// Instancia los componentes. El primer argumento especifica el identificador del componente.
+$input = new Input('input');
+$label = new Label('label');
+$button = new Button('button');
+
+// Inserta los componentes en la sección 'body' de la app.
+$app->appendComponent('body', $input);
+$app->appendComponent('body', $label);
+$app->appendComponent('body', $button);
+
+////////////////////////////
+// Declaración de eventos //
+////////////////////////////
+
+// Declara que el evento 'click' del botón será manejado por la función 'clickButton'.
+$button->on('click', 'clickButton');
+
+return $app;
+```
 
 Primeramente se instancia la app donde el primer argumento se corresponde con la ruta del controlador de procesamiento. Como puede ver seguidamente existen dos bloques de comentarios llamados 'Composición' y 'Declaración de eventos' respectivamente.
 
@@ -161,14 +169,16 @@ Una vez que se han declarado los eventos será necesario definir la lógica de l
 
 Edite el archivo *bootstrap.php* y añada el siguiente código:
 
-	function clickButton($event)
-	{
-		// Referenciando los componentes de la app.
-	    $label = $event->app->label;
-	    $input = $event->app->input;
-	
-	    $label->setText('Hola ' . $input->getText());
-	}
+```php
+function clickButton($event)
+{
+	// Referenciando los componentes de la app.
+    $label = $event->app->label;
+    $input = $event->app->input;
+
+    $label->setText('Hola ' . $input->getText());
+}
+```
 
 Toda función manejadora de eventos recibirá un argumento con información del evento en curso. Tal y como puede ver en el código, mediante este argumento se podrán referenciar los componentes dentro de la función.
 
@@ -182,41 +192,43 @@ El código HTML de la página será proporcionado por la clase App por lo que pr
 
 Edite el archivo *bootstrap.php* dejándolo de la siguiente manera:
 
-	<?php
-	
-	require_once 'vendor/autoload.php';
+```php
+<?php
 
-	use Andaniel05\GluePHP\AbstractApp;
+require_once 'vendor/autoload.php';
 
-	function clickButton($event)
-	{
-		// Referenciando los componentes de la app.
-	    $label = $event->app->label;
-	    $input = $event->app->input;
-	
-	    $label->setText('Hola ' . $input->getText());
-	}
+use Andaniel05\GluePHP\AbstractApp;
 
-	class App extends AbstractApp
-	{
-	    public function html(): ?string
-	    {
-	        return <<<HTML
-	<!DOCTYPE html>
-	<html lang="en">
-	<head>
-	    <meta charset="utf-8">
-	    <title>Tutorial1 de GluePHP</title>
-	</head>
-	<body>
-	    {$this->renderSidebar('body')}
-	
-	    {$this->renderAssets('scripts')}
-	</body>
-	</html>
-	HTML;
-	    }
-	}
+function clickButton($event)
+{
+	// Referenciando los componentes de la app.
+    $label = $event->app->label;
+    $input = $event->app->input;
+
+    $label->setText('Hola ' . $input->getText());
+}
+
+class App extends AbstractApp
+{
+    public function html(): ?string
+    {
+        return <<<HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Tutorial1 de GluePHP</title>
+</head>
+<body>
+    {$this->renderSidebar('body')}
+
+    {$this->renderAssets('scripts')}
+</body>
+</html>
+HTML;
+    }
+}
+```
 
 Como puede ver hemos añadido al archivo el código fuente de la clase App. Puede notar que el método `App::html()` devuelve un valor de tipo *string* que se corresponde con el código HTML o vista de la página.
 
@@ -236,31 +248,35 @@ Por otra parte, mediante la anotación `@Glue` se especifican los datos comparti
 
 Añada la declaración de la clase `Andaniel05\GluePHP\Component\AbstractComponent` al inicio del archivo *bootstrap.php*:
 
-	<?php
-	
-	require_once 'vendor/autoload.php';
-	
-	use Andaniel05\GluePHP\AbstractApp;
-	use Andaniel05\GluePHP\Component\AbstractComponent;
+```php
+<?php
 
-	// ...
+require_once 'vendor/autoload.php';
+
+use Andaniel05\GluePHP\AbstractApp;
+use Andaniel05\GluePHP\Component\AbstractComponent;
+
+// ...
+```
 
 ### Creando la clase Input. ###
 
 Añada el siguiente código al archivo *bootstrap.php*:
 
-	class Input extends AbstractComponent
-	{
-	    /**
-	     * @Glue
-	     */
-	    protected $text;
-	
-	    public function html(): ?string
-	    {
-	        return '<input type="text" gphp-bind-value="text">';
-	    }
-	}
+```php
+class Input extends AbstractComponent
+{
+    /**
+     * @Glue
+     */
+    protected $text;
+
+    public function html(): ?string
+    {
+        return '<input type="text" gphp-bind-value="text">';
+    }
+}
+```
 
 Primeramente vamos a explicar el significado del atributo 'text' marcado con la anotación `@Glue`. Como habíamos explicado antes, por cada instancia de componente presente en la app, GluePHP creará una instancia equivalente en el frontend. La existencia de esta anotación sirve para indicar que la instancia del componente frontend tendrá también un atributo de nombre 'text' y que mantendrá un *Double Binding* con igual atributo del componente backend, es decir, que cuando dicho atributo modifique su valor en cualquiera de las partes la otra será actualizada automáticamente. Los atributos que presenten la anotación `@Glue` son llamados *glue attributes*.
 
@@ -270,18 +286,20 @@ Respecto al código HTML del componente, en este caso se corresponde con un úni
 
 Añada el siguiente código al archivo *bootstrap.php*:
 
-	class Label extends AbstractComponent
-	{
-	    /**
-	     * @Glue
-	     */
-	    protected $text;
-	
-	    public function html(): ?string
-	    {
-	        return '<label gphp-bind-html="text"></label>';
-	    }
-	}
+```php
+class Label extends AbstractComponent
+{
+    /**
+     * @Glue
+     */
+    protected $text;
+
+    public function html(): ?string
+    {
+        return '<label gphp-bind-html="text"></label>';
+    }
+}
+```
 
 Como puede ver la clase Label es muy similar a la clase Input. Ambas cuentan con un *glue attribute* llamado 'text' y solo difieren en su código HTML. En el caso de esta clase su vista no es más que un elemento tipo 'label' con el atributo `gphp-bind-html="text"`. El significado de este atributo es muy similar al anterior, la única diferencia está en que en este caso el *Binding* solo se va a producir desde el *glue attribute* hacia el HTML interno del  elemento 'label'.
 
@@ -289,18 +307,20 @@ Como puede ver la clase Label es muy similar a la clase Input. Ambas cuentan con
 
 Añada el siguiente código al archivo bootstrap.php:
 
-	class Button extends AbstractComponent
-	{
-	    /**
-	     * @Glue
-	     */
-	    protected $text = 'Click Me!';
-	
-	    public function html(): ?string
-	    {
-	        return '<button gphp-bind-html="text" gphp-bind-events="click"></button>';
-	    }
-	}
+```php
+class Button extends AbstractComponent
+{
+    /**
+     * @Glue
+     */
+    protected $text = 'Click Me!';
+
+    public function html(): ?string
+    {
+        return '<button gphp-bind-html="text" gphp-bind-events="click"></button>';
+    }
+}
+```
 
 Como puede ver, la clase Button cuenta también con un *glue attribute* 'text' donde en este caso presenta un valor por defecto. En el caso de la vista no es más que un elemento tipo 'button' que presenta dos atributos especiales.
 
