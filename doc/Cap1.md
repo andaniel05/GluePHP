@@ -172,7 +172,7 @@ Edite el archivo *bootstrap.php* y añada el siguiente código:
 ```php
 function clickButton($event)
 {
-	// Referenciando los componentes de la app.
+    // Referenciando los componentes de la app.
     $label = $event->app->label;
     $input = $event->app->input;
 
@@ -201,7 +201,7 @@ use Andaniel05\GluePHP\AbstractApp;
 
 function clickButton($event)
 {
-	// Referenciando los componentes de la app.
+    // Referenciando los componentes de la app.
     $label = $event->app->label;
     $input = $event->app->input;
 
