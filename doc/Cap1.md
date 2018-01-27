@@ -6,7 +6,7 @@ La aplicación estará compuesta por una caja de texto, una etiqueta y un botón
 
 ## Introducción. ##
 
-En el desarrollo con GluePHP existen identificados dos roles principales llamados **desarrollador de aplicación** y **desarrollador de componentes** respectivamente. Es bastante común que los desarrolladores se desempeñen en ambos roles de manera indiferente, pero en cada caso existen diferentes tipos de responsabilidades.
+En el desarrollo con GluePHP existen identificados dos roles principales llamados **desarrollador de aplicación** y **desarrollador de componentes** respectivamente. Es bastante común que los desarrolladores se desempeñen con ambos roles de manera indiferente, pero en cada caso existen diferentes tipos de responsabilidades.
 
 El desarrollador de aplicación, como su nombre lo indica, se encarga de realizar las partes del desarrollo relacionadas específicamente con las funcionalidades propias de la aplicación. Este rol se encarga de atender la estructura del proyecto, los controladores, la composición y la declaración y definición de eventos.
 
@@ -20,8 +20,8 @@ Durante el desarrollo de este capítulo y con el objetivo de lograr la mejor exp
 
 Recomendamos trabajar sobre un directorio vacío para tener un proyecto organizado.
 
-	$ mkdir tutorial1
-	$ cd tutorial1
+	$ mkdir app1
+	$ cd app1
 
 Cree un archivo de nombre *composer.json* con el siguiente contenido:
 
@@ -54,7 +54,7 @@ El primero de ellos se denomina **controlador de carga** ya que es el responsabl
 
 La lógica de estos controladores es definida por el usuario, no obstante, es obligatorio que realicen ciertas operaciones para el correcto funcionamiento de la app.
 
-> Si para el desarrollo de la app se está usando algún framework PHP de prósito general, estos controladores se deben crear de la misma manera en que se crean controladores en dicho framework.
+> Si para el desarrollo de la app se está usando algún framework PHP de prósito general, estos controladores se deben crear de la misma manera en la que se crean controladores con dicho framework.
 
 ### Creando el controlador de carga. ###
 
@@ -80,7 +80,7 @@ $_SESSION['app'] = $app;
 $app->print();
 ```
 
-Los comentarios del código muestran las respectivas funcionalidades. Como puede ver la instancia de la app se obtiene del archivo *app.php*. Es en este archivo donde estará definida toda la app.
+Los comentarios del código muestran las respectivas funcionalidades. Como puede ver, la instancia de la app se obtiene del archivo *app.php* por lo que será en este donde estará definida toda la app.
 
 ### Creando el controlador de procesamiento. ###
 
@@ -110,13 +110,11 @@ echo $response->toJSON();
 die();
 ```
 
-Como puede ver el código también está comentado.
+Puede ver que el código también está comentado.
 
 ## 3. Definiendo la app. ##
 
 A partir de este paso es donde realmente comienza el desarrollo de nuestra app, pues crear los controladores fué crear la plataforma básica de ejecución y será siempre un paso obligatorio cuando se desarrolle cualquier *glue app* independientemente de su tamaño.
-
-Como puede ver en *index.php* la variable $app espera un resultado del archivo *app.php*. Este resultado debe ser una instancia de la clase `Andaniel05\GluePHP\AbstractApp`.
 
 Cree un archivo de nombre *app.php* con el siguiente contenido:
 
@@ -159,13 +157,13 @@ La composición no es más que insertar en la instancia de la app las instancias
 
 Como se comenta en el código, lo que se hace para nuestra app es crear tres componentes e insertarlos en la sección 'body'. Además, se registra la función 'clickButton' como la manejadora del evento 'click' del botón.
 
-Cada componente posee un identificador con el objetivo de que el mismo pueda ser referenciado desde cualquier parte del código. Por lo general este identificador es especificado por el usuario a través del constructor de la clase aunque esto depende del diseño de la respectiva clase, no obstante, si no se especifica ningún valor entonces el componente obtendrá un identificador por defecto.
+Cada componente posee un identificador con el objetivo de que el mismo pueda ser referenciado desde cualquier parte del código. Por lo general este identificador es especificado por el usuario a través del constructor de la clase aunque esto depende del diseño de la misma, no obstante, si no se especifica ningún valor entonces el componente obtendrá un identificador por defecto.
 
 ## 4. Definiendo la lógica de los eventos. ##
 
-> En el próximo capítulo podrá ver como usar *closures* para definir eventos en el mismo lugar que se declaran.
+> En el próximo capítulo podrá ver cómo usar *closures* para definir eventos en el mismo lugar en el que se declaran.
 
-Una vez que se han declarado los eventos será necesario definir la lógica de los mismos. En el caso de nuestra app hemos declarado que el evento 'click' del botón será manejado por la función 'clickButton'. Para definir la lógica de este evento procedemos a crear dicha función.
+Una vez que se han declarado los eventos será necesario definir la lógica de los mismos. En el caso de nuestra app hemos declarado que el evento 'click' del botón será manejado por la función 'clickButton' y para definir la lógica del mismo procedemos a crear dicha función.
 
 Edite el archivo *bootstrap.php* y añada el siguiente código:
 
@@ -182,15 +180,13 @@ function clickButton($event)
 
 Toda función manejadora de eventos recibirá un argumento con información del evento en curso. Tal y como puede ver en el código, mediante este argumento se podrán referenciar los componentes dentro de la función.
 
-En este caso la lógica es bien sencilla. La línea `$label->setText('Hola ' . $input->getText());` modifica el valor del texto del componente 'label' con la palabra 'Hola' más el valor del texto del componente 'input' y de esta forma se resuelve el requisito de nuestra aplicación.
-
-Una vez llegado a este punto habremos terminado de desempeñarnos con el rol del desarrollador de aplicación. Como habrá podido notar, se han usado clases inexistentes para los componentes. Nuestro siguiente paso consiste en crear esas clases por lo que comenzaremos a desempeñarnos con el rol del desarrollador de componentes.
+En este caso la lógica es bien sencilla. La línea `$label->setText('Hola ' . $input->getText());` modifica el valor del texto del componente 'label' con la palabra 'Hola' más el valor del texto del componente 'input' y de esta forma se implementa el requisito de la app.
 
 ## 5. Creando la clase App. ##
 
-El código HTML de la página será proporcionado por la clase App por lo que procedemos a crear dicha clase.
+El código HTML de la página estará especificado en la clase 'App'. Como requisito obligatorio esta tiene que ser hija de la clase `Andaniel05\GluePHP\AbstractApp`.
 
-Edite el archivo *bootstrap.php* dejándolo de la siguiente manera:
+Añada la declaración de la clase 'AbstractApp' al inicio del archivo *bootstrap.php*: 
 
 ```php
 <?php
@@ -199,15 +195,12 @@ require_once 'vendor/autoload.php';
 
 use Andaniel05\GluePHP\AbstractApp;
 
-function clickButton($event)
-{
-    // Referenciando los componentes de la app.
-    $label = $event->app->label;
-    $input = $event->app->input;
+// ...
+```
 
-    $label->setText('Hola ' . $input->getText());
-}
+Seguidamente añada el código de la clase al final del archivo:
 
+```php
 class App extends AbstractApp
 {
     public function html(): ?string
@@ -217,7 +210,7 @@ class App extends AbstractApp
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Tutorial1 de GluePHP</title>
+    <title>My glue app</title>
 </head>
 <body>
     {$this->renderSidebar('body')}
@@ -230,21 +223,25 @@ HTML;
 }
 ```
 
-Como puede ver hemos añadido al archivo el código fuente de la clase App. Puede notar que el método `App::html()` devuelve un valor de tipo *string* que se corresponde con el código HTML o vista de la página.
+Puede notar que el método `App::html()` devuelve un valor de tipo *string* que se corresponde con el código HTML o vista de la página.
 
-El significado de la línea `{$this->renderSidebar('body')}` consiste en que en esa posición serán mostrados los componentes de la sección 'body' de la página. En la clase `Andaniel05\GluePHP\AbstractApp` existe registrado por defecto la sección 'body' pero en próximos capítulos se mostrará la forma de crear nuevas secciones.
+El significado de la línea `{$this->renderSidebar('body')}` consiste en que en esa posición serán mostrados los componentes de la sección 'body' de la página. 
 
-Por otra parte hay que destacar también el significado de la línea `{$this->renderAssets('scripts')}` la cual provocará que en esa posición se muestren los recursos de tipos *scripts* de la página. Si esta línea es omitida el código HTML de la página no contendrá las fuentes JavaScript necesarias para que la app pueda funcionar correctamente, por lo que mostrar los *assets* de este tipo tiene un carácter obligatorio.
+> En la clase `Andaniel05\GluePHP\AbstractApp` existe registrado por defecto la sección 'body' pero en próximos capítulos se mostrará la forma de registrar secciones en la página.
 
-También más adelante profundizaremos en el tema de los *assets*.
+Por otra parte hay que destacar también el significado de la línea `{$this->renderAssets('scripts')}` la cual provocará que en esa posición se muestren los recursos de tipos *scripts* de la página. Si esta línea es omitida el código HTML de la página no contendrá las fuentes JavaScript necesarias para que la app pueda funcionar, por lo que mostrar los *assets* de este tipo tiene un carácter obligatorio. También más adelante profundizaremos en el tema de los *assets*.
+
+Una vez llegado a este punto habremos terminado de desempeñarnos con el rol del desarrollador de aplicación. Como habrá podido notar, se han usado clases inexistentes para los componentes. Nuestro siguiente paso consiste en crear esas clases por lo que comenzaremos a desempeñarnos con el rol del desarrollador de componentes.
 
 ## 6. Creando las clases de los componentes. ##
 
-Es en la creación de componentes donde GluePHP ofrece sus mayores bondades ya que de una manera declarativa se indica como debe ser tratado el componente por parte del framework.
+Es en la creación de componentes donde GluePHP ofrece sus mayores bondades ya que el proceso de desarrollo se hace mayormente de manera declarativa.
 
-Para crear un componente es necesario crear primeramente una clase descendiente de `Andaniel05\GluePHP\Component\AbstractComponent` donde al igual que en la clase App, el código HTML o vista se especifica a través de su método `html()`. Para el caso del código HTML de los componentes GluePHP ofrece cierto marcado especial para indicar la realización de ciertas tareas comunes relacionadas con los elementos HTML del componente.
+Para crear un componente es necesario crear una clase descendiente de `Andaniel05\GluePHP\Component\AbstractComponent` donde al igual que en la clase 'App', el código HTML o vista se especifica a través de su método `html()`. En el caso de los componentes, el código HTML soporta cierto marcado especial para especificar el comportamiento y/o función de ciertos elementos de la vista.
 
-Por otra parte, mediante la anotación `@Glue` se especifican los datos compartidos y sincronizados entre las instancias de los componentes backend y frontend.
+Por cada instancia de componente presente en la app existirá una instancia equivalente en el frontend. Todos los atributos de la clase marcados con la anotación `@Glue` serán interpretados como *glue attributes* independientemente del tipo de visibilidad que posean. De esta forma se le indica a GluePHP que el atributo debe existir también en la instancia frontend y que, entre ambas, mantendrán un *Double Binding* sobre dicho atributo. Esto  quiere decir que al modificarse el valor en alguna de las instancias la otra será actualizada automáticamente.
+
+Por cada *glue attribute* la clase contendrá dos métodos dinámicos para las operaciones tipo *getters* y *setters* sobre el mismo. Los nombres de estos métodos cumplirán con el formato *camel case* y estarán constituidos por el propio nombre del atributo precedido por la palabra 'get' o 'set' según sea el caso. Por ejemplo, para un *glue attribute* llamado 'name' su método *getter* se llamará *getName* mientras que su *setter* será *setName*.
 
 Añada la declaración de la clase `Andaniel05\GluePHP\Component\AbstractComponent` al inicio del archivo *bootstrap.php*:
 
@@ -261,7 +258,7 @@ use Andaniel05\GluePHP\Component\AbstractComponent;
 
 ### Creando la clase Input. ###
 
-Añada el siguiente código al archivo *bootstrap.php*:
+Añada el siguiente código de la clase 'Input' al final del archivo *bootstrap.php*:
 
 ```php
 class Input extends AbstractComponent
@@ -278,9 +275,7 @@ class Input extends AbstractComponent
 }
 ```
 
-Primeramente vamos a explicar el significado del atributo 'text' marcado con la anotación `@Glue`. Como habíamos explicado antes, por cada instancia de componente presente en la app, GluePHP creará una instancia equivalente en el frontend. La existencia de esta anotación sirve para indicar que la instancia del componente frontend tendrá también un atributo de nombre 'text' y que mantendrá un *Double Binding* con igual atributo del componente backend, es decir, que cuando dicho atributo modifique su valor en cualquiera de las partes la otra será actualizada automáticamente. Los atributos que presenten la anotación `@Glue` son llamados *glue attributes*.
-
-Respecto al código HTML del componente, en este caso se corresponde con un único elemento 'input' pero es muy importante aclarar que el método puede devolver cualquier fragmento de código HTML. El atributo `gphp-bind-value="text"` forma parte del marcado especial de GluePHP comentado anteriormente. De esta forma se indica que ese elemento mantendrá un *Double Binding* entre su valor y el valor del *glue attribute* 'text'.
+Puede ver que la clase 'Input' contiene un único *glue attribute* llamado 'text' y que su vista se corresponde con un único elemento tipo 'input'. El atributo `gphp-bind-value="text"` forma parte del marcado especial comentado anteriormente y su existencia le dice a GluePHP que cree un *Double Binding* entre el valor del *glue attribute* 'text' y el valor de la propiedad 'value' del elemento 'input'. De esta forma, cuando se introduzca en la caja de texto la palabra 'abcd'(por ejemplo), en el servidor la llamada al método `$input->getText();` devolverá 'abcd'. En sentido contrario, si en el servidor se efectúa la llamada `$input->setText('dcba');` en el navegador la caja de texto mostrará 'dcba'. No olvide que la comunicación entre el navegador y el servidor se realiza de forma asíncrona(ajax) por lo que todas estas operaciones se efectúan sin tener que recargar la página.
 
 ### Creando la clase Label. ###
 
@@ -301,7 +296,7 @@ class Label extends AbstractComponent
 }
 ```
 
-Como puede ver la clase Label es muy similar a la clase Input. Ambas cuentan con un *glue attribute* llamado 'text' y solo difieren en su código HTML. En el caso de esta clase su vista no es más que un elemento tipo 'label' con el atributo `gphp-bind-html="text"`. El significado de este atributo es muy similar al anterior, la única diferencia está en que en este caso el *Binding* solo se va a producir desde el *glue attribute* hacia el HTML interno del  elemento 'label'.
+Como puede ver la clase Label es muy similar a la clase Input. Ambas cuentan con un *glue attribute* llamado 'text' y solo difieren en la vista. En este caso, esta no es más que un elemento 'label' con el atributo `gphp-bind-html="text"`. El significado de este atributo es muy similar al anterior. La diferencia está en que en este caso el *Binding* solo se va a producir desde el *glue attribute* hacia el HTML interno del elemento. Es decir que la llamada en el servidor `$label->setText('abc');` producirá que en el navegador el label muestre el texto 'abc'.
 
 ### Creando la clase Button. ###
 
@@ -324,17 +319,11 @@ class Button extends AbstractComponent
 
 Como puede ver, la clase Button cuenta también con un *glue attribute* 'text' donde en este caso presenta un valor por defecto. En el caso de la vista no es más que un elemento tipo 'button' que presenta dos atributos especiales.
 
-En el caso del atributo `gphp-bind-html="text"` el significado es exáctamente el mismo que en la clase Label. La única diferencia está en que el *glue attribute* presenta un valor por defecto pero esto no provoca ningún resultado diferente al esperado. Es decir, al crear una instancia de esta clase por defecto el botón mostrará el texto 'Click Me!'.
-
-La principal diferencia de esta clase con las demás radica en la existencia del atributo `gphp-bind-events="click"` presente en el elemento 'button'. Este atributo le dice a GluePHP que al hacer clic sobre el botón se debe disparar en el servidor el evento 'click' del respectivo componente. Recordemos que en la composición de nuestra app, insertamos una instancia de esta clase cuyo identificador fué 'button', además registramos la función 'clickButton' como la encargada de manejar su evento 'click'.
-
-> En próximos capítulos se profundizará en el tema de la creación de componentes.
+El significado del atributo `gphp-bind-html="text"` fué explicado anteriormente por lo que la única novedad la constituye el atributo `gphp-bind-events="click"`. De esta forma se le dice a GluePHP que el evento 'click' del elemento 'button' producirá en el servidor el evento 'click' del componente. De esta manera hemos implementado que cuando en el navegador pulsemos el botón se invoque en el servidor la función 'clickButton'.
 
 ## Ejecutando la app. ##
 
-Una vez llegado a este punto habremos terminado de desarrollar nuestra app por lo que procedemos a su ejecución.
-
-Como toda aplicación web nuestra app necesita ser ejecutada por un servidor web. Por razones de simplicidad recomendamos usar el servidor que viene integrado por defecto en PHP.
+Como toda aplicación web, toda *glue app* necesita ser ejecutada por un servidor web. Por razones de simplicidad recomendamos usar el servidor web integrado de PHP.
 
 Ejecute el siguiente comando:
 
@@ -350,16 +339,5 @@ Seguidamente introducimos un nombre en la caja de texto y al hacer clic sobre el
 
 ![](res/Cap1/2.png)
 
-Es muy importante destacar que el proceso se realiza sin recargar la página.
-
-## Conclusiones. ##
-
-Con el presente capítulo se ha mostrado la forma de trabajo de GluePHP mediante la realización de una aplicación de prueba muy sencilla. Los aspectos mostrados pueden ser aplicados en la construcción de aplicaciones de mayor escala.
-
-GluePHP se usa para la creación de aplicaciones web de una sola página(SPA) mediante el paradigma de la programación dirigida por eventos puramente desarrollada en PHP. El desarrollo con GluePHP es muy similar al desarrollo de una aplicaciones con interfaces gráficas(GUI) para el desktop o móviles.
-
-Los desarrolladores afrontan dos roles denominados **desarrollador de aplicación** y **desarrollador de componentes** respectivamente. Los componentes se pueden distribuir de forma independiente.
-
-GluePHP constituye una plataforma de nivel superior sobre la cual se ejecutan las aplicaciones. Gracias a esta plataforma el desarrollador se centra en la lógica de la aplicación y no tiene que atender temas como la gestión de solicitudes asíncronas(ajax), etc. Es por esto que contribuye a desarrollar más con PHP y menos con JavaScript.
 
 
