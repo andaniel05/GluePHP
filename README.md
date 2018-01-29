@@ -1,6 +1,6 @@
 # GluePHP #
 
-Bienvenido a GluePHP, un framework para el desarrollo de aplicaciones web de una sola página(SPA) empleando el paradigma de la programación dirigida por eventos.
+Bienvenido a GluePHP, un *framework* para el desarrollo de aplicaciones web de una sola página empleando el paradigma de la programación dirigida por eventos.
 
 ### Requerimientos ###
 - PHP 7.1
@@ -10,9 +10,9 @@ Bienvenido a GluePHP, un framework para el desarrollo de aplicaciones web de una
 
 ## Instalación ##
 
-La instalación de GluePHP se realiza mediante composer. Para esto es necesario declarar las siguientes dependencias en el archivo composer.json.
+>Tenga en cuenta que el proyecto se encuentra en una fase inestable.
 
-> Tenga en cuenta que el proyecto se encuentra aún en una fase inestable.
+La instalación de GluePHP se realiza mediante composer. Para esto es necesario declarar las siguientes dependencias en el archivo *composer.json*.
 
     {
         "require": {
@@ -21,28 +21,32 @@ La instalación de GluePHP se realiza mediante composer. Para esto es necesario 
         }
     }
 
-Una vez hecho esto se debe ejecutar el comando:
+Seguidamente se debe ejecutar el comando:
 
     $ composer update
 
 ## Terminología ##
 
-Las aplicaciones hechas con GluePHP las definimos como **glue apps**. Una de las características de estas aplicaciones es que son compuestas, por lo que a sus componentes les llamamos **glue components**. Éstos componentes presentan datos compartidos y sincronizados entre el frontend y el backend a los cuales definimos como **glue attributes**. Por otra parte, definimos como **glue kit** a un conjunto de *glue components* reutilizables.
+Las aplicaciones hechas con GluePHP las definimos como **glue apps**. Una de las características de estas aplicaciones es que son compuestas, por lo que a sus componentes les llamamos **glue components**. Éstos componentes presentan datos compartidos y sincronizados entre el navegador y el servidor a los cuales definimos como **glue attributes**. Por otra parte, definimos como **glue kit** a un conjunto de *glue components* reutilizables.
 
 Durante el desarrollo práctico del libro podrá comprender a fondo estos conceptos. No obstante, queremos aclarar que éstos solo tienen un significado local a nuestro proyecto y no guardan relación con otros ya bien conocidos en la informática como *glue code*, *glue framework*, etc.
 
-A lo largo del libro y por razones de simplicidad usaremos además el término *app* para referirnos también a *glue app*. Ambos términos serán usados de forma indistinta. Además usaremos el término componente para referirnos sencillamente a un *glue component* y dado que por cada componente lógico existe una instancia en el navegador y otra en el servidor, a la primera nos referiremos como **componente frontend** mientras que al segundo como **componente backend**.
+Por razones de simplicidad, a lo largo del libro usaremos de manera equivalente los términos app, componente y kit, para referirnos a *glue app*, *glue component* y *glue kit* respectivamente.
 
 ## Filosofía ##
 
-El desarrollo de una *glue app* es muy similar al desarrollo de una aplicación con interfaz gráfica para el desktop o para móviles. En esos casos, se cuenta con kits de componentes gráficos que contienen botones, cajas de texto, calendarios, etc. Esos componentes se insertan en la vista(formulario, actividad, etc) y se les programa sus eventos.
+Desarrollar una *glue app* es muy similar a desarrollar una aplicación con interfaz gráfica para el *desktop* o para móviles. En esos casos se cuenta con una serie de componentes gráficos que son añadidos al diseño de la interfaz donde más tarde se les programa sus eventos. Esta filosofía de desarrollo se corresponde con el paradigma de la programación dirigida por eventos y es la empleada en el desarrollo con GluePHP.
 
-Por lo general el desarrollo de una aplicación web suele partir de una plantilla HTML que define el aspecto de la misma. Al desarrollar una *glue app* partiendo de este escenario es necesario crear primeramente los *glue components*, tarea que se hace muy sencilla gracias a GluePHP. No obstante, si el desarrollo parte del uso de uno o varios *glue kits* esta tarea no será necesaria y se procede a programar la lógica de los eventos directamente.
+Dada la gran diversidad que existe en el aspecto de las aplicaciones web, a la hora de desarrollar una *glue app* suele ser común tener que crear primeramente los componentes gráficos denominados *glue componentes* según nuestra terminología. No obstante, gracias a las facilidades que brinda GluePHP esta tarea se realiza de una manera muy sencilla.
+
+## Ventajas y desventajas. ##
+
+GluePHP minimiza y facilita muchos de los esfuerzos necesarios para el desarrollo de aplicaciones web de una sola página con PHP. Gracias a esto, reduce considerablemente los tiempos de desarrollo, no obstante, en aplicaciones con gran cantidad de componentes y/o alta concurrencia de eventos puede verse afectado el rendimiento.
 
 ## Libro de GluePHP. ##
 
 - [Capítulo 1. Creando una glue app.](doc/Cap1.md)
-- [Capítulo 2. Trabajando con closures.]
+- [Capítulo 2. Usando closures para la definición de eventos.]
 - [Capítulo 3. Acciones.]
 - [Capítulo 4. Uso dinámico de componentes.]
 - [Capítulo 5. Procesadores.]
@@ -53,4 +57,4 @@ Por lo general el desarrollo de una aplicación web suele partir de una plantill
 - [Capítulo 10. Integración con VueJS.]
 - [Capítulo 11. Integración con Polymer.]
 - [Capítulo 12. Trabajando con el frontend.]
-- [Capítulo 13. Funcionamiento de una glue app.](doc/Cap13.md)
+- [Capítulo 13. Funcionamiento de una glue app.]
