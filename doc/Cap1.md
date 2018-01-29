@@ -4,7 +4,7 @@ La mejor forma de comprender la filosofía de trabajo de GluePHP es usándolo en
 
 La aplicación estará compuesta por una caja de texto, una etiqueta y un botón. La lógica consistirá en que al hacer clic sobre el botón la etiqueta muestre un saludo con el nombre introducido por el usuario en el campo de texto.
 
->En el archivo [app1.zip](res/Cap1/app1.zip) se encuentra resuelto el proyecto del capítulo.
+>En el archivo [app1.zip](https://github.com/andaniel05/GluePHP/raw/0.1a/doc/res/Cap1/app1.zip) se encuentra resuelto el proyecto del capítulo.
 
 ## Introducción. ##
 
