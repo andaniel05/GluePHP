@@ -48,7 +48,7 @@ No obstante, en aplicaciones con gran cantidad de componentes y/o alta concurren
 ## Libro de GluePHP. ##
 
 - [Capítulo 1. Creando una glue app.](doc/Cap1.md)
-- [Capítulo 2. Usando closures para la definición de eventos.]
+- [Capítulo 2. Usando closures para la definición de eventos.](doc/Cap2.md)
 - [Capítulo 3. Acciones.]
 - [Capítulo 4. Uso dinámico de componentes.]
 - [Capítulo 5. Procesadores.]
