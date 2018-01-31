@@ -1,0 +1,7 @@
+{
+    "require": {
+        "andaniel05/composed-views": "dev-0.1a",
+        "andaniel05/glue-php": "dev-0.1a",
+        "opis/closure": "^3.0.0"
+    }
+}

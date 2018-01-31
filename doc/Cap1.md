@@ -8,9 +8,9 @@ La aplicación estará compuesta por una caja de texto, una etiqueta y un botón
 
 ## Introducción. ##
 
-En el desarrollo con GluePHP existen identificados dos roles principales llamados **desarrollador de aplicación** y **desarrollador de componentes** respectivamente. Es bastante común que los desarrolladores se desempeñen con ambos roles de manera indiferente, pero en cada caso existen diferentes tipos de responsabilidades.
+En el desarrollo con GluePHP existen identificados dos roles principales llamados **desarrollador de aplicación** y **desarrollador de componentes** respectivamente. Es bastante común que los desarrolladores se desempeñen en ambos roles de manera indistinta, pero en cada caso se tienen diferentes tipos de responsabilidades.
 
-El desarrollador de aplicación, como su nombre lo indica, se encarga de realizar las partes del desarrollo relacionadas específicamente con las funcionalidades propias de la aplicación. Este rol se encarga de atender la estructura del proyecto, los controladores, la composición y la declaración y definición de eventos.
+El desarrollador de aplicación, como su nombre lo indica, se encarga de realizar las partes del desarrollo relacionadas específicamente con las funcionalidades propias de la aplicación. Este rol se encarga de atender la estructura del proyecto, los controladores, la composición, los eventos y la lógica en general.
 
 Por otra parte, el desarrollador de componentes, se encarga de desarrollar los componentes y otros recursos que serán usados por el desarrollador de aplicación.
 
@@ -142,7 +142,7 @@ $app->appendComponent('body', $label);
 $app->appendComponent('body', $button);
 
 ////////////////////////////
-// Declaración de eventos //
+// Vinculación de eventos //
 ////////////////////////////
 
 // Declara que el evento 'click' del botón será manejado por la función 'clickButton'.
@@ -151,23 +151,25 @@ $button->on('click', 'clickButton');
 return $app;
 ```
 
-Primeramente se instancia la app donde el primer argumento se corresponde con la ruta del controlador de procesamiento. Como puede ver seguidamente existen dos bloques de comentarios llamados 'Composición' y 'Declaración de eventos' respectivamente.
+Primeramente se instancia la app donde el primer argumento se corresponde con la ruta del controlador de procesamiento. Como puede ver seguidamente existen dos bloques de comentarios llamados 'Composición' y 'Vinculación de eventos' respectivamente.
 
-La composición no es más que insertar en la instancia de la app las instancias de los componentes que estarán presentes en la misma, mientras que la declaración de eventos consiste en especificar las funciones encargadas de manejar los respectivos eventos de los componentes.
+La composición no es más que insertar en la instancia de la app las instancias de los componentes que estarán presentes en la misma, mientras que la vinculación de eventos consiste en especificar las funciones encargadas de manejar los respectivos eventos de los componentes.
+
+> Como manejador de eventos se acepta cualquier tipo de *callback* pero el uso de *closures* puede requerir un tratamiento especial. En el próximo capítulo será abordado este tema.
 
 > La composición también puede efectuarse mediante código XML lo que reduce considerablemente la tarea, pero esto solo será posible si se está usando algún kit preparado para esto. Este tema será abordado en próximos capítulos.
 
-Como se comenta en el código, lo que se hace para nuestra app es crear tres componentes e insertarlos en la sección 'body'. Además, se registra la función 'clickButton' como la manejadora del evento 'click' del botón.
+Como se comenta en el código, lo que se hace para nuestra app es crear tres componentes e insertarlos en la sección 'body'. Además, se registra la función 'clickButton' como la encargada de manejar el evento 'click' del botón.
 
-> La declaración de eventos también se puede realizar sobre la instancia de la app donde el nombre del evento se conforma por el identificador del componente, un punto, y el nombre del evento. En este caso sería `$app->on('button.click', 'clickButton');`.
+> La vinculación de eventos también se puede realizar sobre la instancia de la app donde el nombre del evento se conforma por el identificador del componente, un punto, y el nombre del evento. En este caso sería `$app->on('button.click', 'clickButton');`.
 
 Cada componente posee un identificador con el objetivo de que el mismo pueda ser referenciado desde cualquier parte del código. Por lo general este identificador es especificado por el usuario a través del constructor de la clase aunque esto depende del diseño de la misma, no obstante, si no se especifica ningún valor entonces el componente obtendrá un identificador por defecto.
 
 ## 4. Definiendo la lógica de los eventos. ##
 
-> En el próximo capítulo podrá ver cómo usar *closures* para definir eventos en el mismo lugar en el que se declaran.
+> En el próximo capítulo podrá ver cómo usar *closures* para definir los eventos en el mismo lugar en el que se vinculan.
 
-Una vez que se han declarado los eventos será necesario definir la lógica de los mismos. En el caso de nuestra app hemos declarado que el evento 'click' del botón será manejado por la función 'clickButton' y para definir la lógica del mismo procedemos a crear dicha función.
+Una vez que se han vinculado los eventos será necesario definir la lógica de los mismos. En el caso de nuestra app hemos declarado que el evento 'click' del botón será manejado por la función 'clickButton' y para definir la lógica del mismo procedemos a crear dicha función.
 
 Edite el archivo *bootstrap.php* y añada el siguiente código:
 
@@ -247,7 +249,7 @@ Por cada instancia de componente presente en la app existirá una instancia equi
 
 Por cada *glue attribute* la clase contendrá dos métodos dinámicos para las operaciones tipo *getters* y *setters* sobre el mismo. Los nombres de estos métodos cumplirán con el formato *camel case* y estarán constituidos por el propio nombre del atributo precedido por la palabra 'get' o 'set' según sea el caso. Por ejemplo, para un *glue attribute* llamado 'name' su método *getter* se llamará *getName* mientras que su *setter* será *setName*.
 
-Añada la declaración de la clase `Andaniel05\GluePHP\Component\AbstractComponent` al inicio del archivo *bootstrap.php*:
+Añada el código de la clase `Andaniel05\GluePHP\Component\AbstractComponent` al inicio del archivo *bootstrap.php*:
 
 ```php
 <?php

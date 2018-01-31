@@ -41,12 +41,14 @@ Dada la gran diversidad que existe en el aspecto de las aplicaciones web, a la h
 
 ## Ventajas y desventajas. ##
 
-GluePHP minimiza y facilita muchos de los esfuerzos necesarios para el desarrollo de aplicaciones web de una sola página con PHP. Gracias a esto, reduce considerablemente los tiempos de desarrollo, no obstante, en aplicaciones con gran cantidad de componentes y/o alta concurrencia de eventos puede verse afectado el rendimiento.
+GluePHP facilita muchos de los esfuerzos necesarios para el desarrollo de aplicaciones web de una sola página en PHP. Es por esto que reduce considerablemente los tiempos de desarrollo sobre todo en las aplicaciones basadas en kits de componentes reutilizables como son las administraciones o aplicaciones de gestión en general.
+
+No obstante, en aplicaciones con gran cantidad de componentes y/o alta concurrencia de eventos puede verse afectado el rendimiento.
 
 ## Libro de GluePHP. ##
 
 - [Capítulo 1. Creando una glue app.](doc/Cap1.md)
-- [Capítulo 2. Usando closures en la definición de eventos.]
+- [Capítulo 2. Usando closures para la definición de eventos.]
 - [Capítulo 3. Acciones.]
 - [Capítulo 4. Uso dinámico de componentes.]
 - [Capítulo 5. Procesadores.]
