@@ -1,6 +1,6 @@
 # GluePHP #
 
-Bienvenido a GluePHP, un *framework* para el desarrollo de aplicaciones web de una sola página empleando el paradigma de la programación dirigida por eventos.
+Bienvenido a GluePHP, un *framework* para el desarrollo de [aplicaciones web de una sola página](https://es.wikipedia.org/wiki/Single-page_application) empleando el [paradigma de la programación dirigida por eventos](https://es.wikipedia.org/wiki/Programaci%C3%B3n_dirigida_por_eventos).
 
 ### Requerimientos ###
 - PHP 7.1
@@ -46,7 +46,7 @@ GluePHP minimiza y facilita muchos de los esfuerzos necesarios para el desarroll
 ## Libro de GluePHP. ##
 
 - [Capítulo 1. Creando una glue app.](doc/Cap1.md)
-- [Capítulo 2. Usando closures para la definición de eventos.]
+- [Capítulo 2. Usando closures en la definición de eventos.]
 - [Capítulo 3. Acciones.]
 - [Capítulo 4. Uso dinámico de componentes.]
 - [Capítulo 5. Procesadores.]
