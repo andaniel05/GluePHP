@@ -96,9 +96,7 @@ $request = Request::createFromJSON($_REQUEST['glue_request']);
 $response = $app->handle($request);
 
 // Hack para corregir un bug de opis. Será eliminado próximamente.
-(function ($dispatcher) {
-    $dispatcher->sorted = [];
-})->call($app->getDispatcher());
+(function () {$this->sorted = [];})->call($app->getDispatcher());
 
 // Vuelve a persistir la app.
 $_SESSION['app'] = s($app);
