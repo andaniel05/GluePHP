@@ -14,7 +14,7 @@ class DeleteAction extends AbstractAction
     public function __construct(AbstractApp $app, AbstractComponent $parent, AbstractComponent $child, bool $render = true)
     {
         parent::__construct([
-            // 'parentId' => $parent->getId(),
+            'parentId' => $parent->getId(),
             'childId'  => $child->getId(),
         ]);
     }
@@ -22,9 +22,16 @@ class DeleteAction extends AbstractAction
     public static function handlerScript(): string
     {
         return <<<JAVASCRIPT
-    // var parent = app.getComponent(data.parentId);
-    // parent.dropComponent(data.childId);
-    app.dropComponent(data.childId);
+
+    if (app.existsComponent(data.childId)) {
+        app.dropComponent(data.childId);
+    }
+
+    var parent = app.getComponent(data.parentId);
+    if (parent instanceof GluePHP.Component) {
+        parent.dropComponent(data.childId);
+    }
+
 JAVASCRIPT;
     }
 }

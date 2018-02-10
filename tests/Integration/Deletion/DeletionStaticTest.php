@@ -47,4 +47,40 @@ class DeletionStaticTest extends StaticTestCase
 
         $this->assertNull($this->script("return document.getElementById('gphp-button2')"));
     }
+
+    public function testDeletionAfterDynamicInsertion()
+    {
+        $this->driver->get(appUri(__DIR__.'/apps/app2.php'));
+        $button1 = $this->driver->findElement(
+            \WebDriverBy::cssSelector('#gphp-button1 button')
+        );
+        $button2 = $this->driver->findElement(
+            \WebDriverBy::cssSelector('#gphp-button2 button')
+        );
+
+        // Prueba que al hacer clic en el botón 1 se inserta el componente input.
+        //
+
+        $button1->click();
+        $this->waitForResponse();
+
+        $script = <<<JAVASCRIPT
+    var body = app.getComponent('body');
+    var input = body.getComponent('input');
+    return input instanceof GluePHP.Component;
+JAVASCRIPT;
+        $this->assertTrue($this->script($script));
+
+        $input = $this->driver->findElement(\WebDriverBy::cssSelector('#gphp-input'));
+        $this->assertInstanceOf(\RemoteWebElement::class, $input);
+
+        // Prueba que al hacer clic en el botón 2 se elimina el componente input.
+        //
+
+        $button2->click();
+        $this->waitForResponse();
+
+        $this->assertNull($this->script("return app.getComponent('input');"));
+        $this->assertNull($this->script("return document.getElementById('gphp-input');"));
+    }
 }

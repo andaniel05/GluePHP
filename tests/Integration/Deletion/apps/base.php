@@ -12,3 +12,5 @@ $button2 = new Button('button2');
 $app = new TestApp();
 $app->appendComponent('body', $button1);
 $app->appendComponent('body', $button2);
+
+$app->setDebug(true);

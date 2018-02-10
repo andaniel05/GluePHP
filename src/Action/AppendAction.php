@@ -73,7 +73,9 @@ class AppendAction extends AbstractAction
     parent.addComponent(child);
 
     data.processors.forEach(function(id) {
-        app.processors[id](child);
+        if ('function' === typeof(app.processors[id])) {
+            app.processors[id](child);
+        }
     });
 
 JAVASCRIPT;
