@@ -22,7 +22,7 @@ class TestApp extends AbstractApp
             $assets = $event->getAssets();
             $vuejs = $assets['vuejs'] ?? null;
             if ($vuejs) {
-                $vuejs->setUri('/node_modules/vue/dist/vue.min.js');
+                $vuejs->setUri('/bower_components/vue/dist/vue.min.js');
             }
         });
     }
