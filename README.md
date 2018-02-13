@@ -90,27 +90,27 @@ Una vez que ha clonado localmente el repositorio debe realizar la instalación d
 - [Java](https://www.java.com/es/download/)
 - [Bower](https://bower.io/)
 
-1. Instale las dependencias de Composer.
+#### 1. Instale las dependencias de Composer.
 
     $ composer update
 
-2. Instale las dependencias de NPM.
+#### 2. Instale las dependencias de NPM.
 
     $ npm update
 
-3. Instale las dependencias de Bower
+#### 3. Instale las dependencias de Bower
 
     $ bower install
 
-4. Ejecute el siguiente comando.
+#### 4. Ejecute el siguiente comando.
 
     $ php -S localhost:8085
 
-5. Ejecute Selenium Server.
+#### 5. Ejecute Selenium Server.
 
     $ java -jar <ruta_al_archivo>/selenium-server-standalone-x.x.x.jar
 
-6. Ejecute PHPUnit.
+#### 6. Ejecute PHPUnit.
 
     $ php vendor/phpunit/phpunit/phpunit
 
