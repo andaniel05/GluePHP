@@ -115,6 +115,10 @@ abstract class AbstractApp extends AbstractPage
 
     public function handle(RequestInterface $request): ResponseInterface
     {
+        if (! $this->isBooted()) {
+            $this->setBooted(true);
+        }
+
         $requestEvent = new RequestEvent($request);
         $this->dispatcher->dispatch(AppEvents::REQUEST, $requestEvent);
         $this->request = $request;

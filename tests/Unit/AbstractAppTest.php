@@ -1162,4 +1162,12 @@ class AbstractAppTest extends TestCase
         $vuejs = $this->app->getAsset('vuejs');
         $this->assertInstanceOf(ScriptAsset::class, $vuejs);
     }
+
+    public function testAppIsBootedAfterFirstRequestProcessing()
+    {
+        $request = $this->createMock(RequestInterface::class);
+        $this->app->handle($request);
+
+        $this->assertTrue($this->app->isBooted());
+    }
 }
