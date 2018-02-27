@@ -49,8 +49,8 @@ No obstante, en aplicaciones con gran cantidad de componentes y/o alta concurren
 
 - [Capítulo 1. Creando una glue app.](doc/Cap1.md)
 - [Capítulo 2. Usando closures para la definición de eventos.](doc/Cap2.md)
-- [Capítulo 3. Acciones.]
-- [Capítulo 4. Uso dinámico de componentes.]
+- [Capítulo 3. Uso dinámico de componentes.](doc/Cap3.md)
+- [Capítulo 4. Acciones.]
 - [Capítulo 5. Procesadores.]
 - [Capítulo 6. Trabajando con los datos de los eventos.]
 - [Capítulo 7. Profundizando en la creación páginas.]

@@ -38,6 +38,6 @@ Si tras esta modificación procedemos a ejecutar la app nuevamente, el resultado
 
 En este punto, usted se puede preguntar por qué la existencia de este error si hasta el momento no hemos ejecutado ninguna serialización de manera directa. Recordemos que en nuestros controladores realizamos la persistencia de la aplicación a través de la sesión(`$_SESSION['app'] = $app;`). Como lo que se intenta guardar es un objeto, el motor de PHP intentará serializarlo para después guardarlo como cadena, y este es, precisamente la causa del error.
 
->Afortunadamente existen algunas técnicas para resolver este problema. Actualmente estamos desarrollando un componente independiente que podrá ser empleado en las operaciones de persistencia. Dicho componente solucionará este problema y al emplear un algoritmo más personalizado esperamos obtener una mejora en el rendimiento.
+>Afortunadamente existen algunas técnicas para resolver este problema. Actualmente estamos desarrollando un componente independiente que podrá ser empleado en las operaciones de persistencia. Dicho componente solucionará este error y al emplear un algoritmo más personalizado esperamos obtener una mejora en el rendimiento.
 
 >Por el momento basta con que sepa que el uso de *closures* lo tenemos muy presente para el desarrollo con GluePHP.
