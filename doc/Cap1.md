@@ -334,10 +334,6 @@ Ejecute el siguiente comando:
 
 Puede cambiar el puerto según su conveniencia.
 
-Ahora accedemos a la URI [http://localhost:8080/](http://localhost:8080/) y obtendremos el siguiente resultado:
+Ahora accedemos a la URI [http://localhost:8080/](http://localhost:8080/) y comprobamos que la app funciona de la siguiente manera:
 
-![](res/Cap1/1.png)
-
-Seguidamente introducimos un nombre en la caja de texto y al hacer clic sobre el botón podremos comprobar que el label pasa a mostrar el saludo esperado tal y como se muestra en la siguiente imagen.
-
-![](res/Cap1/2.png)
+![](res/Cap1/1.gif)
