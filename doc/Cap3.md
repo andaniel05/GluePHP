@@ -66,7 +66,7 @@ Como puede ver en el código anterior, mediante el argumento pasado a la funció
 
 >Los *glue components* tienen una estructura jerárquica. Esto quiere decir que pueden contener un padre y varios hijos. Cuando se invoca el método `$component->detach()` se le indica al componente padre(en caso de que exista) que debe eliminar al actual como uno de sus hijos. De manera equivalente, si sobre un componente se ejecuta el método `$component->dropChild('child')` se eliminará del componente con identificador 'child' la referencia al componente actual como su padre.
 
-## 3. Ejecutando la aplicación.
+## 3. Ejecutando la aplicación. ##
 
 De esta forma habrá quedado implementada la app y para comprobar su funcionamiento procedemos a su ejecución.
 
