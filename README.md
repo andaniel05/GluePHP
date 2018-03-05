@@ -51,13 +51,13 @@ No obstante, en aplicaciones con gran cantidad de componentes y/o alta concurren
 - [Capítulo 2. Usando closures para la definición de eventos.](doc/Cap2.md)
 - [Capítulo 3. Uso dinámico de componentes.](doc/Cap3.md)
 - [Capítulo 4. Acciones.](doc/Cap4.md)
-- [Capítulo 5. Procesadores.]
-- [Capítulo 6. Trabajando con los datos de los eventos.]
-- [Capítulo 7. Profundizando en la creación páginas.]
-- [Capítulo 8. Profundizando en la creación de componentes.]
-- [Capítulo 9. Creando kits de componentes.]
-- [Capítulo 10. Integración con VueJS.]
-- [Capítulo 11. Integración con Polymer.]
+- [Capítulo 5. Trabajando con datos de los eventos frontend.]
+- [Capítulo 6. Profundizando en la creación páginas.]
+- [Capítulo 7. Profundizando en la creación de componentes.]
+- [Capítulo 8. Procesadores.]
+- [Capítulo 9. Integración con VueJS.]
+- [Capítulo 10. Integración con Polymer.]
+- [Capítulo 11. Creando kits de componentes.]
 - [Capítulo 12. Trabajando con el frontend.]
 - [Capítulo 13. Funcionamiento de una glue app.](doc/Cap13.md)
 
