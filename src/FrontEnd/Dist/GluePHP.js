@@ -51,11 +51,11 @@ GluePHP.Factory = {
             return event;
         },
 
-        createFilterEventDataEvent: function(eventName, event) {
+        createFilterEventDataEvent: function(eventName, event, data) {
             var result = new CustomEvent('app.filter_event_data');
             result.eventName = eventName;
             result.event = event;
-            result.data = {};
+            result.data = data;
             return result;
         },
     },
@@ -418,7 +418,18 @@ App.prototype.buildRequest = function(name, event) {
         updates.push(update);
     }
 
-    var filterEventData = GluePHP.Factory.App.createFilterEventDataEvent(name, event);
+    var data = {},
+        recordData = this.eventRecord[name];
+
+    if ('undefined' != recordData) {
+        for (var prop of recordData) {
+            if ('undefined' != typeof(event[prop])) {
+                data[prop] = event[prop];
+            }
+        }
+    }
+
+    var filterEventData = GluePHP.Factory.App.createFilterEventDataEvent(name, event, data);
     this.dispatchInLocal('app.filter_event_data', filterEventData);
 
     return {

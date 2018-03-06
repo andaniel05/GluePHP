@@ -23,14 +23,18 @@ class EventsStaticTest extends StaticTestCase
     public function test($app)
     {
         $this->driver->get(appUri($app));
+        $code = rand(97, 122);
+        $letter = chr($code);
 
         $this->driver->findElement(\WebDriverBy::cssSelector('#gphp-input input'))
-            ->sendKeys('a');
+            ->sendKeys($letter);
 
-        $this->waitForResponse();
         $this->driver->wait()->until(\WebDriverExpectedCondition::alertIsPresent());
 
-        $this->assertEquals('a', $this->driver->switchTo()->alert()->getText());
+        $text = $this->driver->switchTo()->alert()->getText();
         $this->driver->switchTo()->alert()->accept();
+
+        $this->assertContains($letter, $text);
+        $this->assertContains(strval($code), $text);
     }
 }

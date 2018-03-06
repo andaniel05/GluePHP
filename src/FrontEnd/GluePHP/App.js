@@ -165,7 +165,18 @@ App.prototype.buildRequest = function(name, event) {
         updates.push(update);
     }
 
-    var filterEventData = GluePHP.Factory.App.createFilterEventDataEvent(name, event);
+    var data = {},
+        recordData = this.eventRecord[name];
+
+    if ('undefined' != recordData) {
+        for (var prop of recordData) {
+            if ('undefined' != typeof(event[prop])) {
+                data[prop] = event[prop];
+            }
+        }
+    }
+
+    var filterEventData = GluePHP.Factory.App.createFilterEventDataEvent(name, event, data);
     this.dispatchInLocal('app.filter_event_data', filterEventData);
 
     return {

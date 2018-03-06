@@ -51,11 +51,11 @@ GluePHP.Factory = {
             return event;
         },
 
-        createFilterEventDataEvent: function(eventName, event) {
+        createFilterEventDataEvent: function(eventName, event, data) {
             var result = new CustomEvent('app.filter_event_data');
             result.eventName = eventName;
             result.event = event;
-            result.data = {};
+            result.data = data;
             return result;
         },
     },

@@ -8,14 +8,15 @@ use Andaniel05\GluePHP\Tests\Integration\Entities\Components\TextInput;
 use Andaniel05\GluePHP\Action\AlertAction;
 
 $callback = function ($event) {
-    $data = $event->getData();
-    $event->app->act(new AlertAction($data['key']));
+    $eventData = $event->getData();
+    $msg = $eventData['key'] . $eventData['charCode'];
+    $event->app->act(new AlertAction($msg));
 };
 
 $input = new TextInput('input');
 $app = new TestApp();
 $app->appendComponent('body', $input);
 
-$input->on('keypress', $callback, ['key']);
+$input->on('keypress', $callback, ['key', 'charCode']);
 
 return $app;

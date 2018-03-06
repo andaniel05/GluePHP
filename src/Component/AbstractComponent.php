@@ -139,13 +139,13 @@ abstract class AbstractComponent extends AbstractViewComponent
         return null;
     }
 
-    public function on(string $eventName, callable $callback): void
+    public function on(string $eventName, callable $callback, array $data = []): void
     {
         $this->dispatcher->addListener($eventName, $callback);
-        $this->eventRecord[$eventName] = [];
+        $this->eventRecord[$eventName] = $data;
 
         if ($this->app) {
-            $this->app->on("{$this->id}.{$eventName}", $callback);
+            $this->app->on("{$this->id}.{$eventName}", $callback, $data);
         }
     }
 
