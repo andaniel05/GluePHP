@@ -9,19 +9,18 @@ use Andaniel05\GluePHP\Action\AbstractAction;
  */
 class RegisterEventAction extends AbstractAction
 {
-    public function __construct(string $eventName, array $data)
+    public function __construct(string $eventName, array $eventData)
     {
         parent::__construct([
             'eventName' => $eventName,
-            // 'data'      => $data,
+            'eventData' => $eventData,
         ]);
     }
 
     public static function handlerScript(): string
     {
         return <<<JAVASCRIPT
-    console.log(data);
-    app.registerEvent(data.eventName);
+    app.registerEvent(data.eventName, data.eventData);
 JAVASCRIPT;
     }
 }

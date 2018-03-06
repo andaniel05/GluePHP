@@ -327,13 +327,13 @@ abstract class AbstractApp extends AbstractPage
         }
     }
 
-    public function on(string $eventName, callable $callback): void
+    public function on(string $eventName, callable $callback, array $data = []): void
     {
         $this->dispatcher->addListener($eventName, $callback);
-        $this->eventRecord[$eventName] = [];
+        $this->eventRecord[$eventName] = $data;
 
         if ($this->inProcess()) {
-            $this->act(new RegisterEventAction($eventName, []));
+            $this->act(new RegisterEventAction($eventName, $data));
         }
     }
 
@@ -504,10 +504,5 @@ abstract class AbstractApp extends AbstractPage
         }
 
         return $assets;
-    }
-
-    public function getInitialEvents(): array
-    {
-        return $this->initialEvents;
     }
 }

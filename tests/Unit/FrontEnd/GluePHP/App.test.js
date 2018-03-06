@@ -96,32 +96,32 @@ suite('GluePHP.App', function() {
         });
     });
 
-    suite('#remoteEvents', function() {
+    suite('#eventRecord', function() {
 
         test('is an empty object by default', function() {
             var app = new App();
-            assert.deepEqual(app.remoteEvents, {});
+            assert.deepEqual(app.eventRecord, {});
         });
     });
 
     suite('#registerEvent()', function() {
-        test('register values on #remoteEvents', function() {
+        test('register values on #eventRecord', function() {
             var name = 'event1',
                 data = ['data1', 'data2'],
                 app = new App();
 
             app.registerEvent(name, data);
 
-            assert.equal(app.remoteEvents[name], data);
+            assert.equal(app.eventRecord[name], data);
         });
 
-        test('register null as value on #remoteEvents when second argument is omit', function() {
+        test('register null as value on #eventRecord when second argument is omit', function() {
             var name = 'event1',
                 app = new App();
 
             app.registerEvent(name);
 
-            assert.isNull(app.remoteEvents[name]);
+            assert.isNull(app.eventRecord[name]);
         });
     });
 

@@ -276,7 +276,7 @@ function App(url, token) {
     this.requestMethod = 'POST';
     this.requestKey = 'glue_request';
     this.debug = false;
-    this.remoteEvents = {};
+    this.eventRecord = {};
 };
 
 App.prototype = Object.create(GluePHP.BaseEntity.prototype);
@@ -396,7 +396,7 @@ App.prototype.dispatchInRemote = function(name, event) {
 
 App.prototype.dispatch = function(name, event) {
 
-    if (! this.remoteEvents.hasOwnProperty(name)) {
+    if (! this.eventRecord.hasOwnProperty(name)) {
         return;
     }
 
@@ -497,7 +497,7 @@ App.prototype.processComponent = function(component) {
 };
 
 App.prototype.registerEvent = function(name, data = null) {
-    this.remoteEvents[name] = data;
+    this.eventRecord[name] = data;
 };
 
 GluePHP.App = App;
