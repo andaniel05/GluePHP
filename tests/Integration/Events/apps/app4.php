@@ -5,8 +5,8 @@
 
 require_once 'base.php';
 
-$app->appendComponent('body', $input);
+$app->on('input.keypress', $callback, ['key', 'charCode']);
 
-$input->on('keypress', $callback, ['key', 'charCode']);
+$app->appendComponent('body', $input);
 
 return $app;

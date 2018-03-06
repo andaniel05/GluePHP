@@ -168,7 +168,7 @@ App.prototype.buildRequest = function(name, event) {
     var data = {},
         recordData = this.eventRecord[name];
 
-    if ('undefined' != recordData) {
+    if (recordData instanceof Array) {
         for (var prop of recordData) {
             if ('undefined' != typeof(event[prop])) {
                 data[prop] = event[prop];
