@@ -31,6 +31,7 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 use Andaniel05\ComposedViews\Asset\ContentScriptAsset;
 use Andaniel05\ComposedViews\AbstractPage;
 use Andaniel05\ComposedViews\PageEvents;
+use Andaniel05\ComposedViews\Event\BeforeInsertionEvent;
 use Andaniel05\ComposedViews\Event\AfterInsertionEvent;
 use Andaniel05\ComposedViews\Event\AfterDeletionEvent;
 use Andaniel05\ComposedViews\Component\ComponentInterface as PageComponentInterface;
@@ -75,6 +76,11 @@ abstract class AbstractApp extends AbstractPage
         $this->addAsset($appScript);
 
         parent::__construct($basePath, $dispatcher);
+
+        $dispatcher->addListener(
+            PageEvents::BEFORE_INSERTION,
+            [$this, 'onBeforeInsertion']
+        );
 
         $dispatcher->addListener(
             PageEvents::AFTER_INSERTION,
@@ -388,6 +394,16 @@ abstract class AbstractApp extends AbstractPage
     {
         parent::appendComponent($parentId, $component);
         $component->setApp($this);
+    }
+
+    public function onBeforeInsertion(BeforeInsertionEvent $event)
+    {
+        $newChild = $event->getChild();
+        $oldChild = $this->getComponent($newChild->getId());
+
+        if ($oldChild instanceof AbstractComponent) {
+            $oldChild->detach();
+        }
     }
 
     public function onAfterInsertion(AfterInsertionEvent $event)

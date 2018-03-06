@@ -96,4 +96,12 @@ JAVASCRIPT;
         );
         $this->driver->switchTo()->alert()->accept();
     }
+
+    public function testIfBeforeInsertionExistsAnyComponentWithIdEqualToNewItIsDetached()
+    {
+        $this->clickButton(__DIR__ . '/apps/app7.php');
+        $this->waitForResponse();
+
+        $this->assertEquals(1, $this->script("return document.querySelectorAll('#gphp-button1').length"));
+    }
 }
