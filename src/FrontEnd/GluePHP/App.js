@@ -23,6 +23,7 @@ function App(url, token) {
     this.requestMethod = 'POST';
     this.requestKey = 'glue_request';
     this.debug = false;
+    this.remoteEvents = {};
 };
 
 App.prototype = Object.create(GluePHP.BaseEntity.prototype);
@@ -142,6 +143,10 @@ App.prototype.dispatchInRemote = function(name, event) {
 
 App.prototype.dispatch = function(name, event) {
 
+    if (! this.remoteEvents.hasOwnProperty(name)) {
+        return;
+    }
+
     this.dispatchInLocal(name, event);
 
     if (! event.propagationStopped) {
@@ -236,6 +241,10 @@ App.prototype.processComponent = function(component) {
         var processor = this.processors[id];
         processor(component);
     }
+};
+
+App.prototype.registerEvent = function(name, data = null) {
+    this.remoteEvents[name] = data;
 };
 
 GluePHP.App = App;

@@ -96,6 +96,35 @@ suite('GluePHP.App', function() {
         });
     });
 
+    suite('#remoteEvents', function() {
+
+        test('is an empty object by default', function() {
+            var app = new App();
+            assert.deepEqual(app.remoteEvents, {});
+        });
+    });
+
+    suite('#registerEvent()', function() {
+        test('register values on #remoteEvents', function() {
+            var name = 'event1',
+                data = ['data1', 'data2'],
+                app = new App();
+
+            app.registerEvent(name, data);
+
+            assert.equal(app.remoteEvents[name], data);
+        });
+
+        test('register null as value on #remoteEvents when second argument is omit', function() {
+            var name = 'event1',
+                app = new App();
+
+            app.registerEvent(name);
+
+            assert.isNull(app.remoteEvents[name]);
+        });
+    });
+
     suite('#getStatus()', function() {
 
         test('return null by default', function() {
@@ -377,9 +406,24 @@ suite('GluePHP.App', function() {
             this.dispatchInRemote = sinon.spy(this.app, 'dispatchInRemote');
         });
 
+        test('not invoke to #dispatchInLocal() when the event is not registered', function() {
+            var dispatchInLocalSpy = sinon.spy(this.app, 'dispatchInLocal');
+
+            this.app.dispatch(this.eventName, this.event);
+
+            sinon.assert.notCalled(dispatchInLocalSpy);
+        });
+
+        test('not invoke to #dispatchInRemote() when the event is not registered', function() {
+            this.app.dispatch(this.eventName, this.event);
+            sinon.assert.notCalled(this.dispatchInRemote);
+        });
+
         test('first dispatch the event in local and then dispatch in remote', function() {
 
             dispatchInLocal = sinon.spy(this.app, 'dispatchInLocal');
+            this.app.registerEvent(this.eventName);
+
             this.app.dispatch(this.eventName, this.event);
 
             sinon.assert.calledWith(dispatchInLocal, this.eventName, this.event);
