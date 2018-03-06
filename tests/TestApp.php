@@ -16,7 +16,7 @@ class TestApp extends AbstractApp
         $controllerPath = empty($controllerPath) ? controllerUri() : $controllerPath;
         parent::__construct($controllerPath, $basePath, $dispatcher);
 
-        // $this->setDebug();
+        $this->setDebug();
 
         $this->dispatcher->addListener(PageEvents::FILTER_ASSETS, function ($event) {
             $assets = $event->getAssets();

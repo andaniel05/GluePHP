@@ -7,6 +7,7 @@ use Andaniel05\GluePHP\Action\CanSendActionsTrait;
 use Andaniel05\GluePHP\Action\EvalAction;
 use Andaniel05\GluePHP\Action\AppendAction;
 use Andaniel05\GluePHP\Action\RegisterAction;
+use Andaniel05\GluePHP\Action\RegisterEventAction;
 use Andaniel05\GluePHP\Action\UpdateAction;
 use Andaniel05\GluePHP\Action\DeleteAction;
 use Andaniel05\GluePHP\Asset\AppScript;
@@ -23,6 +24,7 @@ use Andaniel05\GluePHP\Update\UpdateResultInterface;
 use Andaniel05\GluePHP\Update\UpdateResult;
 use Andaniel05\GluePHP\Update\Update;
 use Andaniel05\GluePHP\Component\AbstractComponent;
+use Andaniel05\GluePHP\Component\EventRecordTrait;
 use Andaniel05\GluePHP\Component\Sidebar;
 use Andaniel05\GluePHP\Component\Model\ModelInterface;
 use Andaniel05\GluePHP\Component\Model\Model;
@@ -42,6 +44,7 @@ use Andaniel05\ComposedViews\Component\ComponentInterface as PageComponentInterf
 abstract class AbstractApp extends AbstractPage
 {
     use CanSendActionsTrait;
+    use EventRecordTrait;
 
     protected $id = 'app';
     protected $token;
@@ -92,6 +95,7 @@ abstract class AbstractApp extends AbstractPage
             [$this, 'onAfterDeletion']
         );
 
+        $this->registerActionClass(RegisterEventAction::class);
         $this->registerActionClass(AppendAction::class);
         $this->registerActionClass(DeleteAction::class);
         $this->registerActionClass(EvalAction::class);
@@ -326,6 +330,11 @@ abstract class AbstractApp extends AbstractPage
     public function on(string $eventName, callable $callback): void
     {
         $this->dispatcher->addListener($eventName, $callback);
+        $this->eventRecord[$eventName] = [];
+
+        if ($this->inProcess()) {
+            $this->act(new RegisterEventAction($eventName, []));
+        }
     }
 
     public function getProcessorClasses(): array
@@ -423,8 +432,12 @@ abstract class AbstractApp extends AbstractPage
             }
 
             if ($this->inProcess()) {
-                $action = new AppendAction($this, $parent, $child, $render);
-                $this->act($action);
+                $appendAction = new AppendAction($this, $parent, $child, $render);
+                $this->act($appendAction);
+            } else {
+                foreach ($child->getEventRecord() as $name => $data) {
+                    $this->eventRecord["{$child->getId()}.{$name}"] = $data;
+                }
             }
         };
 
@@ -491,5 +504,10 @@ abstract class AbstractApp extends AbstractPage
         }
 
         return $assets;
+    }
+
+    public function getInitialEvents(): array
+    {
+        return $this->initialEvents;
     }
 }

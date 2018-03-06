@@ -2,6 +2,7 @@
 
 namespace Andaniel05\GluePHP\Asset;
 
+use function Andaniel05\GluePHP\jsVal;
 use Andaniel05\GluePHP\Component\Model\Model;
 use Andaniel05\GluePHP\Component\Model\Exception\InvalidTypeException;
 use Andaniel05\GluePHP\AbstractApp;
@@ -131,6 +132,12 @@ JAVASCRIPT;
 JAVASCRIPT;
         }
 
+        $registerInitialEvents = '';
+        foreach ($this->app->getEventRecord() as $eventName => $data) {
+            $dataStr = jsVal($data);
+            $registerInitialEvents .= "window.{$appId}.registerEvent('{$eventName}', {$dataStr});\n";
+        }
+
         $setDebug = '';
         if ($this->app->isDebug()) {
             $setDebug = "window.{$appId}.debug = true;";
@@ -165,6 +172,11 @@ function documentReady() {
     //
 
     {$createComponents}
+
+    // Registra los eventos iniciales
+    //
+
+    {$registerInitialEvents}
 };
 
 if (document.readyState != 'loading') {

@@ -401,4 +401,9 @@ HTML;
 
         $this->assertNull($component->constructorScript());
     }
+
+    public function testEventRecordReturnAnEmptyArrayByDefault()
+    {
+        $this->assertEquals([], $this->component->getEventRecord());
+    }
 }

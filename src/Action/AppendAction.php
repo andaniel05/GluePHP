@@ -13,8 +13,18 @@ use Andaniel05\GluePHP\Component\Model\Model;
  */
 class AppendAction extends AbstractAction
 {
+    protected $app;
+    protected $parent;
+    protected $child;
+    protected $render;
+
     public function __construct(AbstractApp $app, AbstractComponent $parent, AbstractComponent $child, bool $render = true)
     {
+        $this->app = $app;
+        $this->parent = $parent;
+        $this->child = $child;
+        $this->render = $render;
+
         $html = $render ?
             AbstractComponent::containerView(
                 $child->getId(),
@@ -79,5 +89,16 @@ class AppendAction extends AbstractAction
     });
 
 JAVASCRIPT;
+    }
+
+    public function send(bool $value = true): void
+    {
+        parent::send($value);
+
+        if ($this->app instanceof AbstractApp && $this->app->inProcess()) {
+            foreach ($this->child->getEventRecord() as $name => $data) {
+                $this->app->act(new RegisterEventAction("{$this->child->getId()}.{$name}", $data));
+            }
+        }
     }
 }

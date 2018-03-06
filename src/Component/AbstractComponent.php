@@ -22,6 +22,8 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
  */
 abstract class AbstractComponent extends AbstractViewComponent
 {
+    use EventRecordTrait;
+
     protected $app;
     protected $dispatcher;
 
@@ -140,6 +142,7 @@ abstract class AbstractComponent extends AbstractViewComponent
     public function on(string $eventName, callable $callback): void
     {
         $this->dispatcher->addListener($eventName, $callback);
+        $this->eventRecord[$eventName] = [];
 
         if ($this->app) {
             $this->app->on("{$this->id}.{$eventName}", $callback);
