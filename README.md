@@ -51,7 +51,7 @@ No obstante, en aplicaciones con gran cantidad de componentes y/o alta concurren
 - [Capítulo 2. Usando closures para la definición de eventos.](doc/Cap2.md)
 - [Capítulo 3. Uso dinámico de componentes.](doc/Cap3.md)
 - [Capítulo 4. Acciones.](doc/Cap4.md)
-- [Capítulo 5. Trabajando con datos de los eventos frontend.]
+- [Capítulo 5. Trabajando con datos de los eventos frontend.](doc/Cap5.md)
 - [Capítulo 6. Profundizando en la creación páginas.]
 - [Capítulo 7. Profundizando en la creación de componentes.]
 - [Capítulo 8. Procesadores.]
