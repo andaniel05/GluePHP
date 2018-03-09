@@ -52,14 +52,15 @@ No obstante, en aplicaciones con gran cantidad de componentes y/o alta concurren
 - [Capítulo 3. Uso dinámico de componentes.](doc/Cap3.md)
 - [Capítulo 4. Acciones.](doc/Cap4.md)
 - [Capítulo 5. Trabajando con datos de los eventos frontend.](doc/Cap5.md)
-- [Capítulo 6. Profundizando en la creación páginas.]
-- [Capítulo 7. Profundizando en la creación de componentes.]
-- [Capítulo 8. Procesadores.]
-- [Capítulo 9. Integración con VueJS.]
-- [Capítulo 10. Integración con Polymer.]
-- [Capítulo 11. Creando kits de componentes.]
-- [Capítulo 12. Trabajando con el frontend.]
-- [Capítulo 13. Funcionamiento de una glue app.](doc/Cap13.md)
+- [Capítulo 6. Trabajando con sidebars.](doc/Cap6.md)
+- [Capítulo 7. Profundizando en la creación páginas.]
+- [Capítulo 8. Profundizando en la creación de componentes.]
+- [Capítulo 9. Procesadores.]
+- [Capítulo 10. Integración con VueJS.]
+- [Capítulo 11. Integración con Polymer.]
+- [Capítulo 12. Creando kits de componentes.]
+- [Capítulo 13. Trabajando con el frontend.]
+- [Capítulo 14. Funcionamiento de una glue app.](doc/Cap13.md)
 
 ## Contribuyendo. ##
 
