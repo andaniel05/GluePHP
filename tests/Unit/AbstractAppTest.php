@@ -1170,4 +1170,34 @@ class AbstractAppTest extends TestCase
 
         $this->assertTrue($this->app->isBooted());
     }
+
+    public function testSidebarDeclarationAcceptInsertionOfComponents()
+    {
+        $app = new class('') extends AbstractApp {
+
+            public function sidebars(): array
+            {
+                return [
+                    'sidebar1' => [
+                        new DummyComponent1('comp1'),
+                        new DummyComponent2('comp2'),
+                    ]
+                ];
+            }
+
+            public function html(): ?string
+            {
+                return null;
+            }
+        };
+
+        $sidebar1 = $app->getSidebar('sidebar1');
+
+        $this->assertInstanceOf(
+            DummyComponent1::class, $sidebar1->getComponent('comp1')
+        );
+        $this->assertInstanceOf(
+            DummyComponent2::class, $sidebar1->getComponent('comp2')
+        );
+    }
 }

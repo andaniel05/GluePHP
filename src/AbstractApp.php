@@ -471,7 +471,7 @@ abstract class AbstractApp extends AbstractPage
             } elseif (is_string($key) && is_array($value)) {
                 $sidebar = new Sidebar($key);
                 foreach ($value as $component) {
-                    if ($component instanceof ComponentInterface) {
+                    if ($component instanceof AbstractComponent) {
                         $sidebar->addChild($component);
                     }
                 }
