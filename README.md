@@ -53,7 +53,7 @@ No obstante, en aplicaciones con gran cantidad de componentes y/o alta concurren
 - [Capítulo 4. Acciones.](doc/Cap4.md)
 - [Capítulo 5. Trabajando con datos de los eventos frontend.](doc/Cap5.md)
 - [Capítulo 6. Trabajando con sidebars.](doc/Cap6.md)
-- [Capítulo 7. Profundizando en la creación páginas.]
+- [Capítulo 7. Trabajando con assets.](doc/Cap7.md)
 - [Capítulo 8. Profundizando en la creación de componentes.]
 - [Capítulo 9. Procesadores.]
 - [Capítulo 10. Integración con VueJS.]
