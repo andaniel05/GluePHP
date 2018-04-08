@@ -9,22 +9,30 @@ use PHPUnit\Framework\TestCase as PHPUnitTestCase;
  */
 class SeleniumTestCase extends PHPUnitTestCase
 {
-    protected static $globalDriver;
-    protected static $fails;
+    public static $globalDriver;
+    public static $fails;
     public static $currentTest = '';
+
+    public static function getDriver()
+    {
+        if (! self::$globalDriver instanceof \RemoteWebDriver) {
+            self::$globalDriver = \RemoteWebDriver::create(
+                $GLOBALS['selenium_server'],
+                \DesiredCapabilities::chrome()
+            );
+        }
+
+        return self::$globalDriver;
+    }
 
     public static function setUpBeforeClass()
     {
         static::$fails = false;
-        static::$globalDriver = \RemoteWebDriver::create(
-            $GLOBALS['selenium_server'],
-            \DesiredCapabilities::chrome()
-        );
     }
 
     public function setUp()
     {
-        $this->driver = static::$globalDriver;
+        $this->driver = self::getDriver();
         $this->driver->executeScript('document.open()');
 
         $script = <<<JAVASCRIPT
@@ -60,13 +68,6 @@ JAVASCRIPT;
         }
 
         static::$currentTest = '';
-    }
-
-    public static function tearDownAfterClass()
-    {
-        if (! static::$fails) {
-            static::$globalDriver->close();
-        }
     }
 
     public function writeDocument(string $html)

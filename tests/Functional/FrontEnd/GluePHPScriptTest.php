@@ -3,6 +3,7 @@
 namespace Andaniel05\GluePHP\Tests\Functional\FrontEnd;
 
 use PHPUnit\Framework\TestCase;
+use Andaniel05\GluePHP\Tests\SeleniumTestCase;
 
 /**
  * Con este test se comprueba desde phpunit que todos los test unitarios JavaScript
@@ -19,17 +20,7 @@ class GluePHPScriptTest extends TestCase
 {
     public function setUp()
     {
-        $this->driver = \RemoteWebDriver::create(
-            $GLOBALS['selenium_server'],
-            \DesiredCapabilities::chrome()
-        );
-    }
-
-    public function tearDown()
-    {
-        if (! $this->hasFailed() && $this->total > 0 && $this->failures == 0) {
-            $this->driver->close();
-        }
+        $this->driver = SeleniumTestCase::getDriver();
     }
 
     public function testAllGluePHPScriptUnitTestsAreExecutedWithoutErrors()
