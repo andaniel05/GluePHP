@@ -65,7 +65,7 @@ function clickConfirmationButton($e)
 
 Para enviar una acción primeramente es necesario crear una instancia del tipo de acción a enviar y especificarle sus datos según corresponda. Seguidamente se debe invocar sobre la instancia de la app la llamada al método `act()` con la instancia de la acción a enviar como argumento.
 
-Como puede ver, en las funciones anteriores se hace uso de la clase CustomAction la cuál no ha sido definida aún, por lo que nuestro próximo paso consiste en crear dicha clase.
+Como puede ver, en las funciones anteriores se hace uso de la clase CustomAction la cual no ha sido definida aún, por lo que nuestro próximo paso consiste en crear dicha clase.
 
 ## 2. Creando la clase de la acción. ##
 

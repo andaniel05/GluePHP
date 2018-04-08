@@ -54,13 +54,14 @@ No obstante, en aplicaciones con gran cantidad de componentes y/o alta concurren
 - [Capítulo 5. Trabajando con datos de los eventos frontend.](doc/Cap5.md)
 - [Capítulo 6. Trabajando con sidebars.](doc/Cap6.md)
 - [Capítulo 7. Trabajando con assets.](doc/Cap7.md)
-- [Capítulo 8. Profundizando en la creación de componentes.]
-- [Capítulo 9. Procesadores.]
-- [Capítulo 10. Integración con VueJS.]
-- [Capítulo 11. Integración con Polymer.]
-- [Capítulo 12. Creando kits de componentes.]
-- [Capítulo 13. Trabajando con el frontend.]
-- [Capítulo 14. Funcionamiento de una glue app.](doc/Cap13.md)
+- [Capítulo 8. Estructura jerárquica de los componentes.](doc/Cap8.md)
+- [Capítulo 9. Profundizando en la creación de componentes.]
+- [Capítulo 10. Procesadores.]
+- [Capítulo 12. Integración con VueJS.]
+- [Capítulo 13. Integración con Polymer.]
+- [Capítulo 14. Creando kits de componentes.]
+- [Capítulo 15. Trabajando con el frontend.]
+- [Capítulo 16. Funcionamiento de una glue app.](doc/Cap13.md)
 
 ## Contribuyendo. ##
 
@@ -78,7 +79,7 @@ Para el código JavaScript existen algunas tareas automatizadas con [GulpJS](htt
 2. Clonar en local el nuevo repositorio que se ha creado en su cuenta de GitHub.
 3. Realizar las modificaciones **con sus respectivas pruebas**.
 4. Hacer *push* al origen.
-5. Crear un *pull requests*.
+5. Crear un *pull request*.
 
 ### Ejecutando las pruebas. ###
 
