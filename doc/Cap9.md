@@ -8,5 +8,26 @@ En el capítulo 1 se mostró la forma de crear tipos de componentes para GluePHP
 
 ## 1. Personalizando los *getters* y *setters* de los *glue attributes*. ##
 
-Tal y como se explicó en el capítulo 1, por cada *glue attribute* existente en la clase del componente, va a existir un método tipo *getter* y otro *setter* para el mismo.
+Tal y como se explicó en el capítulo 1, por cada *glue attribute* existente en la clase existirán dos métodos para las operaciones *getters* y *setters* donde sus nombres cumplirán con el formato *camelCase* y se compondrán de las palabras *get* o *set* según el caso, seguido del nombre del *glue attribute*. Aunque por defecto ambos poseen cierta lógica interna, es posible redefinirlos para incluirle cierta lógica personalizada.
 
+```php
+class MyComponent extends AbstractComponent
+{
+    /**
+     * @Glue(type="string")
+     */
+    protected $text;
+
+    public function setText(string $text, bool $sendAction = true)
+    {
+        $this->_set('text', $text, $sendAction);
+
+        return $this;
+    }
+
+    public function getText(): string
+    {
+        return $this->text;
+    }
+}
+```
