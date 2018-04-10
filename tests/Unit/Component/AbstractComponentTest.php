@@ -134,6 +134,26 @@ class AbstractComponentTest extends TestCase
         $component->unexistentMethod();
     }
 
+    /**
+     * @expectedException Andaniel05\GluePHP\Component\Exception\InvalidCallException
+     */
+    public function testThrowAnInvalidCallException_OnSetOperationWhenGlueAttributeNotExists()
+    {
+        $component = new class extends AbstractComponent {};
+
+        $component->setData();
+    }
+
+    /**
+     * @expectedException Andaniel05\GluePHP\Component\Exception\InvalidCallException
+     */
+    public function testThrowAnInvalidCallException_OnGetOperationWhenGlueAttributeNotExists()
+    {
+        $component = new class extends AbstractComponent {};
+
+        $component->getData();
+    }
+
     public function testDynamicSetterAddAnUpdateActionWhenExistsResponseInAppAndSecondArgumentIsMissing()
     {
         $app = $this->getMockBuilder(AbstractApp::class)
@@ -405,5 +425,54 @@ HTML;
     public function testEventRecordReturnAnEmptyArrayByDefault()
     {
         $this->assertEquals([], $this->component->getEventRecord());
+    }
+
+    public function testDynamicSettersReturnValueFrom_SetMethod()
+    {
+        $value = uniqid();
+        $component = new class($value) extends AbstractComponent {
+
+            /**
+             * @Glue
+             */
+            protected $data;
+
+            public function __construct($value)
+            {
+                parent::__construct();
+
+                $this->value = $value;
+            }
+
+            public function _set(string $attribute, $value, bool $sendAction = true)
+            {
+                return $this->value;
+            }
+        };
+
+        $this->assertEquals($value, $component->setData(''));
+    }
+
+    public function testDynamicSetterIntokeTo_SetWithSameArguments()
+    {
+        $value = uniqid();
+        $sendAction = (bool) rand(0, 1);
+
+        $component = $this->getMockBuilder(AbstractComponent::class)
+            ->setMethods(['_set'])
+            ->getMockForAbstractClass();
+        $component->expects($this->once())
+            ->method('_set')
+            ->with(
+                $this->equalTo('attr'),
+                $this->equalTo($value),
+                $this->equalTo($sendAction)
+            );
+
+        $model = $this->createMock(ModelInterface::class);
+        $model->method('getAttributeList')->willReturn(['attr']);
+        Model::set(get_class($component), $model);
+
+        $component->setAttr($value, $sendAction);
     }
 }

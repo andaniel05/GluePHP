@@ -103,30 +103,29 @@ abstract class AbstractComponent extends AbstractViewComponent
 
         if ($existsAttribute) {
             if ($operation === 'set') {
-                $this->{$attribute} = $arguments[0];
-
-                $sendUpdateAction = isset($arguments[1]) ?
-                    (bool) $arguments[1] : true;
-
-                if ($sendUpdateAction && $this->app) {
-                    $updateAction = new UpdateAction(
-                        $this->getId(),
-                        $attribute,
-                        $arguments[0]
-                    );
-
-                    if ($response = $this->app->getResponse()) {
-                        $response->addAction($updateAction);
-                    }
-                }
-
-                return $this;
+                $sendAction = isset($arguments[1]) ? (bool) $arguments[1] : true;
+                return $this->_set($attribute, $arguments[0], $sendAction);
             } elseif ($operation === 'get') {
                 return $this->{$attribute};
             }
         }
 
         throw new Exception\InvalidCallException();
+    }
+
+    public function _set(string $attribute, $value, bool $sendAction = true)
+    {
+        $this->{$attribute} = $value;
+
+        if ($sendAction && $this->app) {
+            $updateAction = new UpdateAction($this->getId(), $attribute, $value);
+
+            if ($response = $this->app->getResponse()) {
+                $response->addAction($updateAction);
+            }
+        }
+
+        return $this;
     }
 
     public static function extendClassScript(): ?string
