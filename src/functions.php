@@ -19,9 +19,6 @@ function jsVal($value)
             break;
 
         case 'integer':
-            $strVal = strval($value);
-            break;
-
         case 'double':
             $strVal = strval($value);
             break;

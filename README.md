@@ -55,7 +55,7 @@ No obstante, en aplicaciones con gran cantidad de componentes y/o alta concurren
 - [Capítulo 6. Trabajando con sidebars.](doc/Cap6.md)
 - [Capítulo 7. Trabajando con assets.](doc/Cap7.md)
 - [Capítulo 8. Estructura jerárquica de los componentes.](doc/Cap8.md)
-- [Capítulo 9. Profundizando en la creación de componentes.]
+- [Capítulo 9. Profundizando en la creación de componentes.](doc/Cap9.md)
 - [Capítulo 10. Procesadores.]
 - [Capítulo 12. Integración con VueJS.]
 - [Capítulo 13. Integración con Polymer.]

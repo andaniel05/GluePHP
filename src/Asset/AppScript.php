@@ -121,7 +121,9 @@ JAVASCRIPT;
     var CClass = app.componentClasses['{$componentClass}'];
     var component = new CClass('{$component->getId()}', app, model, element);
 
-    {$component->constructorScript()}
+    (function() {
+        {$component->constructorScript()}
+    }).call(component);
 
     app.addComponent(component);
 

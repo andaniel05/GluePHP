@@ -308,7 +308,7 @@ JAVASCRIPT;
                 $attribute = $this->attribute;
                 $value = jsVal($this->value);
 
-                return "component.{$attribute} = {$value};";
+                return "this.{$attribute} = {$value};";
             }
         };
 
