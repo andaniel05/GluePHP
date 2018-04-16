@@ -127,6 +127,7 @@ Cree un archivo de nombre *app.php* con el siguiente contenido:
 // Instancia la app. El primer argumento especifica la ruta del controlador
 // de procesamiento.
 $app = new App('process.php');
+$app->setDebug(true);
 
 // Instancia los componentes. El primer argumento especifica el identificador del componente.
 $input = new Input('input');
@@ -161,6 +162,18 @@ Como se comenta en el código, lo que se hace para nuestra app es crear tres com
 > La vinculación de eventos también se puede realizar sobre la instancia de la app donde el nombre del evento se conforma por el identificador del componente, un punto, y el nombre del evento. En este caso sería `$app->on('button.click', 'clickButton');`.
 
 Cada componente posee un identificador con el objetivo de que el mismo pueda ser referenciado desde cualquier parte del código. Por lo general este identificador es especificado por el usuario a través del constructor de la clase aunque esto depende del diseño de la misma, no obstante, si no se especifica ningún valor entonces el componente obtendrá un identificador por defecto.
+
+### El modo debug. ###
+
+Como puede ver, después de instanciar la app se ha hecho una llamada al método `$app->setDebug(true);`. Tal y como su nombre lo indica, de esta manera se activa el modo *debug*, el cuál tiene por objetivo mostrar la mayor cantidad de información posible durante el funcionamiento de la app.
+
+Cuando este modo está activo, los *scripts* de GluePHP se imprimirán en la página sin compresión ya que por defecto estos se muestran comprimidos. De esta manera, se podrá hacer una depuración en el navegador si se desea.
+
+Otra de las características de este modo, es que en la consola del navegador se va a imprimir mucha información del funcionamiento interno de la app a medida que las operaciones vallan teniendo lugar. La siguiente imagen muestra un ejemplo de esta información:
+
+![](res/Cap1/debug.png)
+
+Usar el modo *debug* ayuda a comprender el funcionamiento de una *glue app*.
 
 ## 4. Definiendo la lógica de los eventos. ##
 
